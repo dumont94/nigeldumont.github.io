@@ -82,8 +82,8 @@ export default function App() {
         <div className="app-header__logo">
           <div className="app-header__dot" />
           <div>
-            <div className="app-header__title">Your First Network</div>
-            <div className="app-header__sub">SOHO Infrastructure Builder</div>
+            <div className="app-header__title">Map Your Network Infrastructure</div>
+            <div className="app-header__sub">Infrastructure Builder</div>
           </div>
         </div>
         {pathLabel && (

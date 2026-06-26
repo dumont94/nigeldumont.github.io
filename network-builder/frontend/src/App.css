@@ -250,7 +250,14 @@ body {
   color: var(--text-muted);
   line-height: 1.6;
   max-width: 500px;
-  margin: 0 auto;
+  margin: 0 auto var(--space-4);
+}
+
+.questionnaire__byline {
+  font-size: 12px;
+  font-family: var(--mono);
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
 }
 
 .questionnaire__form {

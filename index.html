@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nigel Dumont — Senior IT Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0A0A;
+    --surface: #111111;
+    --surface2: #1A1A1A;
+    --border: rgba(255,255,255,0.08);
+    --border-hi: rgba(255,255,255,0.18);
+    --text: #E8E6E3;
+    --muted: #888580;
+    --accent: #B0ADA8;
+    --accent2: #8A8784;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 2.5rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  section { padding: 7rem 2.5rem 5rem; max-width: 1100px; margin: 0 auto; }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em { font-style: normal; color: var(--accent); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 0.5px solid var(--border-hi);
+    border-radius: 3px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .badge.hi {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(176,173,168,0.09);
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 10px 22px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+  }
+
+  .btn-primary { background: var(--accent); color: #0A0A0A; font-weight: 700; }
+  .btn-primary:hover { background: #C8C5C0; }
+  .btn-ghost { background: transparent; color: var(--muted); border: 0.5px solid var(--border-hi); }
+  .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.35); }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .skill-cell { background: var(--surface); padding: 1.5rem; transition: background 0.2s; }
+  .skill-cell:hover { background: var(--surface2); }
+
+  .skill-cell-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .skill-tag {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 3px 8px;
+    background: var(--surface2);
+    border-radius: 3px;
+  }
+
+  /* ── WORK SAMPLES SECTION ── */
+  #work-samples { border-bottom: 0.5px solid var(--border); }
+
+  .samples-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .sample-block { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .sample-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .sample-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+    border: 0.5px solid;
+    flex-shrink: 0;
+  }
+
+  .tag-iam   { color: #7dcfb6; border-color: rgba(125,207,182,0.35); background: rgba(125,207,182,0.07); }
+  .tag-mon   { color: #89b4fa; border-color: rgba(137,180,250,0.35); background: rgba(137,180,250,0.07); }
+  .tag-net   { color: #a6e3a1; border-color: rgba(166,227,161,0.35); background: rgba(166,227,161,0.07); }
+  .tag-voip  { color: #fab387; border-color: rgba(250,179,135,0.35); background: rgba(250,179,135,0.07); }
+  .tag-sec   { color: #f38ba8; border-color: rgba(243,139,168,0.35); background: rgba(243,139,168,0.07); }
+  .tag-itsm  { color: #cba6f7; border-color: rgba(203,166,247,0.35); background: rgba(203,166,247,0.07); }
+
+  .sample-header h3 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .sample-desc {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 680px;
+    line-height: 1.7;
+  }
+
+  /* ── SLIDESHOW ── */
+  .slideshow {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .slideshow-track { position: relative; }
+
+  .slide {
+    display: none;
+    position: relative;
+  }
+
+  .slide.active { display: block; }
+
+  .slide-img-wrap {
+    width: 100%;
+    cursor: zoom-in;
+    background: #060606;
+  }
+
+  .slide-img-wrap img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    transition: transform 0.3s;
+  }
+
+  .slide-img-wrap:hover img { transform: scale(1.02); }
+
+  .slide-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 4rem 1.25rem 2.5rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.88));
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    pointer-events: none;
+  }
+
+  .slide-caption strong {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .slide-caption span {
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+  }
+
+  .slide-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 1.25rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 5;
+  }
+
+  .slide-btn {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(10,10,10,0.55);
+    border: 0.5px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.85);
+    font-size: 18px;
+    font-family: var(--mono);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .slide-btn:hover { background: rgba(10,10,10,0.85); color: #fff; border-color: rgba(255,255,255,0.4); }
+  .slide-btn:disabled { opacity: 0.15; cursor: default; }
+  .slide-btn-prev { left: 10px; }
+  .slide-btn-next { right: 10px; }
+
+  .slide-dots {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    padding: 0;
+  }
+
+  .dot.active { background: rgba(255,255,255,0.9); transform: scale(1.4); }
+
+  .slide-counter {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── LIGHTBOX ── */
+  #lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    cursor: zoom-out;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 92vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+    cursor: default;
+  }
+  #lb-close {
+    position: fixed;
+    top: 1rem; right: 1.25rem;
+    background: var(--surface);
+    border: 0.5px solid var(--border-hi);
+    color: var(--muted);
+    font-size: 1.1rem;
+    width: 32px; height: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono);
+    transition: color 0.15s;
+  }
+  #lb-close:hover { color: var(--text); }
+
+  /* ── REST OF EXISTING STYLES ── */
+  .work-list { display: flex; flex-direction: column; gap: 0; }
+
+  .work-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .work-item:first-child { padding-top: 0; }
+  .work-meta { padding-top: 3px; }
+
+  .work-period { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+  .work-company { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 0.2rem; }
+  .work-loc { font-size: 12px; color: var(--muted); }
+  .work-title { font-size: 1.15rem; font-weight: 500; margin-bottom: 0.75rem; }
+  .work-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+  .work-wins { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .win-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 3px;
+    background: rgba(176,173,168,0.1);
+    color: var(--accent);
+    border: 0.5px solid rgba(176,173,168,0.25);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .project-card {
+    background: var(--surface);
+    padding: 2rem;
+    transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .project-card:hover { background: var(--surface2); }
+  .project-type { font-family: var(--mono); font-size: 10px; color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase; }
+  .project-name { font-size: 1rem; font-weight: 500; line-height: 1.3; }
+  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.65; flex: 1; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .stack-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--surface2);
+    color: var(--muted);
+    border: 0.5px solid var(--border);
+  }
+
+  .project-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s;
+    margin-top: auto;
+  }
+
+  .project-link:hover { color: var(--accent); }
+
+  .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+  .contact-left h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+  }
+
+  .contact-left h2 em { font-style: normal; color: var(--accent); }
+  .contact-left p { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-link:hover { color: var(--text); }
+  .contact-link-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  .cert-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
+
+  .cert-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .cert-icon {
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    background: rgba(176,173,168,0.1);
+    border: 0.5px solid rgba(176,173,168,0.25);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .cert-icon svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .cert-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .cert-issuer { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .ticker { margin-top: 62px; overflow: hidden; padding: 11px 0; background: #B0ADA8; width: 100%; }
+  .ticker-inner { display: flex; gap: 0; animation: ticker 30s linear infinite; white-space: nowrap; width: max-content; }
+  .ticker-item { font-family: var(--mono); font-size: 12px; color: #0A0A0A; letter-spacing: 0.05em; flex-shrink: 0; padding: 0 2.5rem; font-weight: 700; }
+  .ticker-item span { color: #0A0A0A; margin-right: 0.5rem; opacity: 0.35; }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.25rem 3rem; }
+    .work-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .contact-block { grid-template-columns: 1fr; gap: 2.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .slide-img-wrap { max-height: 260px; }
+    .slide-img-wrap img { max-height: 260px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#hero">Nigel Dumont</a>
+  <ul class="nav-links">
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#work-samples">samples</a></li>
+    <li><a href="#work">work</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span>→</span> Okta · SSO · SCIM · Lifecycle Automation</span>
+    <span class="ticker-item"><span>→</span> CrowdStrike · Rapid7 · Proofpoint</span>
+    <span class="ticker-item"><span>→</span> Entra ID · Azure AD · Intune · Jamf</span>
+    <span class="ticker-item"><span>→</span> Meraki · Fortinet · SolarWinds</span>
+    <span class="ticker-item"><span>→</span> PowerShell · Bash · Python · Apps Script</span>
+    <span class="ticker-item"><span>→</span> CompTIA Security+ · SecAI+ · CCENT</span>
+    <span class="ticker-item"><span>→</span> 5,000+ users · 50+ locations · Zero audit failures</span>
+    <span class="ticker-item"><span>→</span> Okta · SSO · SCIM · Lifecycle Automation</span>
+    <span class="ticker-item"><span>→</span> CrowdStrike · Rapid7 · Proofpoint</span>
+    <span class="ticker-item"><span>→</span> Entra ID · Azure AD · Intune · Jamf</span>
+    <span class="ticker-item"><span>→</span> Meraki · Fortinet · SolarWinds</span>
+    <span class="ticker-item"><span>→</span> PowerShell · Bash · Python · Apps Script</span>
+    <span class="ticker-item"><span>→</span> CompTIA Security+ · SecAI+ · CCENT</span>
+    <span class="ticker-item"><span>→</span> 5,000+ users · 50+ locations · Zero audit failures</span>
+  </div>
+</div>
+
+<section class="hero" id="hero">
+  <p class="hero-eyebrow">// Senior Systems & Infrastructure Engineer — Chicago, IL</p>
+  <h1>Identity. Infrastructure. <em>Security.</em></h1>
+  <p class="hero-sub">8+ years designing and securing enterprise IT at scale — from startups to 5,000-user, 50+ location operations. I help organizations run tighter IAM systems, automate user and hardware lifecycles, and implement the security policies that keep data locked down.</p>
+  <div class="hero-badges">
+    <span class="badge hi">CompTIA Security+</span>
+    <span class="badge hi">SecAI+ CY0-001</span>
+    <span class="badge hi">Cisco CCENT</span>
+    <span class="badge hi">AAS, Information Systems</span>
+  </div>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#work">View my work</a>
+    <a class="btn btn-ghost" href="#work-samples">Work samples →</a>
+    <a class="btn btn-ghost" href="https://linkedin.com/in/nigeldumont" target="_blank">LinkedIn →</a>
+  </div>
+</section>
+
+<section id="skills">
+  <p class="section-label">// Core competencies</p>
+  <div class="skills-grid">
+    <div class="skill-cell">
+      <p class="skill-cell-title">Operating Systems</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Windows 365</span>
+        <span class="skill-tag">Android</span>
+        <span class="skill-tag">MacOS</span>
+        <span class="skill-tag">iOS</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Google Workspace</span>
+        <span class="skill-tag">AWS</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">Infrastructure</p>
+      <div class="skill-tags">
+        <span class="skill-tag">On-prem</span>
+        <span class="skill-tag">Hybrid/Cloud</span>
+        <span class="skill-tag">AWS Systems Manager</span>
+        <span class="skill-tag">WSUS</span>
+        <span class="skill-tag">VLANs</span>
+        <span class="skill-tag">VPN</span>
+        <span class="skill-tag">Fortinet</span>
+        <span class="skill-tag">Cisco Meraki</span>
+        <span class="skill-tag">SolarWinds</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">Endpoint Security</p>
+      <div class="skill-tags">
+        <span class="skill-tag">SOC 2 Framework</span>
+        <span class="skill-tag">Least Privilege</span>
+        <span class="skill-tag">CrowdStrike Falcon</span>
+        <span class="skill-tag">Microsoft Defender/Purview</span>
+        <span class="skill-tag">Rapid7 InsightIDR</span>
+        <span class="skill-tag">Proofpoint TAP</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">Telecom & VoIP</p>
+      <div class="skill-tags">
+        <span class="skill-tag">SIP</span>
+        <span class="skill-tag">Digium Switchvox</span>
+        <span class="skill-tag">MS Teams VoIP</span>
+        <span class="skill-tag">Amazon Connect</span>
+        <span class="skill-tag">IVR</span>
+        <span class="skill-tag">E911 Compliance</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">Languages & AI</p>
+      <div class="skill-tags">
+        <span class="skill-tag">PowerShell</span>
+        <span class="skill-tag">Bash/ZSH</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Claude</span>
+        <span class="skill-tag">ChatGPT</span>
+        <span class="skill-tag">Co-Pilot</span>
+        <span class="skill-tag">Gemini</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">MDM</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Kandji</span>
+        <span class="skill-tag">JAMF</span>
+        <span class="skill-tag">Intune</span>
+        <span class="skill-tag">ManageEngine</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">Ticketing & Communications</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Freshservice</span>
+        <span class="skill-tag">ServiceNow</span>
+        <span class="skill-tag">Jira</span>
+        <span class="skill-tag">Zendesk</span>
+        <span class="skill-tag">Slack</span>
+        <span class="skill-tag">Zoom</span>
+        <span class="skill-tag">MS Teams</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">IAM</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Okta</span>
+        <span class="skill-tag">OneLogin</span>
+        <span class="skill-tag">Active Directory</span>
+        <span class="skill-tag">Azure AD</span>
+        <span class="skill-tag">Entra ID</span>
+        <span class="skill-tag">SAML/OIDC</span>
+        <span class="skill-tag">SaaS App Integrations</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  WORK SAMPLES                             -->
+<!-- ══════════════════════════════════════════ -->
+<section id="work-samples">
+  <p class="section-label">// Work samples</p>
+  <div class="samples-grid">
+
+    <!-- IAM -->
+    <div class="sample-block">
+      <div class="sample-header">
+        <span class="sample-tag tag-iam">IAM</span>
+        <h3>Identity & Access Management</h3>
+      </div>
+      <p class="sample-desc">Full identity lifecycle across Entra ID, Azure AD, and Active Directory — user provisioning, MFA enforcement, app assignment, sign-in log review, and immediate access revocation during offboarding for 5,000+ users across 50+ locations.</p>
+      <div class="slideshow" id="ss-iam">
+        <div class="slideshow-track">
+          <div class="slide active">
+            <div class="slide-img-wrap" onclick="openLightbox('iam-1-block-signin.png')">
+              <img src="iam-1-block-signin.png" alt="Block sign-in Entra ID" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Entra ID — Block Sign-In</strong>
+              <span>Immediate access revocation during offboarding. User is auto signed-out of all Microsoft services within 60 minutes.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('iam-2-app-assignments.png')">
+              <img src="iam-2-app-assignments.png" alt="Azure AD app assignments" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Entra ID — User App Assignments</strong>
+              <span>Managed role-based app access across Docusign, KnowBe4, Dutchie POS, Sage Intacct, Freshworks, SolarWinds, and EVERFI — direct and group-inherited assignments.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('iam-3-group-members.png')">
+              <img src="iam-3-group-members.png" alt="Azure AD group members" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Azure AD — Group Membership Management</strong>
+              <span>Administered security groups and distribution lists in Entra ID — adding/removing members, managing bulk operations and role assignments across GTI's user base.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('iam-4-aduc.png')">
+              <img src="iam-4-aduc.png" alt="Active Directory Users and Computers" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Active Directory — OU Structure & User Properties</strong>
+              <span>Maintained GTI's on-prem AD hierarchy across 50+ location OUs (IL, FL, CA, CT) with computer objects, security groups, service accounts, and user profile management.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('iam-5-mfa.png')">
+              <img src="iam-5-mfa.png" alt="Azure MFA authentication methods" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Entra ID — MFA & Authentication Methods</strong>
+              <span>Configured and audited per-user MFA in Entra ID — managing Microsoft Authenticator, phone (SMS), and system-preferred method policies across the organization.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('iam-6-signin-logs.png')">
+              <img src="iam-6-signin-logs.png" alt="Entra ID sign-in logs" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Entra ID — Sign-In Log Review</strong>
+              <span>Reviewed sign-in logs for anomalous activity — filtering by user, application, IP, and authentication method to support security investigations and compliance audits.</span>
+            </div>
+          </div>
+        </div>
+        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-iam')">‹</button>
+        <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-iam')">›</button>
+        <div class="slide-controls">
+          <div class="slide-dots" id="dots-ss-iam"></div>
+          <span class="slide-counter" id="counter-ss-iam">1 / 6</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONITORING -->
+    <div class="sample-block">
+      <div class="sample-header">
+        <span class="sample-tag tag-mon">Monitoring</span>
+        <h3>Network Monitoring — Meraki & SolarWinds</h3>
+      </div>
+      <p class="sample-desc">Enterprise-wide network monitoring across 82 Cisco Meraki networks and SolarWinds Orion — tracking WAN health, packet loss, bandwidth, uplinks, and wireless clients across GTI's full retail and corporate footprint with 39,000+ weekly connected clients.</p>
+      <div class="slideshow" id="ss-mon">
+        <div class="slideshow-track">
+          <div class="slide active">
+            <div class="slide-img-wrap" onclick="openLightbox('mon-1-meraki-org.png')">
+              <img src="mon-1-meraki-org.png" alt="Meraki org network list" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Cisco Meraki — Organization-Wide Network Overview</strong>
+              <span>82 networks, 39,747 clients, and 1,181 TB of traffic managed across the week. Monitored all GTI retail and corporate sites from a single Meraki org dashboard.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('mon-2-meraki-health.png')">
+              <img src="mon-2-meraki-health.png" alt="Meraki network health dashboard" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Cisco Meraki — Site Network Health (Effingham)</strong>
+              <span>Per-site health view showing uplink status, MX/switch/AP health, 201 active clients, and 1.83 TB daily throughput with application breakdown by traffic type.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('mon-3-solarwinds-home.png')">
+              <img src="mon-3-solarwinds-home.png" alt="SolarWinds Orion home dashboard" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>SolarWinds Orion — Summary Dashboard</strong>
+              <span>Monitored all GTI retail locations from SolarWinds Orion — tracking down circuits, unreachable nodes, Meraki VPN nodes, and Fortinet firewall health across the US.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('mon-4-solarwinds-packetloss.png')">
+              <img src="mon-4-solarwinds-packetloss.png" alt="SolarWinds 100% packet loss" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>SolarWinds — WAN Outage Detection (100% Packet Loss)</strong>
+              <span>Identified and escalated complete WAN circuit failure at Sun City FL — 100% packet loss with no response time, triggering ISP ticket and failover coordination.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('mon-5-solarwinds-events.png')">
+              <img src="mon-5-solarwinds-events.png" alt="SolarWinds WAN event timeline" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>SolarWinds — WAN Circuit Event Timeline</strong>
+              <span>Tracked Chicago HQ WAN circuit (Comcast Coax) outage and recovery — event log showed 100% loss start, IP change events during failover, and restoration confirmation.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('mon-6-m365-health.png')">
+              <img src="mon-6-m365-health.png" alt="M365 service health incident" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>M365 Admin — Service Health Incident (Teams)</strong>
+              <span>Monitored live M365 service degradation affecting 3,848 Teams users — tracked incident TM710344 from detection through Microsoft's resolution update.</span>
+            </div>
+          </div>
+        </div>
+        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-mon')">‹</button>
+        <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-mon')">›</button>
+        <div class="slide-controls">
+          <div class="slide-dots" id="dots-ss-mon"></div>
+          <span class="slide-counter" id="counter-ss-mon">1 / 6</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NETWORKING -->
+    <div class="sample-block">
+      <div class="sample-header">
+        <span class="sample-tag tag-net">Networking</span>
+        <h3>Network Configuration & Troubleshooting</h3>
+      </div>
+      <p class="sample-desc">Configured and troubleshot VLANs, DHCP reservations, WAN uplinks, and switch ports across Cisco Meraki — from diagnosing client connectivity failures to resolving VLAN misconfigurations on printers, phones, and access points at retail sites.</p>
+      <div class="slideshow" id="ss-net">
+        <div class="slideshow-track">
+          <div class="slide active">
+            <div class="slide-img-wrap" onclick="openLightbox('net-1-meraki-client.png')">
+              <img src="net-1-meraki-client.png" alt="Meraki client connection detail" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Meraki — Client Port & VLAN Verification</strong>
+              <span>Diagnosed Polycom phone connectivity on VLAN 20 (VoIP) — confirmed port 27 on SW03 as healthy with 100% packet counters, resolving a reported call quality issue.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('net-2-dhcp-reservations.png')">
+              <img src="net-2-dhcp-reservations.png" alt="Meraki DHCP IP reservations" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Meraki — DHCP MAC-to-IP Reservations</strong>
+              <span>Configured static IP assignments via MAC address reservation rules in Meraki — ensuring printers, phones, and infrastructure devices receive consistent IPs across subnets.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('net-3-wan-config.png')">
+              <img src="net-3-wan-config.png" alt="Meraki WAN configuration" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Meraki — WAN Uplink Configuration</strong>
+              <span>Managed dual WAN uplink configurations (IPv4 static + IPv6 DHCP6) across retail sites — documented public IPs, gateway, and DNS settings for ISP troubleshooting.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('net-4-rack.png')">
+              <img src="net-4-rack.png" alt="Network rack/closet" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Physical Network Infrastructure</strong>
+              <span>Hands-on management of store network closets — switch, firewall, and AP hardware installation, cable management, and documentation at GTI retail locations.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('net-5-vlan-chat.png')">
+              <img src="net-5-vlan-chat.png" alt="VLAN printer troubleshooting Teams chat" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>VLAN Troubleshooting — Printer on Wrong Segment</strong>
+              <span>Identified and resolved a printer landing on the wrong VLAN — moved it to VLAN 10, traced the device via Meraki SW02/Port 21, confirmed IP assignment and ping response.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('net-6-switch-chat.png')">
+              <img src="net-6-switch-chat.png" alt="Switch power delivery workaround" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Switch Failure Workaround — Port Power Delivery</strong>
+              <span>Collaborated cross-team to diagnose a PoE failure on SW2 — identified affected Polycom phones, moved devices to SW3 as a workaround pending hardware replacement.</span>
+            </div>
+          </div>
+        </div>
+        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-net')">‹</button>
+        <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-net')">›</button>
+        <div class="slide-controls">
+          <div class="slide-dots" id="dots-ss-net"></div>
+          <span class="slide-counter" id="counter-ss-net">1 / 6</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VOIP -->
+    <div class="sample-block">
+      <div class="sample-header">
+        <span class="sample-tag tag-voip">VoIP & Telecom</span>
+        <h3>VoIP Administration & Telecom Management</h3>
+      </div>
+      <p class="sample-desc">Administered Digium Switchvox VoIP platform across 300+ endpoints at GTI retail sites — managing SIP extensions, call queue routing, E911 compliance, call logs, and ISP-level outage escalation. Deployed FortiClient SSL VPN for 400+ remote users at a prior role.</p>
+      <div class="slideshow" id="ss-voip">
+        <div class="slideshow-track">
+          <div class="slide active">
+            <div class="slide-img-wrap" onclick="openLightbox('voip-1-calllog.png')">
+              <img src="voip-1-calllog.png" alt="Switchvox call log" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Digium Switchvox — Call Log & Voicemail Audit</strong>
+              <span>Audited call history on extension 1389 across a date range — exported caller ID, duration, and mailbox data for compliance review and call queue investigations.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('voip-2-extensions-pinellas.png')">
+              <img src="voip-2-extensions-pinellas.png" alt="VoIP extension status Pinellas" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Switchvox — Extension Registration Status (Pinellas Park)</strong>
+              <span>Monitored and resolved SIP extension outages — identified Unreachable vs Registered states on Digium D60 and PolyCCX devices, coordinating network-side fixes per site.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('voip-3-extensions-hagerstown.png')">
+              <img src="voip-3-extensions-hagerstown.png" alt="VoIP extension status Hagerstown" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Switchvox — Extension Status (Hagerstown)</strong>
+              <span>Diagnosed partial extension failure at Hagerstown — 4 of 8 extensions Unreachable (5004–5033) while PolyCCX-connected lines remained Registered, isolating issue to Digium device connectivity.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('voip-4-sangoma-status.png')">
+              <img src="voip-4-sangoma-status.png" alt="Sangoma status page UCaaS outage" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Sangoma — UCaaS Service Outage Response</strong>
+              <span>Tracked a platform-wide Sangoma UCaaS incident affecting GTI VoIP services — monitored the status page for ETR updates while managing internal user communications.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('voip-5-forticlient.png')">
+              <img src="voip-5-forticlient.png" alt="FortiClient VPN GTI config" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>FortiClient — SSL VPN Configuration (GTI)</strong>
+              <span>Configured and deployed FortiClient SSL VPN connections to forti.gtigrows.com on port 10443 — managed remote access for IT staff and supported 400+ VPN users.</span>
+            </div>
+          </div>
+        </div>
+        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-voip')">‹</button>
+        <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-voip')">›</button>
+        <div class="slide-controls">
+          <div class="slide-dots" id="dots-ss-voip"></div>
+          <span class="slide-counter" id="counter-ss-voip">1 / 5</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECURITY / ENDPOINT -->
+    <div class="sample-block">
+      <div class="sample-header">
+        <span class="sample-tag tag-sec">Security & Endpoint</span>
+        <h3>Endpoint Management & Security Operations</h3>
+      </div>
+      <p class="sample-desc">Managed enterprise endpoints across Windows, macOS, iOS, and Android via Intune and ManageEngine — deploying apps, enforcing security patches, managing software licenses, and configuring Azure VM network security rules. Zero SOC 2 / HIPAA audit failures over 3.5 years.</p>
+      <div class="slideshow" id="ss-sec">
+        <div class="slideshow-track">
+          <div class="slide active">
+            <div class="slide-img-wrap" onclick="openLightbox('sec-1-intune-apps.png')">
+              <img src="sec-1-intune-apps.png" alt="Intune all apps dashboard" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Microsoft Intune — App Management (All Platforms)</strong>
+              <span>Managed enterprise app deployments across Windows, macOS, iOS, and Android — CrowdStrike, Freshservice, Google Chrome, DocuSign, and 15+ apps distributed org-wide.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('sec-2-azure-vm-nsg.png')">
+              <img src="sec-2-azure-vm-nsg.png" alt="Azure VM NSG inbound rules" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Azure — VM Network Security Group (NSG) Rules</strong>
+              <span>Configured inbound port rules on Azure VM network interfaces — managing RDP (3389), SSH (22), HTTP (80), and ICMP access with priority-based allow/deny policies.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('sec-3-adobe-licenses.png')">
+              <img src="sec-3-adobe-licenses.png" alt="Adobe license management" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>License Management — Adobe Creative Cloud (270 seats)</strong>
+              <span>Managed Adobe Acrobat Pro (121 seats, 100% utilized) and Acrobat Standard DC (149 of 153 seats) — tracked allocation, flagged overage risk, and coordinated renewals.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('sec-4-printer-deploy.png')">
+              <img src="sec-4-printer-deploy.png" alt="ManageEngine printer deployment" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>ManageEngine — Remote Printer Deployment (Mechanicsburg)</strong>
+              <span>Deployed Xerox VersaLink printer drivers remotely to 8 endpoints at Mechanicsburg 1436 via ManageEngine — 7 succeeded, 1 pending, with execution tracked per device.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('sec-5-security-patches.png')">
+              <img src="sec-5-security-patches.png" alt="GTI security patches" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>ManageEngine — Security Patch Deployment (GTI)</strong>
+              <span>Coordinated enterprise security patching via ManageEngine — end-user notification system with countdown timer ensuring consistent patch application across all GTI endpoints.</span>
+            </div>
+          </div>
+        </div>
+        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-sec')">‹</button>
+        <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-sec')">›</button>
+        <div class="slide-controls">
+          <div class="slide-dots" id="dots-ss-sec"></div>
+          <span class="slide-counter" id="counter-ss-sec">1 / 5</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITSM -->
+    <div class="sample-block">
+      <div class="sample-header">
+        <span class="sample-tag tag-itsm">ITSM & Incident Comms</span>
+        <h3>Incident Response & Stakeholder Communication</h3>
+      </div>
+      <p class="sample-desc">Led incident communications across GTI's 5,000+ user base — drafting company-wide IT announcements, managing war room channels, tracking vendor status pages, and closing the loop with affected users. Owned comms from detection through resolution.</p>
+      <div class="slideshow" id="ss-itsm">
+        <div class="slideshow-track">
+          <div class="slide active">
+            <div class="slide-img-wrap" onclick="openLightbox('itsm-1-email-blast.png')">
+              <img src="itsm-1-email-blast.png" alt="IT Update email to GTI all employees" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Company-Wide IT Incident Communication</strong>
+              <span>Authored and sent branded IT update email to all GTI employees (DL GTI ALL Employees) during an active Outlook Web Access outage — clear, timely, and actionable.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('itsm-2-warroom-template.png')">
+              <img src="itsm-2-warroom-template.png" alt="War room chat template" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Incident War Room — Communication Template</strong>
+              <span>Built and standardized a war room chat message template — ticket number, brief description, impacted sites, major incident manager tag, and resolver group tag. Adopted across the IT org.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('itsm-3-thanks-nigel.png')">
+              <img src="itsm-3-thanks-nigel.png" alt="User thanks Nigel after resolution" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Incident Resolution — User Confirmation</strong>
+              <span>"Looks like the updates you did fixed it, the error didn't pop up again. Thanks Nigel!" — end-user confirmation after resolving a recurring application error.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('itsm-4-m365-incident.png')">
+              <img src="itsm-4-m365-incident.png" alt="M365 service health advisory" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>M365 — Shared Mailbox Incident Root Cause</strong>
+              <span>Investigated M365 advisory affecting shared mailbox folders in Outlook — identified a Microsoft build deployment as root cause, tracked remediation and communicated status to impacted teams.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('itsm-5-dutchie-status.png')">
+              <img src="itsm-5-dutchie-status.png" alt="Dutchie status page POS incident" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Vendor Incident Monitoring — Dutchie POS (BioTrack)</strong>
+              <span>Tracked 4-day Dutchie traceability & compliance degradation affecting medical customer checkout via BioTrack Illinois — monitored vendor status page and communicated updates to store ops.</span>
+            </div>
+          </div>
+        </div>
+        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-itsm')">‹</button>
+        <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-itsm')">›</button>
+        <div class="slide-controls">
+          <div class="slide-dots" id="dots-ss-itsm"></div>
+          <span class="slide-counter" id="counter-ss-itsm">1 / 5</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /samples-grid -->
+</section>
+
+<section id="work">
+  <p class="section-label">// Experience</p>
+  <div class="work-list">
+    <div class="work-item">
+      <div class="work-meta">
+        <p class="work-period">May 2022 — Nov 2025</p>
+        <p class="work-company">Green Thumb Industries</p>
+        <p class="work-loc">Chicago, IL · Hybrid</p>
+      </div>
+      <div class="work-content">
+        <p class="work-title">Senior Systems & Infrastructure Administrator</p>
+        <p class="work-desc">Sole Tier 3 IT lead for a cannabis multi-state operator. Owned the full stack — identity, endpoint, security, networking, telecom, compliance, and vendor relationships. Administered IAM across Azure AD, Google Workspace, and Okta. Managed onboarding and offboarding via HRIS-to-Entra ID sync, automated least privilege approval workflows, and led incident response for every major outage across 50+ locations.</p>
+        <div class="work-wins">
+          <span class="win-tag">HRIS → Entra ID sync</span>
+          <span class="win-tag">$30K telecom savings</span>
+          <span class="win-tag">$5K printer spend cut</span>
+          <span class="win-tag">40% faster incident docs</span>
+          <span class="win-tag">E911 compliance · 300+ VoIP endpoints</span>
+          <span class="win-tag">SOC 2 · HIPAA · PCI DSS · METRC</span>
+          <span class="win-tag">Zero audit failures · 3.5 yrs</span>
+          <span class="win-tag">Freshservice SLA dashboard</span>
+          <span class="win-tag">Least privilege automation</span>
+          <span class="win-tag">Intune · Jamf · Kandji endpoint mgmt</span>
+          <span class="win-tag">SolarWinds · Meraki · Fortinet monitoring</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-meta">
+        <p class="work-period">Feb 2020 — May 2022</p>
+        <p class="work-company">Lyric Opera House</p>
+        <p class="work-loc">Chicago, IL</p>
+      </div>
+      <div class="work-content">
+        <p class="work-title">Support & Network Administrator</p>
+        <p class="work-desc">Deployed Fortinet firewall and VPN for 400+ remote users during COVID in two weeks with zero operational disruption. Managed AD, Group Policy, and VoIP platforms. Built escalation and remediation documentation still in use today.</p>
+        <div class="work-wins">
+          <span class="win-tag">Fortinet deployment · 2 weeks</span>
+          <span class="win-tag">400+ remote users</span>
+          <span class="win-tag">AD & Group Policy</span>
+          <span class="win-tag">VoIP platforms</span>
+          <span class="win-tag">Escalation docs</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-meta">
+        <p class="work-period">Aug 2016 — Mar 2019</p>
+        <p class="work-company">Uber Technologies</p>
+        <p class="work-loc">Chicago, IL</p>
+      </div>
+      <div class="work-content">
+        <p class="work-title">IT Support Specialist</p>
+        <p class="work-desc">Tier 1/2 support in a high-volume environment with 92% CSAT and consistent ticket ownership. Early experience spotting and escalating auth abuse and account compromise patterns.</p>
+        <div class="work-wins">
+          <span class="win-tag">92% CSAT</span>
+          <span class="win-tag">Auth abuse detection</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="section-label">// Side projects</p>
+  <div class="projects-grid">
+    <div class="project-card">
+      <p class="project-type">Automation pipeline</p>
+      <p class="project-name">Automated Job Search Tracker</p>
+      <p class="project-desc">End-to-end Apps Script + JavaScript pipeline that ingests Gmail threads, parses application status, and writes structured data to Google Sheets categorized by stage. Time-based cron sends a weekly color-coded recap email. Zero manual steps.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Google Apps Script</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">Gmail API</span>
+        <span class="stack-tag">Google Sheets</span>
+        <span class="stack-tag">Claude</span>
+      </div>
+      <a class="project-link" href="https://github.com/dumont94/gmail-job-tracker" target="_blank">github.com/dumont94/gmail-job-tracker →</a>
+    </div>
+    <div class="project-card">
+      <p class="project-type">IAM homelab</p>
+      <p class="project-name">Okta + Google Workspace Provisioning Lab</p>
+      <p class="project-desc">Developer tenants across both platforms with a centralized onboarding flow using Okta Identity Engine (idx.register()) and the Okta Management API. Full five-stage pipeline: form intake → IDX registration → reset token → branded activation email → password enrollment.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Okta IDX</span>
+        <span class="stack-tag">Okta API</span>
+        <span class="stack-tag">Google Workspace</span>
+        <span class="stack-tag">Node.js</span>
+      </div>
+      <a class="project-link" href="https://github.com/dumont94/Okta-Lab-Provisioning" target="_blank">github.com/dumont94/Okta-Lab-Provisioning →</a>
+    </div>
+    <div class="project-card">
+      <p class="project-type">Network security</p>
+      <p class="project-name">Home Network Security Overhaul</p>
+      <p class="project-desc">Segmented home network using Firewalla on gigabit ISP with Orbi mesh. Enforces guest/family isolation, monitors traffic anomalies, detects intrusions and packet loss — all manageable from a smartphone.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Firewalla</span>
+        <span class="stack-tag">Orbi Mesh</span>
+        <span class="stack-tag">Network segmentation</span>
+        <span class="stack-tag">IDS/IPS</span>
+        <span class="stack-tag">VLANs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <p class="section-label">// Contact</p>
+  <div class="contact-block">
+    <div class="contact-left">
+      <h2>Let's build something <em>solid.</em></h2>
+      <p>Open to senior IT, IAM, and infrastructure roles in Chicago and remote. I move fast, document everything, and don't break things twice.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:dumontnigel@gmail.com">
+          <span class="contact-link-dot"></span>dumontnigel@gmail.com
+        </a>
+        <a class="contact-link" href="https://linkedin.com/in/nigeldumont" target="_blank">
+          <span class="contact-link-dot"></span>linkedin.com/in/nigeldumont
+        </a>
+        <a class="contact-link" href="https://github.com/dumont94" target="_blank">
+          <span class="contact-link-dot"></span>github.com/dumont94
+        </a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <p style="font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; border-bottom: 0.5px solid var(--border); padding-bottom: 0.75rem;">// Credentials</p>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <p class="cert-name">CompTIA Security+</p>
+            <p class="cert-issuer">CompTIA</p>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+          </div>
+          <div>
+            <p class="cert-name">CompTIA SecAI+ CY0-001</p>
+            <p class="cert-issuer">CompTIA</p>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
+            <p class="cert-name">Cisco CCENT</p>
+            <p class="cert-issuer">Cisco</p>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <div>
+            <p class="cert-name">AAS, Information Systems</p>
+            <p class="cert-issuer">Robert Morris University</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-copy">© 2026 Nigel Dumont · Chicago, IL</p>
+  <div class="footer-links">
+    <a href="https://github.com/dumont94" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/nigeldumont" target="_blank">LinkedIn</a>
+    <a href="mailto:dumontnigel@gmail.com">Email</a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button id="lb-close" onclick="closeLightbox()">✕</button>
+  <img id="lb-img" src="" alt="" onclick="event.stopPropagation()" />
+</div>
+
+<script>
+  // ── SLIDESHOW ──
+  const slideshows = {};
+
+  function initSlideshow(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const slides = el.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('dots-' + id);
+    const counter = document.getElementById('counter-' + id);
+    let current = 0;
+
+    slideshows[id] = { slides, current, total: slides.length };
+
+    dotsContainer.innerHTML = '';
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goTo(id, i);
+      dotsContainer.appendChild(dot);
+    });
+
+    updateControls(id);
+  }
+
+  function goTo(id, index) {
+    const ss = slideshows[id];
+    ss.slides[ss.current].classList.remove('active');
+    ss.current = Math.max(0, Math.min(index, ss.total - 1));
+    ss.slides[ss.current].classList.add('active');
+    updateControls(id);
+  }
+
+  function nextSlide(id) {
+    const ss = slideshows[id];
+    if (ss.current < ss.total - 1) goTo(id, ss.current + 1);
+  }
+
+  function prevSlide(id) {
+    const ss = slideshows[id];
+    if (ss.current > 0) goTo(id, ss.current - 1);
+  }
+
+  function updateControls(id) {
+    const ss = slideshows[id];
+    const el = document.getElementById(id);
+    const dots = document.querySelectorAll('#dots-' + id + ' .dot');
+    const counter = document.getElementById('counter-' + id);
+    const btns = el.querySelectorAll('.slide-btn');
+
+    dots.forEach((d, i) => d.classList.toggle('active', i === ss.current));
+    counter.textContent = (ss.current + 1) + ' / ' + ss.total;
+    btns[0].disabled = ss.current === 0;
+    btns[1].disabled = ss.current === ss.total - 1;
+  }
+
+  ['ss-iam','ss-mon','ss-net','ss-voip','ss-sec','ss-itsm'].forEach(initSlideshow);
+
+  // keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('lightbox').classList.contains('open')) {
+      if (e.key === 'Escape') closeLightbox();
+      return;
+    }
+  });
+
+  // ── LIGHTBOX ──
+  function openLightbox(src) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>

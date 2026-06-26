@@ -998,6 +998,42 @@
       </div>
     </div>
 
+    <!-- AUTOMATION -->
+    <div class="sample-block">
+      <div class="sample-header">
+        <span class="sample-tag tag-itsm">Automation</span>
+        <h3>Scripting &amp; Automation</h3>
+      </div>
+      <p class="sample-desc">Built automation pipelines in Google Apps Script and Python to eliminate repetitive manual work — Gmail-to-Sheets job tracking with time-based triggers and weekly email summaries, and a Python + Okta Management API script that bulk-creates groups and provisions users in seconds.</p>
+      <div class="slideshow" id="ss-auto">
+        <div class="slideshow-track">
+          <div class="slide active">
+            <div class="slide-img-wrap" onclick="openLightbox('p-auto1.jpeg')">
+              <img src="p-auto1.jpeg" alt="Google Apps Script job application tracker" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Apps Script — Job Application Tracker</strong>
+              <span>Scans Gmail threads, parses rejection and interview signals, logs structured data to Google Sheets, and sends a weekly status summary. Zero manual steps.</span>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('p-auto2.jpeg')">
+              <img src="p-auto2.jpeg" alt="Python Okta provisioning script" loading="lazy" />
+            </div>
+            <div class="slide-caption">
+              <strong>Python — Okta Bulk Provisioning</strong>
+              <span>Script creates department groups (Engineering, Marketing, Sales, IT, Executive) and assigns users via the Okta Management API. Provisioning complete in seconds.</span>
+            </div>
+          </div>
+        </div>
+        <div class="slideshow-controls">
+          <button class="slide-btn" onclick="changeSlide('ss-auto', -1)">&#8592;</button>
+          <span class="slide-counter" id="counter-ss-auto">1 / 2</span>
+          <button class="slide-btn" onclick="changeSlide('ss-auto', 1)">&#8594;</button>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /samples-grid -->
 </section>
 
@@ -1260,7 +1296,7 @@
     btns[1].disabled = ss.current === ss.total - 1;
   }
 
-  ['ss-iam','ss-mon','ss-net','ss-voip','ss-sec','ss-itsm'].forEach(initSlideshow);
+  ['ss-net','ss-ep','ss-iam','ss-voip','ss-auto'].forEach(initSlideshow);
 
   // keyboard navigation
   document.addEventListener('keydown', e => {

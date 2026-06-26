@@ -232,16 +232,6 @@
   /* ── WORK SAMPLES SECTION ── */
   #work-samples { border-bottom: 0.5px solid var(--border); }
 
-  .samples-headline {
-    font-size: clamp(2rem, 4.5vw, 3.8rem);
-    font-weight: 600;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 3rem;
-  }
-
-  .samples-headline em { font-style: normal; color: var(--accent); }
-
   .samples-grid {
     display: flex;
     flex-direction: column;
@@ -252,8 +242,9 @@
 
   .sample-header {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
   }
 
   .sample-tag {
@@ -275,8 +266,10 @@
   .tag-itsm  { color: #cba6f7; border-color: rgba(203,166,247,0.35); background: rgba(203,166,247,0.07); }
 
   .sample-header h3 {
-    font-size: 1.05rem;
-    font-weight: 500;
+    font-size: clamp(1.6rem, 3vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     color: var(--text);
   }
 
@@ -772,7 +765,6 @@
 <!-- ══════════════════════════════════════════ -->
 <section id="work-samples">
   <p class="section-label">// Work samples</p>
-  <h2 class="samples-headline">Identity. Infrastructure. <em>Security.</em></h2>
   <div class="samples-grid">
 
     <!-- NETWORKING -->

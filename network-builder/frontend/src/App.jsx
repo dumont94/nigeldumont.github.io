@@ -2,17 +2,17 @@
  * App.jsx — Root component and application state machine.
  *
  * Screen flow:
- *   questionnaire → (API call) → loading → walkthrough → summary
+ *   questionnaire → loading → walkthrough → summary
  *
- * All network data lives in the Flask backend; the frontend is purely
- * presentational. State is kept in this component and passed as props
- * to avoid prop-drilling through a complex tree.
+ * All recommendation logic runs client-side via recommendations.js,
+ * which imports the pre-built networkData.json. No backend required.
  */
 
 import { useState } from "react";
 import Questionnaire from "./components/Questionnaire.jsx";
 import Walkthrough from "./components/Walkthrough.jsx";
 import Summary from "./components/Summary.jsx";
+import { buildRecommendation } from "./recommendations.js";
 
 // Application screens — acts as a lightweight state machine
 const SCREENS = {
@@ -29,23 +29,12 @@ export default function App() {
   const [error, setError] = useState(null);
 
   // Called by Questionnaire when the user submits answers
-  async function handleSubmit(formData) {
+  function handleSubmit(formData) {
     setScreen(SCREENS.LOADING);
     setError(null);
 
     try {
-      const res = await fetch("/api/recommend", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body.error || `Server error ${res.status}`);
-      }
-
-      const data = await res.json();
+      const data = buildRecommendation(formData);
       setRecommendation(data);
       setCurrentStep(0);
       setScreen(SCREENS.WALKTHROUGH);
@@ -82,8 +71,8 @@ export default function App() {
         <div className="app-header__logo">
           <div className="app-header__dot" />
           <div>
-            <div className="app-header__title">Your First Network</div>
-            <div className="app-header__sub">SOHO Infrastructure Builder</div>
+            <div className="app-header__title">Map Your Network Infrastructure</div>
+            <div className="app-header__sub">Infrastructure Builder</div>
           </div>
         </div>
         {pathLabel && (

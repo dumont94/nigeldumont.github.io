@@ -1254,13 +1254,15 @@
 
     slideshows[id] = { slides, current, total: slides.length };
 
-    dotsContainer.innerHTML = '';
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.onclick = () => goTo(id, i);
-      dotsContainer.appendChild(dot);
-    });
+    if (dotsContainer) {
+      dotsContainer.innerHTML = '';
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goTo(id, i);
+        dotsContainer.appendChild(dot);
+      });
+    }
 
     updateControls(id);
   }
@@ -1281,6 +1283,10 @@
   function prevSlide(id) {
     const ss = slideshows[id];
     if (ss.current > 0) goTo(id, ss.current - 1);
+  }
+
+  function changeSlide(id, dir) {
+    if (dir < 0) prevSlide(id); else nextSlide(id);
   }
 
   function updateControls(id) {

@@ -1275,6 +1275,132 @@
   </div><!-- /samples-grid -->
 </section>
 
+<section id="work">
+  <p class="section-label">// Experience</p>
+  <div class="work-list">
+    <div class="work-item">
+      <div class="work-meta">
+        <p class="work-period">May 2022 — Nov 2025</p>
+        <p class="work-company">Green Thumb Industries</p>
+        <p class="work-loc">Chicago, IL · Hybrid</p>
+      </div>
+      <div class="work-content">
+        <p class="work-title">Senior Systems & Infrastructure Administrator</p>
+        <p class="work-desc">Sole Tier 3 IT lead for a cannabis multi-state operator. Owned the full stack — identity, endpoint, security, networking, telecom, compliance, and vendor relationships. Administered IAM across Azure AD, Google Workspace, and Okta. Managed onboarding and offboarding via HRIS-to-Entra ID sync, automated least privilege approval workflows, and led incident response for every major outage across 50+ locations.</p>
+        <div class="work-wins">
+          <span class="win-tag">HRIS → Entra ID sync</span>
+          <span class="win-tag">$30K telecom savings</span>
+          <span class="win-tag">$5K printer spend cut</span>
+          <span class="win-tag">40% faster incident docs</span>
+          <span class="win-tag">E911 compliance · 300+ VoIP endpoints</span>
+          <span class="win-tag">SOC 2 · HIPAA · PCI DSS · METRC</span>
+          <span class="win-tag">Zero audit failures · 3.5 yrs</span>
+          <span class="win-tag">Freshservice SLA dashboard</span>
+          <span class="win-tag">Least privilege automation</span>
+          <span class="win-tag">Intune · Jamf · Kandji endpoint mgmt</span>
+          <span class="win-tag">SolarWinds · Meraki · Fortinet monitoring</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-meta">
+        <p class="work-period">Feb 2020 — May 2022</p>
+        <p class="work-company">Lyric Opera House</p>
+        <p class="work-loc">Chicago, IL</p>
+      </div>
+      <div class="work-content">
+        <p class="work-title">Support & Network Administrator</p>
+        <p class="work-desc">Deployed Fortinet firewall and VPN for 400+ remote users during COVID in two weeks with zero operational disruption. Managed AD, Group Policy, and VoIP platforms. Built escalation and remediation documentation still in use today.</p>
+        <div class="work-wins">
+          <span class="win-tag">Fortinet deployment · 2 weeks</span>
+          <span class="win-tag">400+ remote users</span>
+          <span class="win-tag">AD & Group Policy</span>
+          <span class="win-tag">VoIP platforms</span>
+          <span class="win-tag">Escalation docs</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-meta">
+        <p class="work-period">Aug 2016 — Mar 2019</p>
+        <p class="work-company">Uber Technologies</p>
+        <p class="work-loc">Chicago, IL</p>
+      </div>
+      <div class="work-content">
+        <p class="work-title">IT Support Specialist</p>
+        <p class="work-desc">Tier 1/2 support in a high-volume environment with 92% CSAT and consistent ticket ownership. Early experience spotting and escalating auth abuse and account compromise patterns.</p>
+        <div class="work-wins">
+          <span class="win-tag">92% CSAT</span>
+          <span class="win-tag">Auth abuse detection</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="section-label">// Side projects</p>
+  <div class="projects-grid">
+    <div class="project-card">
+      <p class="project-type">Network infrastructure builder</p>
+      <p class="project-name">Map Your Network Infrastructure</p>
+      <p class="project-desc">Interactive tool that walks a business owner through building a real office network from scratch. Answers four questions, routes to one of three build paths (Budget DIY, Enterprise DIY, Fully Outsourced), then steps through ten components — ISP failover, firewall, switches, APs, VLANs, SD-WAN, monitoring — with plain-English explanations, real product recommendations, pricing, and config steps. Products covered: FortiGate, Palo Alto PA-400, UniFi, Meraki, SolarWinds.</p>
+      <div class="project-stack">
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">Vite</span>
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">FortiGate</span>
+        <span class="stack-tag">Palo Alto</span>
+        <span class="stack-tag">UniFi</span>
+        <span class="stack-tag">Meraki</span>
+        <span class="stack-tag">SolarWinds</span>
+        <span class="stack-tag">SD-WAN</span>
+        <span class="stack-tag">VLANs</span>
+      </div>
+      <a class="project-link" href="https://dumont94.github.io/nigeldumont.github.io/network-builder/app/" target="_blank">Live demo →</a>
+      <a class="project-link" href="https://github.com/dumont94/nigeldumont.github.io/tree/main/network-builder" target="_blank" style="margin-left:1rem">Source →</a>
+    </div>
+    <div class="project-card">
+      <p class="project-type">Automation pipeline</p>
+      <p class="project-name">Automated Job Search Tracker</p>
+      <p class="project-desc">End-to-end Apps Script + JavaScript pipeline that ingests Gmail threads, parses application status, and writes structured data to Google Sheets categorized by stage. Time-based cron sends a weekly color-coded recap email. Zero manual steps.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Google Apps Script</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">Gmail API</span>
+        <span class="stack-tag">Google Sheets</span>
+        <span class="stack-tag">Claude</span>
+      </div>
+      <a class="project-link" href="https://github.com/dumont94/gmail-job-tracker" target="_blank">github.com/dumont94/gmail-job-tracker →</a>
+    </div>
+    <div class="project-card">
+      <p class="project-type">IAM homelab</p>
+      <p class="project-name">Okta + Google Workspace Provisioning Lab</p>
+      <p class="project-desc">Developer tenants across both platforms with a centralized onboarding flow using Okta Identity Engine (idx.register()) and the Okta Management API. Full five-stage pipeline: form intake → IDX registration → reset token → branded activation email → password enrollment.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Okta IDX</span>
+        <span class="stack-tag">Okta API</span>
+        <span class="stack-tag">Google Workspace</span>
+        <span class="stack-tag">Node.js</span>
+      </div>
+      <a class="project-link" href="https://github.com/dumont94/Okta-Lab-Provisioning" target="_blank">github.com/dumont94/Okta-Lab-Provisioning →</a>
+    </div>
+    <div class="project-card">
+      <p class="project-type">Network security</p>
+      <p class="project-name">Home Network Security Overhaul</p>
+      <p class="project-desc">Segmented home network using Firewalla on gigabit ISP with Orbi mesh. Enforces guest/family isolation, monitors traffic anomalies, detects intrusions and packet loss — all manageable from a smartphone.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Firewalla</span>
+        <span class="stack-tag">Orbi Mesh</span>
+        <span class="stack-tag">Network segmentation</span>
+        <span class="stack-tag">IDS/IPS</span>
+        <span class="stack-tag">VLANs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section id="contact">
   <p class="section-label">// Contact</p>
   <div class="contact-block">

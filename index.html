@@ -21,6 +21,20 @@
     --accent2: #8A8784;
     --mono: 'Space Mono', monospace;
     --sans: 'Space Grotesk', sans-serif;
+    --nav-bg: rgba(10,10,10,0.85);
+  }
+
+  body.light {
+    --bg: #F5F4F2;
+    --surface: #ECEAE7;
+    --surface2: #E2E0DC;
+    --border: rgba(0,0,0,0.08);
+    --border-hi: rgba(0,0,0,0.18);
+    --text: #1A1A1A;
+    --muted: #6B6864;
+    --accent: #4A4845;
+    --accent2: #767370;
+    --nav-bg: rgba(245,244,242,0.88);
   }
 
   html { scroll-behavior: smooth; }
@@ -42,7 +56,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 2.5rem;
-    background: rgba(10,10,10,0.85);
+    background: var(--nav-bg);
     backdrop-filter: blur(12px);
     border-bottom: 0.5px solid var(--border);
   }
@@ -99,6 +113,20 @@
     padding: 1px 5px;
     font-weight: 700;
   }
+
+  .theme-toggle {
+    background: none;
+    border: 0.5px solid var(--border-hi);
+    color: var(--muted);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    line-height: 1;
+  }
+
+  .theme-toggle:hover { color: var(--text); border-color: var(--accent); }
 
   section { padding: 5rem 2.5rem 4rem; max-width: 1100px; margin: 0 auto; }
 
@@ -608,6 +636,7 @@
     <li><a href="#contact">contact</a></li>
   </ul>
   <a class="nav-tool-link" href="https://dumont94.github.io/nigeldumont.github.io/network-builder/app/" target="_blank">network builder <span class="nav-new-badge">new</span></a>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">☀</button>
 </nav>
 
 
@@ -1298,6 +1327,17 @@
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeLightbox();
+  });
+
+  // ── THEME TOGGLE ──
+  const themeBtn = document.getElementById('theme-toggle');
+  const stored = localStorage.getItem('theme');
+  if (stored === 'light') { document.body.classList.add('light'); themeBtn.textContent = '☾'; }
+
+  themeBtn.addEventListener('click', () => {
+    const isLight = document.body.classList.toggle('light');
+    themeBtn.textContent = isLight ? '☾' : '☀';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
   });
 </script>
 

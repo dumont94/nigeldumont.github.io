@@ -74,6 +74,9 @@
     display: flex;
     gap: 2rem;
     list-style: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .nav-links a {
@@ -217,6 +220,8 @@
 
   .btn-primary { background: var(--accent); color: var(--bg); font-weight: 700; }
   .btn-primary:hover { background: var(--accent2); }
+  body.light .btn-primary { background: var(--text); color: var(--bg); }
+  body.light .btn-primary:hover { background: #333; }
   .btn-ghost { background: transparent; color: var(--muted); border: 0.5px solid var(--border-hi); }
   .btn-ghost:hover { color: var(--text); border-color: var(--accent); }
 

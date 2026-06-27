@@ -127,7 +127,9 @@
     color: var(--muted);
     border-radius: 4px;
     padding: 4px 10px;
-    font-size: 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
     cursor: pointer;
     transition: color 0.2s, border-color 0.2s;
     line-height: 1;
@@ -647,7 +649,7 @@
       <li><a href="#contact">contact</a></li>
     </ul>
     <a class="nav-tool-link" href="https://dumont94.github.io/nigeldumont.github.io/network-builder/app/" target="_blank">network builder <span class="nav-new-badge">new</span></a>
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">☾</button>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">light</button>
   </div>
 </nav>
 
@@ -1343,11 +1345,11 @@
   // ── THEME TOGGLE ──
   const themeBtn = document.getElementById('theme-toggle');
   const stored = localStorage.getItem('theme');
-  if (stored === 'dark') { document.body.classList.add('dark'); themeBtn.textContent = '☀'; }
+  if (stored === 'dark') { document.body.classList.add('dark'); themeBtn.textContent = 'dark'; }
 
   themeBtn.addEventListener('click', () => {
     const isDark = document.body.classList.toggle('dark');
-    themeBtn.textContent = isDark ? '☀' : '☾';
+    themeBtn.textContent = isDark ? 'dark' : 'light';
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
 </script>

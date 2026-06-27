@@ -114,6 +114,12 @@
     font-weight: 700;
   }
 
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
   .theme-toggle {
     background: none;
     border: 0.5px solid var(--border-hi);
@@ -635,8 +641,10 @@
     <li><a href="#work-samples">samples</a></li>
     <li><a href="#contact">contact</a></li>
   </ul>
-  <a class="nav-tool-link" href="https://dumont94.github.io/nigeldumont.github.io/network-builder/app/" target="_blank">network builder <span class="nav-new-badge">new</span></a>
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">☀</button>
+  <div class="nav-right">
+    <a class="nav-tool-link" href="https://dumont94.github.io/nigeldumont.github.io/network-builder/app/" target="_blank">network builder <span class="nav-new-badge">new</span></a>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">☀</button>
+  </div>
 </nav>
 
 

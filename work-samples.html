@@ -10,55 +10,29 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #F5F4F2;
-    --surface: #ECEAE7;
-    --surface2: #E2E0DC;
-    --border: rgba(0,0,0,0.08);
-    --border-hi: rgba(0,0,0,0.18);
-    --text: #1A1A1A;
-    --muted: #6B6864;
-    --accent: #4A4845;
-    --accent2: #767370;
-    --mono: 'Space Mono', monospace;
-    --sans: 'Space Grotesk', sans-serif;
+    --bg: #F5F4F2; --surface: #ECEAE7; --surface2: #E2E0DC;
+    --border: rgba(0,0,0,0.08); --border-hi: rgba(0,0,0,0.18);
+    --text: #1A1A1A; --muted: #6B6864; --accent: #4A4845; --accent2: #767370;
+    --mono: 'Space Mono', monospace; --sans: 'Space Grotesk', sans-serif;
     --nav-bg: rgba(245,244,242,0.88);
   }
-
   body.dark {
-    --bg: #0A0A0A;
-    --surface: #111111;
-    --surface2: #1A1A1A;
-    --border: rgba(255,255,255,0.08);
-    --border-hi: rgba(255,255,255,0.18);
-    --text: #FFFFFF;
-    --muted: #C8C5C2;
-    --accent: #FFFFFF;
-    --accent2: #C8C5C2;
+    --bg: #0A0A0A; --surface: #111111; --surface2: #1A1A1A;
+    --border: rgba(255,255,255,0.08); --border-hi: rgba(255,255,255,0.18);
+    --text: #FFFFFF; --muted: #C8C5C2; --accent: #FFFFFF; --accent2: #C8C5C2;
     --nav-bg: rgba(10,10,10,0.85);
   }
 
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 2.5rem;
-    background: var(--nav-bg);
-    backdrop-filter: blur(12px);
-    border-bottom: 0.5px solid var(--border);
-  }
-
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2.5rem; background: var(--nav-bg); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--border); }
   .nav-logo { font-family: var(--sans); font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: 0.01em; text-decoration: none; }
   .nav-right { display: flex; align-items: center; gap: 1.5rem; margin-left: auto; }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; font-family: var(--mono); letter-spacing: 0.04em; transition: color 0.2s; }
   .nav-links a:hover, .nav-links a.active { color: var(--text); }
-  .nav-tool-link { display: flex; align-items: center; gap: 6px; color: #4ade80 !important; border: 0.5px solid rgba(74,222,128,0.4); border-radius: 4px; padding: 4px 10px; transition: all 0.2s !important; font-family: var(--mono); font-size: 13px; text-decoration: none; }
+  .nav-tool-link { display: flex; align-items: center; gap: 6px; color: #4ade80 !important; border: 0.5px solid rgba(74,222,128,0.4); border-radius: 4px; padding: 4px 10px; font-family: var(--mono); font-size: 13px; text-decoration: none; transition: all 0.2s !important; }
   .nav-tool-link:hover { background: rgba(74,222,128,0.12); border-color: #4ade80; color: #86efac !important; }
   .nav-new-badge { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #0A0A0A; background: #4ade80; border-radius: 3px; padding: 1px 5px; font-weight: 700; }
   .theme-toggle { background: none; border: 0.5px solid var(--border-hi); color: var(--muted); border-radius: 4px; padding: 7px 14px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; cursor: pointer; transition: color 0.2s, border-color 0.2s; line-height: 1; }
@@ -68,12 +42,10 @@
   .section-label { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 3rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
 
   .sample-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 9px; border-radius: 3px; border: 0.5px solid; flex-shrink: 0; }
-  .tag-iam   { color: #7dcfb6; border-color: rgba(125,207,182,0.35); background: rgba(125,207,182,0.07); }
-  .tag-mon   { color: #89b4fa; border-color: rgba(137,180,250,0.35); background: rgba(137,180,250,0.07); }
-  .tag-net   { color: #a6e3a1; border-color: rgba(166,227,161,0.35); background: rgba(166,227,161,0.07); }
-  .tag-voip  { color: #fab387; border-color: rgba(250,179,135,0.35); background: rgba(250,179,135,0.07); }
-  .tag-sec   { color: #f38ba8; border-color: rgba(243,139,168,0.35); background: rgba(243,139,168,0.07); }
-  .tag-itsm  { color: #cba6f7; border-color: rgba(203,166,247,0.35); background: rgba(203,166,247,0.07); }
+  .tag-iam  { color: #7dcfb6; border-color: rgba(125,207,182,0.35); background: rgba(125,207,182,0.07); }
+  .tag-net  { color: #a6e3a1; border-color: rgba(166,227,161,0.35); background: rgba(166,227,161,0.07); }
+  .tag-voip { color: #fab387; border-color: rgba(250,179,135,0.35); background: rgba(250,179,135,0.07); }
+  .tag-sec  { color: #f38ba8; border-color: rgba(243,139,168,0.35); background: rgba(243,139,168,0.07); }
 
   .samples-grid { display: flex; flex-direction: column; gap: 4rem; }
   .sample-block { display: flex; flex-direction: column; gap: 1.25rem; border-bottom: 0.5px solid var(--border); padding-bottom: 4rem; }
@@ -82,7 +54,6 @@
   .sample-header h3 { font-size: 1.05rem; font-weight: 500; color: var(--text); }
   .sample-desc { font-size: 13px; color: var(--muted); max-width: 680px; line-height: 1.7; }
 
-  /* SLIDESHOW */
   .slideshow { position: relative; border-radius: 8px; overflow: hidden; }
   .slideshow-track { position: relative; }
   .slide { display: none; position: relative; }
@@ -104,7 +75,6 @@
   .dot.active { background: rgba(255,255,255,0.9); transform: scale(1.4); }
   .slide-counter { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; }
 
-  /* LIGHTBOX */
   #lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; }
   #lightbox.open { display: flex; }
   #lb-img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
@@ -137,7 +107,7 @@
       <li><a href="index.html#contact">contact</a></li>
     </ul>
     <a class="nav-tool-link" href="https://dumont94.github.io/nigeldumont.github.io/network-builder/app/" target="_blank">network builder tool <span class="nav-new-badge">new</span></a>
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">☀ light</button>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">&#9728; light</button>
   </div>
 </nav>
 
@@ -145,248 +115,150 @@
   <p class="section-label">// Work samples</p>
   <div class="samples-grid">
 
+    <!-- NETWORKING -->
+    <div class="sample-block">
+      <div class="sample-header">
+        <span class="sample-tag tag-net">Networking</span>
+        <h3>Network Management &amp; Troubleshooting</h3>
+      </div>
+      <p class="sample-desc">Managed multi-site Meraki and SolarWinds environments across 50+ locations — monitoring WAN health, troubleshooting client connectivity, resolving packet loss incidents, and maintaining firewall and switch configurations.</p>
+      <div class="slideshow" id="ss-net">
+        <div class="slideshow-track">
+          <div class="slide active">
+            <div class="slide-img-wrap" onclick="openLightbox('p-net1.png')"><img src="p-net1.png" alt="Meraki network health dashboard" loading="lazy" /></div>
+            <div class="slide-caption"><strong>Meraki — Network Health</strong><span>Multi-site dashboard showing uplinks, MX, switch, and wireless health across 201 client devices.</span></div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('p-net2.png')"><img src="p-net2.png" alt="SolarWinds Orion summary with Meraki VPN hubs" loading="lazy" /></div>
+            <div class="slide-caption"><strong>SolarWinds Orion — Multi-Site Overview</strong><span>Custom dashboard tracking unhealthy circuits, Meraki VPN hub sessions, and site status across all retail and cultivation locations.</span></div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('p-net3.png')"><img src="p-net3.png" alt="SolarWinds WAN packet loss alert" loading="lazy" /></div>
+            <div class="slide-caption"><strong>SolarWinds — WAN Outage Recovery</strong><span>100% packet loss alert on Chicago HQ-WAN1 with event log showing ISP failover and recovery within the hour.</span></div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('p-net4.png')"><img src="p-net4.png" alt="Meraki client VLAN troubleshooting" loading="lazy" /></div>
+            <div class="slide-caption"><strong>Meraki — Client VLAN Troubleshooting</strong><span>Diagnosing a VoIP device on VLAN 30 with a disconnected port — traced to switch port misconfiguration.</span></div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('p-net5.png')"><img src="p-net5.png" alt="SolarWinds down circuits view" loading="lazy" /></div>
+            <div class="slide-caption"><strong>SolarWinds — Down Circuits</strong><span>Real-time view of WAN circuits reporting down across multiple sites with ISP and circuit details.</span></div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('p-net6.png')"><img src="p-net6.png" alt="SolarWinds FortiGate node details" loading="lazy" /></div>
+            <div class="slide-caption"><strong>SolarWinds — FortiGate Node Details</strong><span>Custom node poller tracking FortiGate 71F health check state with firmware version and last boot timestamp.</span></div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('p-net7.png')"><img src="p-net7.png" alt="SolarWinds site equipment tree" loading="lazy" /></div>
+            <div class="slide-caption"><strong>SolarWinds — Site Equipment Tree</strong><span>Location-level drill-down showing AP, circuit, firewall, and switch alert states for a down retail site.</span></div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('p-net8.png')"><img src="p-net8.png" alt="Azure VM NSG inbound rules" loading="lazy" /></div>
+            <div class="slide-caption"><strong>Azure — VM Network Security Group</strong><span>Inbound port rule configuration on an Azure VM — RDP, SSH, HTTP, and ICMP with deny-all baseline.</span></div>
+          </div>
+        </div>
+        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-net')" disabled>&#8249;</button>
+        <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-net')">&#8250;</button>
+        <div class="slide-controls">
+          <div class="slide-dots" id="dots-ss-net"></div>
+          <span class="slide-counter" id="counter-ss-net">1 / 8</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENDPOINT -->
+    <div class="sample-block">
+      <div class="sample-header">
+        <span class="sample-tag tag-sec">Endpoint</span>
+        <h3>Endpoint Management</h3>
+      </div>
+      <p class="sample-desc">Deployed and managed endpoint environments using Intune, Jamf, and Kandji across 5,000+ devices — enforcing compliance policies, pushing software, and tracking patch status for Windows and macOS fleets.</p>
+      <div class="slideshow" id="ss-ep">
+        <div class="slideshow-track">
+          <div class="slide active">
+            <div class="slide-img-wrap" onclick="openLightbox('p-ep1.png')"><img src="p-ep1.png" alt="Endpoint management dashboard" loading="lazy" /></div>
+            <div class="slide-caption"><strong>Endpoint — Device Management</strong><span>Fleet management view showing device compliance, enrollment status, and policy assignment.</span></div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('p-ep2.png')"><img src="p-ep2.png" alt="Endpoint compliance policies" loading="lazy" /></div>
+            <div class="slide-caption"><strong>Endpoint — Compliance Policies</strong><span>Policy enforcement across managed devices with compliance state tracking and remediation workflows.</span></div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('p-ep3.png')"><img src="p-ep3.png" alt="Software deployment" loading="lazy" /></div>
+            <div class="slide-caption"><strong>Endpoint — Software Deployment</strong><span>Managed software push to enrolled devices with install status and error tracking.</span></div>
+          </div>
+          <div class="slide">
+            <div class="slide-img-wrap" onclick="openLightbox('p-ep4.png')"><img src="p-ep4.png" alt="Patch management" loading="lazy" /></div>
+            <div class="slide-caption"><strong>Endpoint — Patch Management</strong><span>Security patch status across the fleet with pending, installed, and failed counts by device.</span></div>
+          </div>
+        </div>
+        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-ep')" disabled>&#8249;</button>
+        <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-ep')">&#8250;</button>
+        <div class="slide-controls">
+          <div class="slide-dots" id="dots-ss-ep"></div>
+          <span class="slide-counter" id="counter-ss-ep">1 / 4</span>
+        </div>
+      </div>
+    </div>
+
     <!-- IAM -->
     <div class="sample-block">
       <div class="sample-header">
         <span class="sample-tag tag-iam">IAM</span>
-        <h3>Identity & Access Management</h3>
+        <h3>Identity &amp; Access Management</h3>
       </div>
       <p class="sample-desc">Full identity lifecycle across Entra ID, Azure AD, and Active Directory — user provisioning, MFA enforcement, app assignment, sign-in log review, and immediate access revocation during offboarding for 5,000+ users across 50+ locations.</p>
       <div class="slideshow" id="ss-iam">
         <div class="slideshow-track">
           <div class="slide active">
-            <div class="slide-img-wrap" onclick="openLightbox('iam-1-block-signin.png')"><img src="iam-1-block-signin.png" alt="Block sign-in Entra ID" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Entra ID — Block Sign-In</strong><span>Immediate access revocation during offboarding. User is auto signed-out of all Microsoft services within 60 minutes.</span></div>
+            <div class="slide-img-wrap" onclick="openLightbox('p-iam1.jpeg')"><img src="p-iam1.jpeg" alt="IAM user management" loading="lazy" /></div>
+            <div class="slide-caption"><strong>IAM — User Lifecycle</strong><span>User provisioning and offboarding workflow with role-based access and group membership management.</span></div>
           </div>
           <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('iam-2-app-assignments.png')"><img src="iam-2-app-assignments.png" alt="Azure AD app assignments" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Entra ID — User App Assignments</strong><span>Managed role-based app access across Docusign, KnowBe4, Dutchie POS, Sage Intacct, Freshworks, SolarWinds, and EVERFI — direct and group-inherited assignments.</span></div>
+            <div class="slide-img-wrap" onclick="openLightbox('p-iam2.png')"><img src="p-iam2.png" alt="Azure AD app assignments" loading="lazy" /></div>
+            <div class="slide-caption"><strong>Entra ID — App Assignments</strong><span>Application assignment and SSO configuration across the tenant for 50+ SaaS platforms.</span></div>
           </div>
           <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('iam-3-group-members.png')"><img src="iam-3-group-members.png" alt="Azure AD group members" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Azure AD — Group Membership Management</strong><span>Administered security groups and distribution lists in Entra ID — adding/removing members, managing bulk operations and role assignments across GTI's user base.</span></div>
+            <div class="slide-img-wrap" onclick="openLightbox('p-iam3.png')"><img src="p-iam3.png" alt="MFA and conditional access" loading="lazy" /></div>
+            <div class="slide-caption"><strong>Entra ID — Conditional Access</strong><span>MFA enforcement and conditional access policies applied across all users and device types.</span></div>
           </div>
           <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('iam-4-aduc.png')"><img src="iam-4-aduc.png" alt="Active Directory Users and Computers" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Active Directory — OU Structure & User Properties</strong><span>Maintained GTI's on-prem AD hierarchy across 50+ location OUs with computer objects, security groups, service accounts, and user profile management.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('iam-5-mfa.png')"><img src="iam-5-mfa.png" alt="Azure MFA authentication methods" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Entra ID — MFA & Authentication Methods</strong><span>Configured and audited per-user MFA in Entra ID — managing Microsoft Authenticator, phone (SMS), and system-preferred method policies across the organization.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('iam-6-signin-logs.png')"><img src="iam-6-signin-logs.png" alt="M365 admin health dashboard" loading="lazy" /></div>
-            <div class="slide-caption"><strong>M365 Admin — Service Health & App Usage</strong><span>Monitored Microsoft 365 service health and app usage across Exchange Online, Teams, SharePoint, and OneDrive — 4,742 active users tracked weekly.</span></div>
+            <div class="slide-img-wrap" onclick="openLightbox('p-iam4.png')"><img src="p-iam4.png" alt="Sign-in logs and audit" loading="lazy" /></div>
+            <div class="slide-caption"><strong>Entra ID — Sign-in Logs</strong><span>Audit log review for suspicious sign-in patterns, failed auth attempts, and access anomalies.</span></div>
           </div>
         </div>
-        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-iam')">&#8249;</button>
+        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-iam')" disabled>&#8249;</button>
         <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-iam')">&#8250;</button>
         <div class="slide-controls">
           <div class="slide-dots" id="dots-ss-iam"></div>
-          <span class="slide-counter" id="counter-ss-iam">1 / 6</span>
+          <span class="slide-counter" id="counter-ss-iam">1 / 4</span>
         </div>
       </div>
     </div>
 
-    <!-- MONITORING -->
+    <!-- VOIP + PRINT -->
     <div class="sample-block">
       <div class="sample-header">
-        <span class="sample-tag tag-mon">Monitoring</span>
-        <h3>Network Monitoring — Meraki & SolarWinds</h3>
+        <span class="sample-tag tag-voip">VoIP &amp; Print</span>
+        <h3>VoIP &amp; Printer Management</h3>
       </div>
-      <p class="sample-desc">Enterprise-wide network monitoring across 82 Cisco Meraki networks and SolarWinds Orion — tracking WAN health, packet loss, bandwidth, uplinks, and wireless clients across GTI's full retail and corporate footprint with 39,000+ weekly connected clients.</p>
-      <div class="slideshow" id="ss-mon">
-        <div class="slideshow-track">
-          <div class="slide active">
-            <div class="slide-img-wrap" onclick="openLightbox('mon-1-meraki-org.png')"><img src="mon-1-meraki-org.png" alt="Meraki org network list" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Cisco Meraki — Organization-Wide Network Overview</strong><span>82 networks, 39,747 clients, and 1,181 TB of traffic managed across the week. Monitored all GTI retail and corporate sites from a single Meraki org dashboard.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('mon-2-meraki-health.png')"><img src="mon-2-meraki-health.png" alt="Meraki network health dashboard" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Cisco Meraki — Site Network Health (Effingham)</strong><span>Per-site health view showing uplink status, MX/switch/AP health, 201 active clients, and 1.83 TB daily throughput with application breakdown by traffic type.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('mon-3-solarwinds-home.png')"><img src="mon-3-solarwinds-home.png" alt="SolarWinds Orion home dashboard" loading="lazy" /></div>
-            <div class="slide-caption"><strong>SolarWinds Orion — Summary Dashboard</strong><span>Monitored all GTI retail locations from SolarWinds Orion — tracking down circuits, unreachable nodes, Meraki VPN nodes, and Fortinet firewall health across the US.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('mon-4-solarwinds-packetloss.png')"><img src="mon-4-solarwinds-packetloss.png" alt="SolarWinds WAN outage" loading="lazy" /></div>
-            <div class="slide-caption"><strong>SolarWinds — WAN Outage Detection (100% Packet Loss)</strong><span>Identified and escalated complete WAN circuit failure at Sun City FL — 100% packet loss with no response time, triggering ISP ticket and failover coordination.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('mon-5-solarwinds-events.png')"><img src="mon-5-solarwinds-events.png" alt="SolarWinds WAN event timeline" loading="lazy" /></div>
-            <div class="slide-caption"><strong>SolarWinds — WAN Circuit Event Timeline</strong><span>Tracked Chicago HQ WAN circuit outage and recovery — event log showed 100% loss start, IP change events during failover, and restoration confirmation.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('mon-6-m365-health.png')"><img src="mon-6-m365-health.png" alt="M365 service health incident" loading="lazy" /></div>
-            <div class="slide-caption"><strong>M365 Admin — Service Health Incident (Teams)</strong><span>Monitored live M365 service degradation affecting 3,848 Teams users — tracked incident TM710344 from detection through Microsoft's resolution update.</span></div>
-          </div>
-        </div>
-        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-mon')">&#8249;</button>
-        <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-mon')">&#8250;</button>
-        <div class="slide-controls">
-          <div class="slide-dots" id="dots-ss-mon"></div>
-          <span class="slide-counter" id="counter-ss-mon">1 / 6</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- NETWORKING -->
-    <div class="sample-block">
-      <div class="sample-header">
-        <span class="sample-tag tag-net">Networking</span>
-        <h3>Network Configuration & Troubleshooting</h3>
-      </div>
-      <p class="sample-desc">Configured and troubleshot VLANs, DHCP reservations, WAN uplinks, and switch ports across Cisco Meraki — from diagnosing client connectivity failures to resolving VLAN misconfigurations on printers, phones, and access points at retail sites.</p>
-      <div class="slideshow" id="ss-net">
-        <div class="slideshow-track">
-          <div class="slide active">
-            <div class="slide-img-wrap" onclick="openLightbox('net-1-meraki-client.png')"><img src="net-1-meraki-client.png" alt="Meraki client connection detail" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Meraki — Client Port & VLAN Verification</strong><span>Diagnosed Polycom phone connectivity on VLAN 20 (VoIP) — confirmed port 27 on SW03 as healthy with 100% packet counters, resolving a reported call quality issue.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('net-2-dhcp-reservations.png')"><img src="net-2-dhcp-reservations.png" alt="Meraki DHCP IP reservations" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Meraki — DHCP MAC-to-IP Reservations</strong><span>Configured static IP assignments via MAC address reservation rules in Meraki — ensuring printers, phones, and infrastructure devices receive consistent IPs across subnets.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('net-3-wan-config.png')"><img src="net-3-wan-config.png" alt="Meraki WAN configuration" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Meraki — WAN Uplink Configuration</strong><span>Managed dual WAN uplink configurations (IPv4 static + IPv6 DHCP6) across retail sites — documented gateway and DNS settings for ISP troubleshooting and failover planning.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('net-4-rack.png')"><img src="net-4-rack.png" alt="Network rack/closet" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Physical Network Infrastructure</strong><span>Hands-on management of store network closets — switch, firewall, and AP hardware installation, cable management, and documentation at GTI retail locations.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('net-5-vlan-chat.png')"><img src="net-5-vlan-chat.png" alt="VLAN printer troubleshooting" loading="lazy" /></div>
-            <div class="slide-caption"><strong>VLAN Troubleshooting — Printer on Wrong Segment</strong><span>Identified and resolved a printer landing on the wrong VLAN — moved it to VLAN 10, traced the device via Meraki SW02/Port 21, confirmed IP assignment and ping response.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('net-6-switch-chat.png')"><img src="net-6-switch-chat.png" alt="Switch power delivery workaround" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Switch Failure Workaround — Port Power Delivery</strong><span>Collaborated cross-team to diagnose a PoE failure on SW2 — identified affected Polycom phones, moved devices to SW3 as a workaround pending hardware replacement.</span></div>
-          </div>
-        </div>
-        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-net')">&#8249;</button>
-        <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-net')">&#8250;</button>
-        <div class="slide-controls">
-          <div class="slide-dots" id="dots-ss-net"></div>
-          <span class="slide-counter" id="counter-ss-net">1 / 6</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- VOIP -->
-    <div class="sample-block">
-      <div class="sample-header">
-        <span class="sample-tag tag-voip">VoIP & Telecom</span>
-        <h3>VoIP Administration & Telecom Management</h3>
-      </div>
-      <p class="sample-desc">Administered Digium Switchvox VoIP platform across 300+ endpoints at GTI retail sites — managing SIP extensions, call queue routing, E911 compliance, call logs, and ISP-level outage escalation. Deployed FortiClient SSL VPN for 400+ remote users at a prior role.</p>
+      <p class="sample-desc">Deployed and managed VoIP platforms across 300+ endpoints and centralized printer infrastructure — handling extension configuration, call routing, and managed print deployments with zero-touch provisioning.</p>
       <div class="slideshow" id="ss-voip">
         <div class="slideshow-track">
           <div class="slide active">
-            <div class="slide-img-wrap" onclick="openLightbox('voip-1-calllog.png')"><img src="voip-1-calllog.png" alt="Switchvox call log" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Digium Switchvox — Call Log & Voicemail Audit</strong><span>Audited call history on extension 1389 across a date range — exported caller ID, duration, and mailbox data for compliance review and call queue investigations.</span></div>
+            <div class="slide-img-wrap" onclick="openLightbox('p-voip.png')"><img src="p-voip.png" alt="VoIP platform management" loading="lazy" /></div>
+            <div class="slide-caption"><strong>VoIP — Platform Management</strong><span>Extension configuration, call routing, and endpoint status across 300+ VoIP devices.</span></div>
           </div>
           <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('voip-2-extensions-pinellas.png')"><img src="voip-2-extensions-pinellas.png" alt="VoIP extension status Pinellas" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Switchvox — Extension Registration Status (Pinellas Park)</strong><span>Monitored and resolved SIP extension outages — identified Unreachable vs Registered states on Digium D60 and PolyCCX devices, coordinating network-side fixes per site.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('voip-3-extensions-hagerstown.png')"><img src="voip-3-extensions-hagerstown.png" alt="VoIP extension status Hagerstown" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Switchvox — Extension Status (Hagerstown)</strong><span>Diagnosed partial extension failure at Hagerstown — 4 of 8 extensions Unreachable while PolyCCX-connected lines remained Registered, isolating issue to Digium device connectivity.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('voip-4-sangoma-status.png')"><img src="voip-4-sangoma-status.png" alt="Sangoma status page UCaaS outage" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Sangoma — UCaaS Service Outage Response</strong><span>Tracked a platform-wide Sangoma UCaaS incident affecting GTI VoIP services — monitored the status page for ETR updates while managing internal user communications.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('voip-5-forticlient.png')"><img src="voip-5-forticlient.png" alt="FortiClient VPN GTI config" loading="lazy" /></div>
-            <div class="slide-caption"><strong>FortiClient — SSL VPN Configuration (GTI)</strong><span>Configured and deployed FortiClient SSL VPN connections to forti.gtigrows.com on port 10443 — managed remote access for IT staff and supported 400+ VPN users.</span></div>
+            <div class="slide-img-wrap" onclick="openLightbox('p-printer.png')"><img src="p-printer.png" alt="Managed print deployment" loading="lazy" /></div>
+            <div class="slide-caption"><strong>Print — Managed Deployment</strong><span>Centralized printer deployment and management — driver push, policy enforcement, and spend tracking.</span></div>
           </div>
         </div>
-        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-voip')">&#8249;</button>
+        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-voip')" disabled>&#8249;</button>
         <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-voip')">&#8250;</button>
         <div class="slide-controls">
           <div class="slide-dots" id="dots-ss-voip"></div>
-          <span class="slide-counter" id="counter-ss-voip">1 / 5</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECURITY -->
-    <div class="sample-block">
-      <div class="sample-header">
-        <span class="sample-tag tag-sec">Security & Endpoint</span>
-        <h3>Endpoint Management & Security Operations</h3>
-      </div>
-      <p class="sample-desc">Managed enterprise endpoints across Windows, macOS, iOS, and Android via Intune and ManageEngine — deploying apps, enforcing security patches, managing software licenses, and configuring Azure VM network security rules. Zero SOC 2 / HIPAA audit failures over 3.5 years.</p>
-      <div class="slideshow" id="ss-sec">
-        <div class="slideshow-track">
-          <div class="slide active">
-            <div class="slide-img-wrap" onclick="openLightbox('sec-1-intune-apps.png')"><img src="sec-1-intune-apps.png" alt="Intune all apps dashboard" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Microsoft Intune — App Management (All Platforms)</strong><span>Managed enterprise app deployments across Windows, macOS, iOS, and Android — CrowdStrike, Freshservice, Google Chrome, DocuSign, and 15+ apps distributed org-wide.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('sec-2-azure-vm-nsg.png')"><img src="sec-2-azure-vm-nsg.png" alt="GTI security patches notification" loading="lazy" /></div>
-            <div class="slide-caption"><strong>ManageEngine — Security Patch Notification (GTI)</strong><span>End-user security patch notification deployed via ManageEngine — countdown timer enforced timely reboots across all GTI endpoints to ensure consistent patch coverage.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('sec-3-adobe-licenses.png')"><img src="sec-3-adobe-licenses.png" alt="Adobe license management" loading="lazy" /></div>
-            <div class="slide-caption"><strong>License Management — Adobe Creative Cloud (270 seats)</strong><span>Managed Adobe Acrobat Pro (121 seats, 100% utilized) and Acrobat Standard DC (149 of 153 seats) — tracked allocation, flagged overage risk, and coordinated renewals.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('sec-4-printer-deploy.png')"><img src="sec-4-printer-deploy.png" alt="ManageEngine printer deployment" loading="lazy" /></div>
-            <div class="slide-caption"><strong>ManageEngine — Remote Printer Deployment</strong><span>Deployed Xerox VersaLink printer drivers remotely to 8 endpoints via ManageEngine — 7 succeeded, 1 pending, with execution tracked per device.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('sec-5-security-patches.png')"><img src="sec-5-security-patches.png" alt="SolarWinds network node tree" loading="lazy" /></div>
-            <div class="slide-caption"><strong>SolarWinds — Site Network Node Inventory</strong><span>Maintained full node visibility across retail sites — access points, WAN circuits, firewall, smart plugs, and switches all monitored and documented in SolarWinds.</span></div>
-          </div>
-        </div>
-        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-sec')">&#8249;</button>
-        <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-sec')">&#8250;</button>
-        <div class="slide-controls">
-          <div class="slide-dots" id="dots-ss-sec"></div>
-          <span class="slide-counter" id="counter-ss-sec">1 / 5</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ITSM -->
-    <div class="sample-block">
-      <div class="sample-header">
-        <span class="sample-tag tag-itsm">ITSM & Incident Comms</span>
-        <h3>Incident Response & Stakeholder Communication</h3>
-      </div>
-      <p class="sample-desc">Led incident communications across GTI's 5,000+ user base — drafting company-wide IT announcements, managing war room channels, tracking vendor status pages, and closing the loop with affected users. Owned comms from detection through resolution.</p>
-      <div class="slideshow" id="ss-itsm">
-        <div class="slideshow-track">
-          <div class="slide active">
-            <div class="slide-img-wrap" onclick="openLightbox('itsm-1-email-blast.png')"><img src="itsm-1-email-blast.png" alt="IT Update email to GTI all employees" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Company-Wide IT Incident Communication</strong><span>Authored and sent branded IT update email to all GTI employees during an active Outlook Web Access outage — clear, timely, and actionable.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('itsm-2-warroom-template.png')"><img src="itsm-2-warroom-template.png" alt="Sign-in log audit" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Entra ID — User Sign-In Log Audit</strong><span>Reviewed sign-in logs for anomalous activity — filtering by application, IP, location, and conditional access policy to support security investigations.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('itsm-3-thanks-nigel.png')"><img src="itsm-3-thanks-nigel.png" alt="User thanks Nigel after resolution" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Incident Resolution — User Confirmation</strong><span>"Looks like the updates you did fixed it, the error didn't pop up again. Thanks Nigel!" — end-user confirmation after resolving a recurring application error.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('itsm-4-m365-incident.png')"><img src="itsm-4-m365-incident.png" alt="M365 service health advisory" loading="lazy" /></div>
-            <div class="slide-caption"><strong>M365 — Shared Mailbox Incident Root Cause</strong><span>Investigated M365 advisory affecting shared mailbox folders in Outlook — identified a Microsoft build deployment as root cause and communicated status to impacted teams.</span></div>
-          </div>
-          <div class="slide">
-            <div class="slide-img-wrap" onclick="openLightbox('itsm-5-dutchie-status.png')"><img src="itsm-5-dutchie-status.png" alt="Dutchie status page POS incident" loading="lazy" /></div>
-            <div class="slide-caption"><strong>Vendor Incident Monitoring — Dutchie POS (BioTrack)</strong><span>Tracked 4-day Dutchie traceability & compliance degradation affecting medical customer checkout — monitored vendor status page and communicated updates to store ops.</span></div>
-          </div>
-        </div>
-        <button class="slide-btn slide-btn-prev" onclick="prevSlide('ss-itsm')">&#8249;</button>
-        <button class="slide-btn slide-btn-next" onclick="nextSlide('ss-itsm')">&#8250;</button>
-        <div class="slide-controls">
-          <div class="slide-dots" id="dots-ss-itsm"></div>
-          <span class="slide-counter" id="counter-ss-itsm">1 / 5</span>
+          <span class="slide-counter" id="counter-ss-voip">1 / 2</span>
         </div>
       </div>
     </div>
@@ -450,7 +322,7 @@
     btns[1].disabled = ss.current === ss.total - 1;
   }
 
-  ['ss-iam','ss-mon','ss-net','ss-voip','ss-sec','ss-itsm'].forEach(initSlideshow);
+  ['ss-net','ss-ep','ss-iam','ss-voip'].forEach(initSlideshow);
 
   document.addEventListener('keydown', e => {
     if (document.getElementById('lightbox').classList.contains('open') && e.key === 'Escape') closeLightbox();

@@ -10,21 +10,6 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0A0A0A;
-    --surface: #111111;
-    --surface2: #1A1A1A;
-    --border: rgba(255,255,255,0.08);
-    --border-hi: rgba(255,255,255,0.18);
-    --text: #E8E6E3;
-    --muted: #888580;
-    --accent: #B0ADA8;
-    --accent2: #8A8784;
-    --mono: 'Space Mono', monospace;
-    --sans: 'Space Grotesk', sans-serif;
-    --nav-bg: rgba(10,10,10,0.85);
-  }
-
-  body.light {
     --bg: #F5F4F2;
     --surface: #ECEAE7;
     --surface2: #E2E0DC;
@@ -34,7 +19,22 @@
     --muted: #6B6864;
     --accent: #4A4845;
     --accent2: #767370;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
     --nav-bg: rgba(245,244,242,0.88);
+  }
+
+  body.dark {
+    --bg: #0A0A0A;
+    --surface: #111111;
+    --surface2: #1A1A1A;
+    --border: rgba(255,255,255,0.08);
+    --border-hi: rgba(255,255,255,0.18);
+    --text: #E8E6E3;
+    --muted: #888580;
+    --accent: #B0ADA8;
+    --accent2: #8A8784;
+    --nav-bg: rgba(10,10,10,0.85);
   }
 
   html { scroll-behavior: smooth; }
@@ -218,8 +218,9 @@
 
   .btn-primary { background: var(--accent); color: var(--bg); font-weight: 700; }
   .btn-primary:hover { background: var(--accent2); }
-  body.light .btn-primary { background: var(--text); color: var(--bg); }
-  body.light .btn-primary:hover { background: #333; }
+  .btn-primary { background: var(--text); color: var(--bg); }
+  body.dark .btn-primary { background: var(--accent); color: var(--bg); }
+  body.dark .btn-primary:hover { background: var(--accent2); }
   .btn-ghost { background: transparent; color: var(--muted); border: 0.5px solid var(--border-hi); }
   .btn-ghost:hover { color: var(--text); border-color: var(--accent); }
 
@@ -646,7 +647,7 @@
       <li><a href="#contact">contact</a></li>
     </ul>
     <a class="nav-tool-link" href="https://dumont94.github.io/nigeldumont.github.io/network-builder/app/" target="_blank">network builder <span class="nav-new-badge">new</span></a>
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">☀</button>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">☾</button>
   </div>
 </nav>
 
@@ -1342,12 +1343,12 @@
   // ── THEME TOGGLE ──
   const themeBtn = document.getElementById('theme-toggle');
   const stored = localStorage.getItem('theme');
-  if (stored === 'light') { document.body.classList.add('light'); themeBtn.textContent = '☾'; }
+  if (stored === 'dark') { document.body.classList.add('dark'); themeBtn.textContent = '☀'; }
 
   themeBtn.addEventListener('click', () => {
-    const isLight = document.body.classList.toggle('light');
-    themeBtn.textContent = isLight ? '☾' : '☀';
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    const isDark = document.body.classList.toggle('dark');
+    themeBtn.textContent = isDark ? '☀' : '☾';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
 </script>
 

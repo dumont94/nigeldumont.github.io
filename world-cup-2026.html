@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>World Cup 26 — All-Time Scorers, Bracket & Title Race</title>
+<meta name="description" content="A live snapshot of the 2026 FIFA World Cup: all-time goalscoring leaders, the Golden Boot race, the Round of 32 bracket, title odds, and final group tables." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper:   #F4F6FA;
+    --surface: #FFFFFF;
+    --ink:     #0B1B33;
+    --muted:   #5C6B82;
+    --faint:   #8A97AB;
+    --line:    #E3E8EF;
+    --line-2:  #EEF1F6;
+    --blue:    #1F3FBF;
+    --blue-deep:#11225E;
+    --blue-soft:#E9EDFB;
+    --red:     #E11D2E;
+    --red-soft:#FCE8EA;
+    --ok:      #1E8E5A;
+
+    --r-sm: 8px;
+    --r-md: 14px;
+    --r-lg: 22px;
+    --shadow-sm: 0 1px 2px rgba(11,27,51,.05), 0 1px 3px rgba(11,27,51,.04);
+    --shadow-md: 0 6px 22px rgba(11,27,51,.07), 0 2px 6px rgba(11,27,51,.05);
+
+    --f-disp: 'Archivo', system-ui, sans-serif;
+    --f-body: 'Inter', system-ui, sans-serif;
+    --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    --wrap: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* tricolor signature stripe */
+  .flagstripe { height: 4px; display: grid; grid-template-columns: 1fr 1fr 1fr; }
+  .flagstripe i:nth-child(1){ background: var(--red); }
+  .flagstripe i:nth-child(2){ background: #ffffff; }
+  .flagstripe i:nth-child(3){ background: var(--blue); }
+
+  .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 3px; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(244,246,250,.82);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-in { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 18px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--f-disp); font-weight: 900; letter-spacing: -.02em; font-size: 19px; }
+  .brand .mark { width: 26px; height: 26px; border-radius: 6px; background: var(--blue); color: #fff; display: grid; place-items: center; font-size: 13px; font-weight: 900; }
+  .brand small { font-family: var(--f-mono); font-weight: 600; font-size: 11px; color: var(--blue); background: var(--blue-soft); padding: 2px 7px; border-radius: 999px; letter-spacing: 0; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a { font-family: var(--f-mono); font-size: 12.5px; font-weight: 600; color: var(--muted); text-decoration: none; padding: 7px 11px; border-radius: 8px; }
+  .nav-links a:hover { color: var(--ink); background: var(--line-2); }
+  @media (max-width: 860px){ .nav-links { display: none; } }
+
+  /* ---------- shared section bits ---------- */
+  section { padding: 64px 0; border-top: 1px solid var(--line-2); }
+  .eyebrow { display: inline-flex; align-items: center; gap: 9px; font-family: var(--f-mono); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); }
+  .eyebrow::before { content:""; width: 22px; height: 2px; background: var(--red); display: inline-block; }
+  h2.sec { font-family: var(--f-disp); font-weight: 800; font-size: clamp(26px, 4vw, 40px); letter-spacing: -.025em; margin: 14px 0 8px; line-height: 1.04; }
+  .sec-lede { color: var(--muted); max-width: 60ch; margin: 0 0 28px; font-size: 15.5px; }
+
+  /* live badge */
+  .live { display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .06em; color: var(--red); background: var(--red-soft); border: 1px solid #F6CBD0; padding: 3px 9px 3px 8px; border-radius: 999px; text-transform: uppercase; vertical-align: middle; }
+  .live .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); animation: pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1);} 50% { opacity: .35; transform: scale(.7);} }
+  @media (prefers-reduced-motion: reduce){ .live .dot { animation: none; } }
+  .final-tag { font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .06em; color: var(--ink); background: var(--line-2); border: 1px solid var(--line); padding: 3px 9px; border-radius: 999px; text-transform: uppercase; vertical-align: middle; }
+
+  /* country code badge */
+  .code { font-family: var(--f-mono); font-weight: 700; font-size: 12px; letter-spacing: .02em; background: var(--ink); color: #fff; padding: 3px 6px; border-radius: 5px; display: inline-block; min-width: 38px; text-align: center; }
+  .code.lite { background: var(--line-2); color: var(--muted); }
+
+  .star { color: var(--blue); }
+
+  /* ---------- HERO ---------- */
+  header.hero { padding: 56px 0 60px; background:
+      radial-gradient(900px 360px at 88% -8%, rgba(31,63,191,.08), transparent 60%),
+      radial-gradient(700px 300px at 0% 0%, rgba(225,29,46,.06), transparent 55%); }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; }
+  @media (max-width: 880px){ .hero-grid { grid-template-columns: 1fr; gap: 28px; } }
+  .hero h1 { font-family: var(--f-disp); font-weight: 900; font-size: clamp(34px, 6.4vw, 62px); line-height: .98; letter-spacing: -.035em; margin: 16px 0 16px; }
+  .hero h1 .accent { color: var(--blue); }
+  .hero p.sub { color: var(--muted); font-size: 17px; max-width: 46ch; margin: 0 0 22px; }
+  .stamp { display: inline-flex; align-items: center; gap: 12px; font-family: var(--f-mono); font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+  .stamp b { color: var(--ink); }
+
+  /* featured record card */
+  .feat { background: linear-gradient(160deg, var(--blue-deep), #1a2f86 60%, #20308f); color: #fff; border-radius: var(--r-lg); padding: 26px 26px 24px; position: relative; overflow: hidden; box-shadow: var(--shadow-md); }
+  .feat::after { content:"★"; position: absolute; right: -10px; bottom: -26px; font-size: 150px; color: rgba(255,255,255,.06); line-height: 1; }
+  .feat .row1 { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .feat .badge { font-family: var(--f-mono); font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; }
+  .feat .badge.rec { background: #fff; color: var(--blue-deep); }
+  .feat .badge.lv { background: var(--red); color: #fff; display: inline-flex; align-items: center; gap: 6px; }
+  .feat .badge.lv .dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: pulse 1.8s ease-in-out infinite; }
+  .feat .num { font-family: var(--f-mono); font-weight: 700; font-size: 84px; line-height: .9; letter-spacing: -.04em; }
+  .feat .num small { font-size: 17px; font-weight: 600; opacity: .7; letter-spacing: 0; margin-left: 6px; }
+  .feat .who { font-family: var(--f-disp); font-weight: 800; font-size: 24px; letter-spacing: -.02em; margin-top: 8px; }
+  .feat .meta { font-size: 13.5px; color: rgba(255,255,255,.72); margin-top: 4px; }
+  .feat .ctx { margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.16); font-size: 13.5px; color: rgba(255,255,255,.86); position: relative; z-index: 1; }
+
+  /* ---------- leaderboard ---------- */
+  .board { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .lb-row { display: grid; grid-template-columns: 52px 1fr auto; align-items: center; gap: 14px; padding: 13px 18px; border-top: 1px solid var(--line-2); }
+  .lb-row:first-child { border-top: none; }
+  .lb-row.top { background: linear-gradient(90deg, rgba(31,63,191,.04), transparent 40%); }
+  .lb-rank { font-family: var(--f-mono); font-weight: 700; font-size: 17px; color: var(--faint); text-align: center; }
+  .lb-row.top .lb-rank { color: var(--blue); }
+  .lb-name { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .lb-name .nm { font-family: var(--f-disp); font-weight: 700; font-size: 16.5px; letter-spacing: -.01em; }
+  .lb-name .ct { font-size: 12.5px; color: var(--muted); font-family: var(--f-mono); }
+  .lb-tag { font-family: var(--f-mono); font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 2px 7px; border-radius: 999px; }
+  .lb-tag.active { color: var(--red); background: var(--red-soft); border: 1px solid #F6CBD0; }
+  .lb-tag.retired { color: var(--faint); background: var(--line-2); }
+  .lb-goals { font-family: var(--f-mono); font-weight: 700; font-size: 22px; letter-spacing: -.02em; text-align: right; }
+  .lb-goals span { font-size: 11.5px; color: var(--faint); font-weight: 600; display: block; line-height: 1; margin-top: 2px; }
+
+  /* ---------- golden boot ---------- */
+  .gb-row { display: grid; grid-template-columns: 40px 1fr 132px 58px; align-items: center; gap: 14px; padding: 12px 18px; border-top: 1px solid var(--line-2); }
+  .gb-row:first-child { border-top: none; }
+  .gb-row.lead { background: linear-gradient(90deg, rgba(225,29,46,.05), transparent 45%); }
+  .gb-rank { font-family: var(--f-mono); font-weight: 700; color: var(--faint); text-align: center; }
+  .gb-row.lead .gb-rank { color: var(--red); }
+  .gb-name .nm { font-family: var(--f-disp); font-weight: 700; font-size: 15.5px; }
+  .gb-name .ct { font-size: 12px; color: var(--muted); font-family: var(--f-mono); }
+  .gb-bar { height: 9px; background: var(--line-2); border-radius: 999px; overflow: hidden; }
+  .gb-bar i { display: block; height: 100%; background: var(--blue); border-radius: 999px; }
+  .gb-row.lead .gb-bar i { background: var(--red); }
+  .gb-stat { font-family: var(--f-mono); font-weight: 700; font-size: 17px; text-align: right; }
+  .gb-stat small { display: block; font-size: 10.5px; color: var(--faint); font-weight: 600; line-height: 1; margin-top: 1px; }
+  .gb-foot { font-size: 13px; color: var(--muted); margin-top: 14px; padding-left: 2px; }
+
+  /* ---------- bracket ---------- */
+  .quarters { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  @media (max-width: 760px){ .quarters { grid-template-columns: 1fr; } }
+  .quart { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 14px; box-shadow: var(--shadow-sm); }
+  .quart h4 { margin: 2px 2px 12px; font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; }
+  .quart h4 span { color: var(--faint); font-weight: 600; }
+  .match { border: 1px solid var(--line-2); border-radius: var(--r-sm); padding: 9px 11px; margin-bottom: 9px; }
+  .match:last-child { margin-bottom: 0; }
+  .match.done { border-color: #C9E3D5; background: linear-gradient(90deg, rgba(30,142,90,.05), transparent); }
+  .mteam { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 3px 0; }
+  .mteam .l { display: flex; align-items: center; gap: 9px; }
+  .mteam .tn { font-weight: 600; font-size: 14px; }
+  .mteam.win .tn { font-weight: 800; }
+  .mteam.win .l::after { content:"✓"; color: var(--ok); font-weight: 800; font-size: 12px; }
+  .mteam .sc { font-family: var(--f-mono); font-weight: 700; font-size: 15px; color: var(--ink); }
+  .mteam.lose { opacity: .55; }
+  .mdiv { height: 1px; background: var(--line-2); margin: 2px 0; }
+  .minfo { font-family: var(--f-mono); font-size: 10.5px; color: var(--faint); margin-top: 7px; display: flex; justify-content: space-between; gap: 8px; }
+  .minfo .res { color: var(--ok); font-weight: 700; }
+
+  /* path to final */
+  .path-title { font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin: 30px 0 14px; }
+  .path { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; align-items: stretch; }
+  @media (max-width: 680px){ .path { grid-template-columns: repeat(2,1fr); } }
+  .pcol { text-align: center; }
+  .pcol .lab { font-family: var(--f-mono); font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin-bottom: 8px; }
+  .pcol .slot { background: var(--surface); border: 1px dashed var(--line); border-radius: var(--r-sm); padding: 10px 8px; font-family: var(--f-mono); font-size: 11px; color: var(--faint); margin-bottom: 8px; }
+  .pcol.fin .slot { border: 1px solid var(--blue); color: var(--blue); font-weight: 700; background: var(--blue-soft); }
+  .pcol .cnt { font-family: var(--f-disp); font-weight: 900; font-size: 30px; color: var(--ink); line-height: 1; }
+  .pcol .cnt small { display:block; font-size: 10px; font-family: var(--f-mono); color: var(--faint); font-weight: 600; letter-spacing: .05em; margin-top: 4px; text-transform: uppercase; }
+  .pcol.fin .cnt { color: var(--blue); }
+
+  /* ---------- prediction table ---------- */
+  .tablewrap { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+  table.pred { width: 100%; border-collapse: collapse; }
+  table.pred th, table.pred td { padding: 12px 16px; text-align: left; border-top: 1px solid var(--line-2); }
+  table.pred thead th { border-top: none; background: var(--paper); font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+  table.pred th.num, table.pred td.num { text-align: right; font-family: var(--f-mono); }
+  table.pred tbody tr:first-child td { border-top: none; }
+  table.pred tbody tr.fav { background: linear-gradient(90deg, rgba(31,63,191,.045), transparent 50%); }
+  .pr-team { font-family: var(--f-disp); font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 10px; }
+  .pr-rank { font-family: var(--f-mono); color: var(--faint); font-weight: 700; }
+  .pr-prob { font-family: var(--f-mono); font-weight: 700; font-size: 15px; }
+  .pr-bar { position: relative; height: 6px; background: var(--line-2); border-radius: 999px; margin-top: 5px; overflow: hidden; max-width: 120px; margin-left: auto; }
+  .pr-bar i { position: absolute; left: 0; top: 0; height: 100%; background: var(--blue); border-radius: 999px; }
+  tr.fav .pr-bar i { background: var(--red); }
+  .pr-model { color: var(--muted); }
+  .pr-na { color: var(--faint); }
+  .pred-foot { font-size: 13px; color: var(--muted); margin-top: 14px; }
+  @media (max-width: 620px){ table.pred .hide-sm { display: none; } }
+
+  /* ---------- standings ---------- */
+  .groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 900px){ .groups { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 600px){ .groups { grid-template-columns: 1fr; } }
+  .grp { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .grp h5 { margin: 0; padding: 11px 14px; font-family: var(--f-disp); font-weight: 800; font-size: 14px; border-bottom: 1px solid var(--line-2); display: flex; justify-content: space-between; align-items: center; }
+  .grp h5 small { font-family: var(--f-mono); font-weight: 600; font-size: 10px; color: var(--faint); letter-spacing: .04em; }
+  table.gt { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.gt th { font-family: var(--f-mono); font-size: 9.5px; font-weight: 700; letter-spacing: .04em; color: var(--faint); text-transform: uppercase; padding: 6px 6px; text-align: center; }
+  table.gt th.tm { text-align: left; padding-left: 14px; }
+  table.gt td { padding: 7px 6px; text-align: center; border-top: 1px solid var(--line-2); }
+  table.gt td.tm { text-align: left; padding-left: 14px; font-weight: 600; }
+  table.gt td.pts { font-family: var(--f-mono); font-weight: 700; }
+  .pos { display: inline-grid; place-items: center; width: 17px; height: 17px; border-radius: 4px; font-family: var(--f-mono); font-size: 10px; font-weight: 700; margin-right: 8px; vertical-align: middle; background: var(--line-2); color: var(--muted); }
+  tr.q .pos { background: var(--blue); color: #fff; }
+  tr.q3 .pos { background: #6E84D6; color: #fff; }
+  tr.q td.tm, tr.q3 td.tm { color: var(--ink); }
+  tr.out td { color: var(--faint); }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); margin-top: 16px; }
+  .legend i { display: inline-block; width: 13px; height: 13px; border-radius: 3px; margin-right: 6px; vertical-align: -2px; }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--blue-deep); color: rgba(255,255,255,.8); padding: 40px 0 30px; }
+  footer .fgrid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 28px; }
+  @media (max-width: 720px){ footer .fgrid { grid-template-columns: 1fr; gap: 22px; } }
+  footer h6 { font-family: var(--f-mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: #fff; margin: 0 0 10px; }
+  footer p { font-size: 13px; line-height: 1.6; margin: 0 0 8px; }
+  footer .disc { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--r-sm); padding: 14px 16px; font-size: 12.5px; }
+  footer a { color: #fff; }
+  footer .sig { margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-family: var(--f-mono); font-size: 11.5px; color: rgba(255,255,255,.6); }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce){ .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div class="flagstripe"><i></i><i></i><i></i></div>
+
+<nav>
+  <div class="wrap nav-in">
+    <div class="brand"><span class="mark">26</span> WORLD&nbsp;CUP <small>USA · CAN · MEX</small></div>
+    <div class="nav-links">
+      <a href="#leaders">All-time</a>
+      <a href="#boot">Golden Boot</a>
+      <a href="#bracket">Bracket</a>
+      <a href="#title">Title race</a>
+      <a href="#groups">Groups</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">All-time · Men's World Cup</span>
+      <h1>The all-time list has a <span class="accent">new name.</span></h1>
+      <p class="sub">For the first time in over a decade, the record for most World Cup goals belongs to someone other than Miroslav Klose — and two of the men chasing him are still on the pitch in 2026.</p>
+      <div class="stamp">
+        <span class="live"><span class="dot"></span>Live snapshot</span>
+        <span>Captured <b>Jun 28, 2026</b> · end of group stage</span>
+      </div>
+    </div>
+    <div class="feat" aria-label="Record holder">
+      <div class="row1">
+        <span class="badge rec">★ All-time record</span>
+        <span class="badge lv"><span class="dot"></span>Live</span>
+      </div>
+      <div class="num" data-count="19">19<small>goals</small></div>
+      <div class="who">Lionel Messi</div>
+      <div class="meta">Argentina · 6 WC tournaments · 29 matches</div>
+      <div class="ctx">Passed Klose (16) during the group stage — a hat-trick vs. Algeria, a brace vs. Austria, one more vs. Jordan. <b>Still active:</b> Argentina face Cape Verde in the Round of 32 on Jul 3, so this number can still climb.</div>
+    </div>
+  </div>
+</header>
+
+<!-- ALL-TIME LEADERS -->
+<section id="leaders">
+  <div class="wrap">
+    <span class="eyebrow">The ranking</span>
+    <h2 class="sec">All-time goalscoring leaders <span class="live"><span class="dot"></span>Live</span></h2>
+    <p class="sec-lede">Every player with 11+ career World Cup goals, counting the 2026 tournament through the group stage. Three of them are active and climbing right now — flagged below.</p>
+    <div class="board reveal" id="lb"></div>
+    <p class="gb-foot">Active totals (Messi, Mbappé, Kane) move with every match they play. Retired players' totals are fixed. Several players sit just outside this list on 10 goals — Lineker, Batistuta, T. Müller, Cubillas.</p>
+  </div>
+</section>
+
+<!-- GOLDEN BOOT -->
+<section id="boot">
+  <div class="wrap">
+    <span class="eyebrow">2026 · Golden Boot race</span>
+    <h2 class="sec">Who's winning the Boot <span class="live"><span class="dot"></span>Live</span></h2>
+    <p class="sec-lede">Goals scored in this tournament only. Messi leads outright; four players are knotted behind him, separated by the official tiebreaker — assists first, then fewest minutes played.</p>
+    <div class="board reveal" id="gb"></div>
+    <p class="gb-foot">Tiebreak order: most goals → most assists → fewest minutes. Behind the top group, a crowd sits on 2 — including Cristiano Ronaldo (brace vs. Uzbekistan), Kai Havertz, Cody Gakpo and USA's Folarin Balogun.</p>
+  </div>
+</section>
+
+<!-- BRACKET -->
+<section id="bracket">
+  <div class="wrap">
+    <span class="eyebrow">2026 · Knockout stage</span>
+    <h2 class="sec">Round of 32 <span class="live"><span class="dot"></span>In progress</span></h2>
+    <p class="sec-lede">The first 48-team World Cup adds a Round of 32: the 12 group winners and 12 runners-up join the 8 best third-placed teams. One match is done — Canada knocked out South Africa. The rest run through Jul 3.</p>
+    <div class="quarters reveal" id="r32"></div>
+
+    <div class="path-title">Path to the final — everything past the Round of 32 is still to be decided</div>
+    <div class="path reveal">
+      <div class="pcol"><div class="lab">Round of 16</div><div class="cnt">16<small>teams</small></div><div class="slot">8 matches</div><div class="slot">Jul 4–7</div></div>
+      <div class="pcol"><div class="lab">Quarter-finals</div><div class="cnt">8<small>teams</small></div><div class="slot">4 matches</div><div class="slot">Jul 9–11</div></div>
+      <div class="pcol"><div class="lab">Semi-finals</div><div class="cnt">4<small>teams</small></div><div class="slot">2 matches</div><div class="slot">Jul 14–15</div></div>
+      <div class="pcol fin"><div class="lab">Final</div><div class="cnt">2<small>teams</small></div><div class="slot">Jul 19 · MetLife, NJ</div><div class="slot">Champion TBD</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TITLE PREDICTION -->
+<section id="title">
+  <div class="wrap">
+    <span class="eyebrow">2026 · Most likely to win</span>
+    <h2 class="sec">Title race <span class="live"><span class="dot"></span>Moves every match</span></h2>
+    <p class="sec-lede">Two readings side by side: the betting market (sportsbook odds, converted to an implied chance) and the Opta supercomputer's model. They agree on the top four. France overtook pre-tournament favourite Spain after a perfect group stage; defending champ Argentina sits second on a kind bracket draw.</p>
+    <div class="tablewrap reveal">
+      <table class="pred">
+        <thead>
+          <tr>
+            <th style="width:46px">#</th>
+            <th>Team</th>
+            <th class="num">Market odds</th>
+            <th class="num">Market %</th>
+            <th class="num hide-sm">Model %</th>
+          </tr>
+        </thead>
+        <tbody id="pred"></tbody>
+      </table>
+    </div>
+    <p class="pred-foot"><b>Read it carefully.</b> "Market %" is implied from sportsbook odds and includes the book's margin, so the column sums to more than 100% — treat it as relative, not literal. "Model %" is the Opta/SI supercomputer's post-group-stage simulation (true probabilities, published for select sides). Both are estimates and both shift after every result. Market odds: FOX Sports oddsboard, Jun 28. Model: SI/Opta, Jun 28.</p>
+  </div>
+</section>
+
+<!-- GROUP STANDINGS -->
+<section id="groups">
+  <div class="wrap">
+    <span class="eyebrow">2026 · Group stage</span>
+    <h2 class="sec">Final group tables <span class="final-tag">Final · locked</span></h2>
+    <p class="sec-lede">All 12 groups are complete — these tables won't change. Top two from each group qualify automatically (blue), plus the eight best third-placed teams (light blue).</p>
+    <div class="groups reveal" id="grps"></div>
+    <div class="legend">
+      <span><i style="background:var(--blue)"></i>Qualified — top 2</span>
+      <span><i style="background:#6E84D6"></i>Qualified — best third</span>
+      <span><i style="background:var(--line-2)"></i>Eliminated</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h6>About this page</h6>
+        <p>A single, self-contained HTML file tracking the 2026 FIFA World Cup: the all-time scoring record, the Golden Boot race, the Round of 32, the title odds, and the final group tables.</p>
+        <div class="disc"><b>It's a snapshot, not a live feed.</b> A standalone HTML file can't poll a data feed (no backend, and browsers block cross-origin calls). Every figure marked <span style="color:#ff8a93">Live</span> was current as of <b>Jun 28, 2026</b> and will drift as matches are played. Group tables are final. A true live version would need a small backend proxy.</p>
+      </div>
+      <div>
+        <h6>Sources</h6>
+        <p>FIFA · ESPN · Wikipedia (all-time list)<br>Official Round of 32 bracket (Sky / CBS / Yahoo)<br>FOX Sports oddsboard<br>SI / Opta supercomputer model</p>
+      </div>
+      <div>
+        <h6>Verify before you lean on it</h6>
+        <p>Live trackers disagree mid-match and lag real time. Cross-check active goal totals and odds against the official FIFA site before quoting them.</p>
+      </div>
+    </div>
+    <div class="sig">
+      <span>Built by Nigel Dumont — portfolio demo</span>
+      <span>Snapshot · 2026-06-28</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- DATA (snapshot: 2026-06-28, end of group stage) ---------------- */
+
+  // All-time WC goals, counting 2026 group stage. status: active players still in the tournament.
+  var allTime = [
+    {r:1, nm:"Lionel Messi",    ct:"Argentina", g:19, active:true,  add:"+6 in 2026"},
+    {r:2, nm:"Kylian Mbappé",   ct:"France",    g:16, active:true,  add:"+4 in 2026"},
+    {r:2, nm:"Miroslav Klose",  ct:"Germany",   g:16, active:false, add:"2002–2014"},
+    {r:4, nm:"Ronaldo",         ct:"Brazil",    g:15, active:false, add:"1998–2006"},
+    {r:5, nm:"Gerd Müller",     ct:"W. Germany",g:14, active:false, add:"1970–1974"},
+    {r:6, nm:"Just Fontaine",   ct:"France",    g:13, active:false, add:"all in 1958"},
+    {r:7, nm:"Pelé",            ct:"Brazil",    g:12, active:false, add:"1958–1970"},
+    {r:8, nm:"Sándor Kocsis",   ct:"Hungary",   g:11, active:false, add:"1954"},
+    {r:8, nm:"Jürgen Klinsmann",ct:"Germany",   g:11, active:false, add:"1990–1998"},
+    {r:8, nm:"Harry Kane",      ct:"England",   g:11, active:true,  add:"+3 in 2026"}
+  ];
+
+  // Golden Boot — 2026 tournament goals only. Ordered by goals, then assists, then fewer minutes.
+  var golden = [
+    {r:1, nm:"Lionel Messi",     ct:"Argentina", g:6, a:0, active:true},
+    {r:2, nm:"Kylian Mbappé",    ct:"France",    g:4, a:2, active:true},
+    {r:2, nm:"Ousmane Dembélé",  ct:"France",    g:4, a:1, active:true},
+    {r:2, nm:"Vinícius Júnior",  ct:"Brazil",    g:4, a:1, active:true},
+    {r:2, nm:"Erling Haaland",   ct:"Norway",    g:4, a:0, active:true},
+    {r:6, nm:"Deniz Undav",      ct:"Germany",   g:3, a:2, active:true},
+    {r:6, nm:"Harry Kane",       ct:"England",   g:3, a:0, active:true},
+    {r:6, nm:"Jonathan David",   ct:"Canada",    g:3, a:0, active:true},
+    {r:6, nm:"Matheus Cunha",    ct:"Brazil",    g:3, a:0, active:true},
+    {r:6, nm:"Brian Brobbey",    ct:"Netherlands",g:3,a:0, active:true}
+  ];
+
+  // Round of 32 — organised into the 4 quarters of the bracket.
+  var r32 = [
+    { q:"Quarter 1", feeds:"Winners → R16 (Houston / Philadelphia)", m:[
+      {a:["CAN","Canada"], b:["RSA","South Africa"], sa:1, sb:0, done:true, info:"Jun 28 · SoFi, LA", res:"Canada advance"},
+      {a:["NED","Netherlands"], b:["MAR","Morocco"], info:"Jun 29 · Monterrey"},
+      {a:["GER","Germany"], b:["PAR","Paraguay"], info:"Jun 29 · Foxborough"},
+      {a:["FRA","France"], b:["SWE","Sweden"], info:"Jun 30 · New Jersey"}
+    ]},
+    { q:"Quarter 2", feeds:"Winners → R16 (Arlington / Seattle)", m:[
+      {a:["ESP","Spain"], b:["AUT","Austria"], info:"Jul 2 · Los Angeles"},
+      {a:["POR","Portugal"], b:["CRO","Croatia"], info:"Jul 2 · Toronto"},
+      {a:["BEL","Belgium"], b:["SEN","Senegal"], info:"Jul 1 · Seattle"},
+      {a:["USA","USA"], b:["BIH","Bosnia"], info:"Jul 1 · Santa Clara"}
+    ]},
+    { q:"Quarter 3", feeds:"Winners → R16 (New Jersey / Mexico City)", m:[
+      {a:["BRA","Brazil"], b:["JPN","Japan"], info:"Jun 29 · Houston"},
+      {a:["CIV","Ivory Coast"], b:["NOR","Norway"], info:"Jun 30 · Arlington"},
+      {a:["MEX","Mexico"], b:["ECU","Ecuador"], info:"Jun 30 · Mexico City"},
+      {a:["ENG","England"], b:["COD","Congo DR"], info:"Jul 1 · Atlanta"}
+    ]},
+    { q:"Quarter 4", feeds:"Winners → R16 (Atlanta / Kansas City)", m:[
+      {a:["AUS","Australia"], b:["EGY","Egypt"], info:"Jul 3 · Arlington"},
+      {a:["ARG","Argentina"], b:["CPV","Cape Verde"], info:"Jul 3 · Miami"},
+      {a:["SUI","Switzerland"], b:["DZA","Algeria"], info:"Jul 2 · Vancouver"},
+      {a:["COL","Colombia"], b:["GHA","Ghana"], info:"Jul 3 · Kansas City"}
+    ]}
+  ];
+
+  // Title odds. odds = American; mkt = implied % from those odds; model = Opta/SI % (null where unpublished).
+  var pred = [
+    {r:1,  nm:"France",      cd:"FRA", odds:"+340", mkt:22.7, model:18.7},
+    {r:2,  nm:"Argentina",   cd:"ARG", odds:"+410", mkt:19.6, model:16.3},
+    {r:3,  nm:"Spain",       cd:"ESP", odds:"+650", mkt:13.3, model:13.5},
+    {r:4,  nm:"England",     cd:"ENG", odds:"+650", mkt:13.3, model:9.7},
+    {r:5,  nm:"Brazil",      cd:"BRA", odds:"+1300",mkt:7.1,  model:6.5},
+    {r:6,  nm:"Portugal",    cd:"POR", odds:"+1500",mkt:6.3,  model:null},
+    {r:7,  nm:"Germany",     cd:"GER", odds:"+1500",mkt:6.3,  model:null},
+    {r:8,  nm:"Netherlands", cd:"NED", odds:"+1800",mkt:5.3,  model:5.1},
+    {r:9,  nm:"Colombia",    cd:"COL", odds:"+3300",mkt:2.9,  model:null},
+    {r:10, nm:"Norway",      cd:"NOR", odds:"+3500",mkt:2.8,  model:null},
+    {r:11, nm:"USA",         cd:"USA", odds:"+3500",mkt:2.8,  model:2.5},
+    {r:12, nm:"Morocco",     cd:"MAR", odds:"+4000",mkt:2.4,  model:null}
+  ];
+
+  // Final group tables. s = 'win' (1st/2nd auto-Q shown blue), 'q3' (best-third Q), 'out'.
+  var groups = {
+    A:[["1","Mexico","MEX",3,0,0,9,"win"],["2","South Africa","RSA",1,1,1,4,"win"],["3","Korea Rep.","KOR",1,0,2,3,"out"],["4","Czechia","CZE",0,1,2,1,"out"]],
+    B:[["1","Switzerland","SUI",2,1,0,7,"win"],["2","Canada","CAN",1,1,1,4,"win"],["3","Bosnia","BIH",1,1,1,4,"q3"],["4","Qatar","QAT",0,1,2,1,"out"]],
+    C:[["1","Brazil","BRA",2,1,0,7,"win"],["2","Morocco","MAR",2,1,0,7,"win"],["3","Scotland","SCO",1,0,2,3,"out"],["4","Haiti","HTI",0,0,3,0,"out"]],
+    D:[["1","USA","USA",2,0,1,6,"win"],["2","Australia","AUS",1,1,1,4,"win"],["3","Paraguay","PAR",1,1,1,4,"q3"],["4","Türkiye","TUR",1,0,2,3,"out"]],
+    E:[["1","Germany","GER",2,0,1,6,"win"],["2","Ivory Coast","CIV",2,0,1,6,"win"],["3","Ecuador","ECU",1,1,1,4,"q3"],["4","Curaçao","CUW",0,1,2,1,"out"]],
+    F:[["1","Netherlands","NED",2,1,0,7,"win"],["2","Japan","JPN",1,2,0,5,"win"],["3","Sweden","SWE",1,1,1,4,"q3"],["4","Tunisia","TUN",0,0,3,0,"out"]],
+    G:[["1","Belgium","BEL",1,2,0,5,"win"],["2","Egypt","EGY",1,2,0,5,"win"],["3","Iran","IRN",0,3,0,3,"out"],["4","New Zealand","NZL",0,1,2,1,"out"]],
+    H:[["1","Spain","ESP",2,1,0,7,"win"],["2","Cape Verde","CPV",0,3,0,3,"win"],["3","Uruguay","URU",0,2,1,2,"out"],["4","Saudi Arabia","KSA",0,2,1,2,"out"]],
+    I:[["1","France","FRA",3,0,0,9,"win"],["2","Norway","NOR",2,0,1,6,"win"],["3","Senegal","SEN",1,0,2,3,"q3"],["4","Iraq","IRQ",0,0,3,0,"out"]],
+    J:[["1","Argentina","ARG",3,0,0,9,"win"],["2","Austria","AUT",1,1,1,4,"win"],["3","Algeria","DZA",1,1,1,4,"q3"],["4","Jordan","JOR",0,0,3,0,"out"]],
+    K:[["1","Colombia","COL",2,1,0,7,"win"],["2","Portugal","POR",1,2,0,5,"win"],["3","Congo DR","COD",1,1,1,4,"q3"],["4","Uzbekistan","UZB",0,0,3,0,"out"]],
+    L:[["1","England","ENG",2,1,0,7,"win"],["2","Croatia","CRO",2,0,1,6,"win"],["3","Ghana","GHA",1,1,1,4,"q3"],["4","Panama","PAN",0,0,3,0,"out"]]
+  };
+
+  /* ---------------- RENDER ---------------- */
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  // all-time leaderboard
+  (function(){
+    var maxG = allTime[0].g, html = "";
+    allTime.forEach(function(p){
+      var tag = p.active
+        ? '<span class="lb-tag active">Live · '+esc(p.add)+'</span>'
+        : '<span class="lb-tag retired">'+esc(p.add)+'</span>';
+      html += '<div class="lb-row'+(p.r===1?' top':'')+'">'
+        + '<div class="lb-rank">'+p.r+'</div>'
+        + '<div class="lb-name"><span class="nm">'+esc(p.nm)+'</span>'
+        +   '<span class="ct">'+esc(p.ct)+'</span>'+tag+'</div>'
+        + '<div class="lb-goals">'+p.g+'<span>goals</span></div>'
+        + '</div>';
+    });
+    $("lb").innerHTML = html;
+  })();
+
+  // golden boot
+  (function(){
+    var maxG = golden[0].g, html = "";
+    golden.forEach(function(p){
+      var pct = Math.round((p.g/maxG)*100);
+      html += '<div class="gb-row'+(p.r===1?' lead':'')+'">'
+        + '<div class="gb-rank">'+p.r+'</div>'
+        + '<div class="gb-name"><span class="nm">'+esc(p.nm)+'</span> <span class="ct">'+esc(p.ct)+'</span></div>'
+        + '<div class="gb-bar"><i style="width:'+pct+'%"></i></div>'
+        + '<div class="gb-stat">'+p.g+'<small>'+p.a+' ast</small></div>'
+        + '</div>';
+    });
+    $("gb").innerHTML = html;
+  })();
+
+  // bracket — round of 32
+  (function(){
+    var html = "";
+    r32.forEach(function(qb){
+      html += '<div class="quart"><h4>'+esc(qb.q)+'<span>'+esc(qb.feeds)+'</span></h4>';
+      qb.m.forEach(function(m){
+        var done = !!m.done;
+        var aWin = done && m.sa>m.sb, bWin = done && m.sb>m.sa;
+        function team(t, win, lose, score){
+          return '<div class="mteam'+(win?' win':'')+(lose?' lose':'')+'">'
+            + '<span class="l"><span class="code'+(lose?' lite':'')+'">'+esc(t[0])+'</span>'
+            + '<span class="tn">'+esc(t[1])+'</span></span>'
+            + '<span class="sc">'+(done?score:'–')+'</span></div>';
+        }
+        html += '<div class="match'+(done?' done':'')+'">'
+          + team(m.a, aWin, done&&!aWin, m.sa)
+          + '<div class="mdiv"></div>'
+          + team(m.b, bWin, done&&!bWin, m.sb)
+          + '<div class="minfo"><span>'+esc(m.info)+'</span>'
+          + (done?'<span class="res">'+esc(m.res)+'</span>':'<span>Upcoming</span>')+'</div>'
+          + '</div>';
+      });
+      html += '</div>';
+    });
+    $("r32").innerHTML = html;
+  })();
+
+  // prediction table
+  (function(){
+    var html = "";
+    pred.forEach(function(t){
+      var barW = Math.min(100, Math.round(t.mkt/22.7*100));
+      var model = (t.model===null) ? '<span class="pr-na">—</span>' : t.model.toFixed(1)+'%';
+      html += '<tr'+(t.r===1?' class="fav"':'')+'>'
+        + '<td class="pr-rank">'+t.r+'</td>'
+        + '<td><span class="pr-team"><span class="code">'+esc(t.cd)+'</span>'+esc(t.nm)+'</span></td>'
+        + '<td class="num">'+esc(t.odds)+'</td>'
+        + '<td class="num"><span class="pr-prob">'+t.mkt.toFixed(1)+'%</span><div class="pr-bar"><i style="width:'+barW+'%"></i></div></td>'
+        + '<td class="num hide-sm pr-model">'+model+'</td>'
+        + '</tr>';
+    });
+    $("pred").innerHTML = html;
+  })();
+
+  // group tables
+  (function(){
+    var letters = ["A","B","C","D","E","F","G","H","I","J","K","L"], html = "";
+    letters.forEach(function(L){
+      var qual = groups[L].filter(function(t){return t[7]!=="out";}).length;
+      html += '<div class="grp"><h5>Group '+L+' <small>'+qual+' through</small></h5>'
+        + '<table class="gt"><thead><tr><th class="tm">Team</th><th>W</th><th>D</th><th>L</th><th>Pts</th></tr></thead><tbody>';
+      groups[L].forEach(function(t){
+        var cls = t[7]==="win"?"q":(t[7]==="q3"?"q3":"out");
+        html += '<tr class="'+cls+'">'
+          + '<td class="tm"><span class="pos">'+t[0]+'</span><span class="code lite" style="margin-right:7px">'+esc(t[2])+'</span>'+esc(t[1])+'</td>'
+          + '<td>'+t[3]+'</td><td>'+t[4]+'</td><td>'+t[5]+'</td><td class="pts">'+t[6]+'</td></tr>';
+      });
+      html += '</tbody></table></div>';
+    });
+    $("grps").innerHTML = html;
+  })();
+
+  /* ---------------- count-up (hero) ---------------- */
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  (function(){
+    var el = document.querySelector(".feat .num");
+    if(!el) return;
+    var target = parseInt(el.getAttribute("data-count"),10) || 0;
+    if(reduce){ return; }
+    var start = null, dur = 900;
+    el.firstChild.nodeValue = "0";
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min(1, (ts-start)/dur);
+      var val = Math.round(target * (1 - Math.pow(1-p,3)));
+      el.firstChild.nodeValue = String(val);
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  })();
+
+  /* ---------------- scroll reveal ---------------- */
+  (function(){
+    var els = document.querySelectorAll(".reveal");
+    if(reduce || !("IntersectionObserver" in window)){
+      els.forEach(function(e){ e.classList.add("in"); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { threshold: .12 });
+    els.forEach(function(e){ io.observe(e); });
+  })();
+
+})();
+</script>
+</body>
+</html>

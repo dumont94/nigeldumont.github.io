@@ -1,20 +1,9 @@
-/**
- * App.jsx — Root component and application state machine.
- *
- * Screen flow:
- *   questionnaire → loading → walkthrough → summary
- *
- * All recommendation logic runs client-side via recommendations.js,
- * which imports the pre-built networkData.json. No backend required.
- */
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Questionnaire from "./components/Questionnaire.jsx";
 import Walkthrough from "./components/Walkthrough.jsx";
 import Summary from "./components/Summary.jsx";
 import { buildRecommendation } from "./recommendations.js";
 
-// Application screens — acts as a lightweight state machine
 const SCREENS = {
   QUESTIONNAIRE: "questionnaire",
   LOADING: "loading",
@@ -27,12 +16,22 @@ export default function App() {
   const [recommendation, setRecommendation] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [error, setError] = useState(null);
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("nb-theme") || "dark"
+  );
 
-  // Called by Questionnaire when the user submits answers
+  useEffect(() => {
+    document.body.classList.toggle("light", theme === "light");
+    localStorage.setItem("nb-theme", theme);
+  }, [theme]);
+
+  function toggleTheme() {
+    setTheme((t) => (t === "dark" ? "light" : "dark"));
+  }
+
   function handleSubmit(formData) {
     setScreen(SCREENS.LOADING);
     setError(null);
-
     try {
       const data = buildRecommendation(formData);
       setRecommendation(data);
@@ -44,13 +43,11 @@ export default function App() {
     }
   }
 
-  // Called by Walkthrough when the user reaches the last step and clicks "Finish"
   function handleWalkthroughComplete() {
     setScreen(SCREENS.SUMMARY);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // Reset everything — let the user start over
   function handleReset() {
     setRecommendation(null);
     setCurrentStep(0);
@@ -59,14 +56,10 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // Derive a short path label for the header badge
-  const pathLabel = recommendation
-    ? recommendation.path_info.name
-    : null;
+  const pathLabel = recommendation ? recommendation.path_info.name : null;
 
   return (
     <div className="app">
-      {/* ── Fixed header ── */}
       <header className="app-header">
         <div className="app-header__logo">
           <div className="app-header__dot" />
@@ -76,9 +69,10 @@ export default function App() {
           </div>
         </div>
         <div className="app-header__right">
-          {pathLabel && (
-            <div className="app-header__badge">{pathLabel}</div>
-          )}
+          {pathLabel && <div className="app-header__badge">{pathLabel}</div>}
+          <button className="theme-toggle" onClick={toggleTheme}>
+            {theme === "dark" ? "☀ light" : "☾ dark"}
+          </button>
           <a
             className="app-header__back"
             href="https://dumont94.github.io/nigeldumont.github.io/"
@@ -88,7 +82,6 @@ export default function App() {
         </div>
       </header>
 
-      {/* ── Main content ── */}
       <main className="main">
         {screen === SCREENS.QUESTIONNAIRE && (
           <Questionnaire onSubmit={handleSubmit} error={error} />

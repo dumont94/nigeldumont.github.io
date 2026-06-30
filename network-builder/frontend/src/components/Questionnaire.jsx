@@ -104,11 +104,11 @@ export default function Questionnaire({ onSubmit, error }) {
       {/* ── Hero ── */}
       <div className="questionnaire__hero">
         <div className="questionnaire__eyebrow">Network Infrastructure Builder</div>
-        <h1 className="questionnaire__title">Map Your Network Infrastructure</h1>
+        <h1 className="questionnaire__title">The only tool you need to analyze your network infrastructure and make the right decisions.</h1>
         <p className="questionnaire__subtitle">
           Answer four questions. Get a step-by-step guide to building a
-          real business network from scratch — including the gear, the config,
-          and the plain-English explanation of why it all matters.
+          real business network from scratch — the gear, the config, and
+          the plain-English explanation of why it all matters.
         </p>
         <p className="questionnaire__byline">Built by Nigel Dumont</p>
       </div>

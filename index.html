@@ -542,19 +542,43 @@
     border: 0.5px solid var(--border);
   }
 
+  .project-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
   .project-link {
     font-family: var(--mono);
     font-size: 11px;
-    color: var(--muted);
+    color: var(--text);
     text-decoration: none;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 5px;
-    transition: color 0.2s;
-    margin-top: auto;
+    gap: 4px;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--border-hi);
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    letter-spacing: 0.03em;
   }
 
-  .project-link:hover { color: var(--accent); }
+  .project-link:hover {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+
+  .project-link-primary {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+
+  .project-link-primary:hover {
+    opacity: 0.8;
+  }
 
   .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
 
@@ -857,8 +881,10 @@
         <span class="stack-tag">Vite</span>
         <span class="stack-tag">Python</span>
       </div>
-      <a class="project-link" href="https://dumont94.github.io/nigeldumont.github.io/network-builder/app/" target="_blank">Live Demo →</a>
-      <a class="project-link" href="https://github.com/dumont94/network-builder-tool" target="_blank" style="margin-left:1rem">github.com/dumont94/network-builder-tool →</a>
+      <div class="project-actions">
+        <a class="project-link project-link-primary" href="https://dumont94.github.io/nigeldumont.github.io/network-builder/app/" target="_blank">Live Demo →</a>
+        <a class="project-link" href="https://github.com/dumont94/network-builder-tool" target="_blank">GitHub →</a>
+      </div>
     </div>
     <div class="project-card">
       <p class="project-type">Sports data tracker</p>
@@ -870,8 +896,10 @@
         <span class="stack-tag">JavaScript</span>
         <span class="stack-tag">APIs</span>
       </div>
-      <a class="project-link" href="world-cup-2026.html" target="_blank">Live Demo →</a>
-      <a class="project-link" href="https://github.com/dumont94/fifa-world-cup-dashboard" target="_blank" style="margin-left:1rem">github.com/dumont94/fifa-world-cup-dashboard →</a>
+      <div class="project-actions">
+        <a class="project-link project-link-primary" href="world-cup-2026.html" target="_blank">Live Demo →</a>
+        <a class="project-link" href="https://github.com/dumont94/fifa-world-cup-dashboard" target="_blank">GitHub →</a>
+      </div>
     </div>
     <div class="project-card">
       <p class="project-type">Automation pipeline</p>
@@ -884,7 +912,9 @@
         <span class="stack-tag">Google Sheets</span>
         <span class="stack-tag">Claude</span>
       </div>
-      <a class="project-link" href="https://github.com/dumont94/gmail-job-tracker" target="_blank">github.com/dumont94/gmail-job-tracker →</a>
+      <div class="project-actions">
+        <a class="project-link" href="https://github.com/dumont94/gmail-job-tracker" target="_blank">GitHub →</a>
+      </div>
     </div>
     <div class="project-card">
       <p class="project-type">IAM homelab</p>
@@ -896,7 +926,9 @@
         <span class="stack-tag">Google Workspace</span>
         <span class="stack-tag">Node.js</span>
       </div>
-      <a class="project-link" href="https://github.com/dumont94/Okta-Lab-Provisioning" target="_blank">github.com/dumont94/Okta-Lab-Provisioning →</a>
+      <div class="project-actions">
+        <a class="project-link" href="https://github.com/dumont94/Okta-Lab-Provisioning" target="_blank">GitHub →</a>
+      </div>
     </div>
     <div class="project-card">
       <p class="project-type">Web development</p>
@@ -912,8 +944,10 @@
         <span class="stack-tag">GitHub Pages</span>
         <span class="stack-tag">Claude Code</span>
       </div>
-      <a class="project-link" href="https://dumont94.github.io/nigeldumont.github.io/" target="_blank">Live site →</a>
-      <a class="project-link" href="https://github.com/dumont94/nigeldumont.github.io" target="_blank" style="margin-left:1rem">github.com/dumont94/nigeldumont.github.io →</a>
+      <div class="project-actions">
+        <a class="project-link project-link-primary" href="https://dumont94.github.io/nigeldumont.github.io/" target="_blank">Live Site →</a>
+        <a class="project-link" href="https://github.com/dumont94/nigeldumont.github.io" target="_blank">GitHub →</a>
+      </div>
     </div>
     <div class="project-card">
       <p class="project-type">Security homelab</p>
@@ -926,7 +960,9 @@
         <span class="stack-tag">AWS IAM</span>
         <span class="stack-tag">AWS Systems Manager</span>
       </div>
-      <a class="project-link" href="https://github.com/dumont94/aws-siem-homelab" target="_blank">github.com/dumont94/aws-siem-homelab →</a>
+      <div class="project-actions">
+        <a class="project-link" href="https://github.com/dumont94/aws-siem-homelab" target="_blank">GitHub →</a>
+      </div>
     </div>
   </div>
 </section>

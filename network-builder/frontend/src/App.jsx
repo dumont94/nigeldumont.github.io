@@ -71,13 +71,21 @@ export default function App() {
         <div className="app-header__logo">
           <div className="app-header__dot" />
           <div>
-            <div className="app-header__title">Map Your Network Infrastructure</div>
-            <div className="app-header__sub">Infrastructure Builder</div>
+            <div className="app-header__title">Network Infrastructure Builder</div>
+            <div className="app-header__sub">by Nigel Dumont</div>
           </div>
         </div>
-        {pathLabel && (
-          <div className="app-header__badge">{pathLabel}</div>
-        )}
+        <div className="app-header__right">
+          {pathLabel && (
+            <div className="app-header__badge">{pathLabel}</div>
+          )}
+          <a
+            className="app-header__back"
+            href="https://dumont94.github.io/nigeldumont.github.io/"
+          >
+            ← portfolio
+          </a>
+        </div>
       </header>
 
       {/* ── Main content ── */}

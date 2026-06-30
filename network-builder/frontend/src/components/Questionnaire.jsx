@@ -118,14 +118,7 @@ export default function Questionnaire({ onSubmit, error }) {
         <div className="error-card" style={{ marginBottom: "var(--space-8)" }}>
           <div className="error-card__icon">⚠</div>
           <div className="error-card__title">Something went wrong</div>
-          <div className="error-card__message">
-            {error}
-            <br /><br />
-            Make sure the Flask backend is running on port 5000:<br />
-            <code style={{ fontFamily: "var(--mono)", fontSize: "12px" }}>
-              cd backend && python app.py
-            </code>
-          </div>
+          <div className="error-card__message">{error}</div>
         </div>
       )}
 

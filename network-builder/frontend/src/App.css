@@ -11,7 +11,6 @@
 }
 
 /* ── Design Tokens ───────────────────────────────────────────── */
-/* Matches the portfolio palette exactly (index.html :root)       */
 :root {
   /* Backgrounds */
   --bg:       #0A0A0A;
@@ -20,21 +19,21 @@
   --surface3: #222222;
   --surface4: #2A2A2A;
 
-  /* Borders — same as portfolio */
+  /* Borders */
   --border:    rgba(255, 255, 255, 0.08);
-  --border-hi: rgba(255, 255, 255, 0.18);
-  --border-focus: rgba(176, 173, 168, 0.4);
+  --border-hi: rgba(255, 255, 255, 0.22);
+  --border-focus: rgba(232, 230, 227, 0.5);
 
-  /* Text — warm white / warm gray, same as portfolio */
+  /* Text */
   --text:       #E8E6E3;
   --text-muted: #888580;
   --text-dim:   #555552;
 
-  /* Accent — portfolio warm gray, not green */
-  --accent:        #B0ADA8;
-  --accent-dim:    rgba(176, 173, 168, 0.08);
-  --accent-border: rgba(176, 173, 168, 0.18);
-  --accent-dark:   #8A8784;
+  /* Accent — warm white for interactive elements */
+  --accent:        #E8E6E3;
+  --accent-dim:    rgba(232, 230, 227, 0.07);
+  --accent-border: rgba(232, 230, 227, 0.18);
+  --accent-dark:   #B0ADA8;
 
   /* Semantic section colors — kept subtle to stay in palette */
   --blue:        #8BAACC;
@@ -102,9 +101,10 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(8, 12, 16, 0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
   padding: var(--space-4) var(--space-8);
   display: flex;
   align-items: center;
@@ -148,6 +148,26 @@ body {
   border-radius: var(--radius-sm);
   padding: 2px 8px;
   white-space: nowrap;
+}
+
+.app-header__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.app-header__back {
+  font-size: 12px;
+  font-family: var(--mono);
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color var(--transition);
+  white-space: nowrap;
+}
+
+.app-header__back:hover {
+  color: var(--text);
 }
 
 /* ── Main Content ─────────────────────────────────────────────── */
@@ -226,6 +246,9 @@ body {
 .questionnaire__hero {
   text-align: center;
   margin-bottom: var(--space-12);
+  padding: var(--space-12) 0 var(--space-8);
+  background: radial-gradient(ellipse 80% 55% at 50% 0%, rgba(232,230,227,0.055) 0%, transparent 100%);
+  border-radius: var(--radius-lg);
 }
 
 .questionnaire__eyebrow {
@@ -238,11 +261,12 @@ body {
 }
 
 .questionnaire__title {
-  font-size: 36px;
+  font-size: clamp(34px, 5vw, 50px);
   font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
   margin-bottom: var(--space-4);
+  color: #FFFFFF;
 }
 
 .questionnaire__subtitle {
@@ -319,19 +343,22 @@ body {
   border-radius: var(--radius);
   padding: var(--space-4) var(--space-5);
   cursor: pointer;
-  transition: border-color var(--transition), background var(--transition);
+  transition: border-color var(--transition), background var(--transition), transform var(--transition), box-shadow var(--transition);
   position: relative;
   user-select: none;
 }
 
 .option-card:hover:not(.option-card--disabled) {
-  border-color: var(--border-hi);
+  border-color: rgba(255,255,255,0.3);
   background: var(--surface2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
 }
 
 .option-card--selected {
-  border-color: var(--accent);
-  background: var(--accent-dim);
+  border-color: #FFFFFF;
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.12);
 }
 
 .option-card--disabled {
@@ -369,7 +396,7 @@ body {
   right: 8px;
   width: 18px;
   height: 18px;
-  background: var(--accent);
+  background: #FFFFFF;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -380,7 +407,7 @@ body {
   content: '';
   width: 5px;
   height: 9px;
-  border: 2px solid #000;
+  border: 2px solid #0A0A0A;
   border-top: none;
   border-left: none;
   transform: rotate(45deg) translateY(-1px);
@@ -442,8 +469,9 @@ body {
 .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
 .btn--primary {
-  background: var(--accent);
-  color: #000;
+  background: #FFFFFF;
+  color: #0A0A0A;
+  letter-spacing: 0.01em;
 }
 
 .btn--secondary {

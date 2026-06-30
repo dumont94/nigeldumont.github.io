@@ -74,12 +74,12 @@
 
   .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     list-style: none;
   }
 
   .nav-links a {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--muted);
     text-decoration: none;
     font-family: var(--mono);
@@ -92,52 +92,53 @@
   .nav-tool-link {
     display: flex;
     align-items: center;
-    gap: 6px;
-    color: #4ade80 !important;
-    border: 0.5px solid rgba(74,222,128,0.4);
+    gap: 5px;
+    font-size: 12px;
+    color: var(--text);
+    text-decoration: none;
+    border: 0.5px solid var(--border-hi);
     border-radius: 4px;
-    padding: 4px 10px;
-    transition: all 0.2s !important;
+    padding: 5px 10px;
+    transition: background 0.15s, border-color 0.15s;
+    line-height: 1;
   }
   .nav-tool-link:hover {
-    background: rgba(74,222,128,0.12);
-    border-color: #4ade80;
-    color: #86efac !important;
+    background: var(--surface2);
   }
   .nav-new-badge {
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 8px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #0A0A0A;
-    background: #4ade80;
+    color: var(--bg);
+    background: var(--text);
     border-radius: 3px;
-    padding: 1px 5px;
+    padding: 1px 4px;
     font-weight: 700;
   }
 
   .nav-right {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 0.75rem;
     margin-left: auto;
   }
 
   .theme-toggle {
-    background: none;
-    border: 0.5px solid var(--border-hi);
-    color: var(--muted);
+    background: var(--text);
+    color: var(--bg);
+    border: none;
     border-radius: 4px;
-    padding: 7px 14px;
+    padding: 5px 10px;
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 11px;
     letter-spacing: 0.04em;
     cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
+    transition: opacity 0.2s;
     line-height: 1;
   }
 
-  .theme-toggle:hover { color: var(--text); border-color: var(--accent); }
+  .theme-toggle:hover { opacity: 0.75; }
 
   section { padding: 5rem 2.5rem 4rem; max-width: 1100px; margin: 0 auto; }
 

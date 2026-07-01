@@ -711,7 +711,58 @@
     color: var(--muted);
     letter-spacing: 0.02em;
     line-height: 1.5;
+    margin-bottom: 0.6rem;
   }
+
+  .log-row-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .log-stages {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .log-stage {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    color: var(--border-hi);
+    text-transform: uppercase;
+  }
+
+  .log-stage-done {
+    color: var(--accent2);
+    text-decoration: line-through;
+    text-decoration-color: var(--accent2);
+  }
+
+  .log-stage-active {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .log-stage-sep {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--border-hi);
+  }
+
+  .log-repo {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .log-repo:hover { color: var(--text); }
 
   @media (max-width: 640px) {
     nav { padding: 1rem 1.25rem; }
@@ -765,7 +816,7 @@
 </section>
 
 <section id="log">
-  <p class="section-label">// What I'm building</p>
+  <p class="section-label">// What I'm currently working on</p>
   <div class="log-feed">
 
     <div class="log-row">
@@ -776,6 +827,20 @@
           <span class="log-tag log-tag-planning">Planning</span>
         </div>
         <p class="log-row-status">Mapping out the live-update pipeline — API source selection, polling layer, and match state machine (pre-match → live → FT).</p>
+        <div class="log-row-footer">
+          <div class="log-stages">
+            <span class="log-stage log-stage-active">plan</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage">api</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage">build</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage">test</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage">ship</span>
+          </div>
+          <a class="log-repo" href="https://github.com/dumont94/fifa-world-cup-dashboard" target="_blank">github.com/dumont94/fifa-world-cup-dashboard →</a>
+        </div>
       </div>
     </div>
 
@@ -787,6 +852,18 @@
           <span class="log-tag log-tag-building">Building</span>
         </div>
         <p class="log-row-status">Cloud SOC homelab on EC2 — working through log ingestion, threat detection rules, and alert triage workflows.</p>
+        <div class="log-row-footer">
+          <div class="log-stages">
+            <span class="log-stage log-stage-done">setup</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage log-stage-active">build</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage">test</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage">ship</span>
+          </div>
+          <a class="log-repo" href="https://github.com/dumont94/aws-siem-homelab" target="_blank">github.com/dumont94/aws-siem-homelab →</a>
+        </div>
       </div>
     </div>
 

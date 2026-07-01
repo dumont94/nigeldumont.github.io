@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nigel Dumont — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F5F4F2;
+    --surface: #ECEAE7;
+    --surface2: #E2E0DC;
+    --border: rgba(0,0,0,0.10);
+    --border-hi: rgba(0,0,0,0.20);
+    --text: #1A1A1A;
+    --muted: #6B6864;
+    --accent: #4A4845;
+    --accent2: #767370;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PRINT BUTTON (screen only) ── */
+  .print-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 2rem 0;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .btn-print {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    padding: 7px 16px;
+    border-radius: 4px;
+    border: 0.5px solid var(--border-hi);
+    background: var(--text);
+    color: var(--bg);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .btn-print:hover { opacity: 0.75; }
+
+  /* ── PAGE ── */
+  .resume {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 3rem;
+  }
+
+  /* ── HEADER ── */
+  .r-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--border-hi);
+    margin-bottom: 2rem;
+  }
+
+  .r-name {
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 0.3rem;
+  }
+
+  .r-tagline {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+  }
+
+  .r-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .r-contact a,
+  .r-contact span {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+
+  .r-contact a:hover { color: var(--text); }
+
+  .r-certs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .cert-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    border: 0.5px solid var(--border-hi);
+    border-radius: 3px;
+    padding: 3px 9px;
+    display: inline-block;
+    background: var(--surface);
+  }
+
+  /* ── SECTION ── */
+  .r-section { margin-bottom: 1.75rem; }
+
+  .r-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    padding-bottom: 0.5rem;
+    border-bottom: 0.5px solid var(--border);
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── SUMMARY ── */
+  .r-summary {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 155px 1fr;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .exp-item:first-child { padding-top: 0; }
+  .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .exp-meta { padding-top: 1px; }
+
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.1rem;
+  }
+
+  .exp-loc {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .exp-role { font-size: 14px; font-weight: 600; margin-bottom: 0.5rem; }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .exp-bullets li {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--accent2);
+  }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--surface);
+    color: var(--accent);
+    border: 0.5px solid var(--border-hi);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .skill-row {
+    display: grid;
+    grid-template-columns: 155px 1fr;
+    gap: 1.5rem;
+    padding: 0.55rem 0;
+    border-bottom: 0.5px solid var(--border);
+    align-items: baseline;
+  }
+
+  .skill-row:last-child { border-bottom: none; }
+
+  .skill-cat {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .skill-vals {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── PROJECTS ── */
+  .proj-item {
+    display: grid;
+    grid-template-columns: 155px 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .proj-item:first-child { padding-top: 0; }
+  .proj-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .proj-type {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+
+  .proj-name { font-size: 13px; font-weight: 500; margin-bottom: 0.3rem; }
+  .proj-desc { font-size: 12.5px; color: var(--muted); line-height: 1.65; margin-bottom: 0.5rem; }
+
+  /* ── CREDENTIALS ── */
+  .cred-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+
+  .cred-item {
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 5px;
+  }
+
+  .cred-name { font-size: 13px; font-weight: 500; margin-bottom: 0.1rem; }
+  .cred-issuer { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.04em; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .r-header { grid-template-columns: 1fr; }
+    .r-certs { text-align: left; flex-direction: row; flex-wrap: wrap; }
+    .exp-item, .proj-item, .skill-row { grid-template-columns: 1fr; gap: 0.5rem; }
+    .cred-list { grid-template-columns: 1fr; }
+    .r-name { font-size: 1.8rem; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    @page { margin: 1.4cm 1.6cm; size: letter; }
+    .print-bar { display: none; }
+    body { background: #fff; font-size: 12px; }
+    :root {
+      --bg: #fff;
+      --surface: #f6f6f4;
+      --surface2: #eee;
+      --border: rgba(0,0,0,0.13);
+      --border-hi: rgba(0,0,0,0.22);
+      --text: #111;
+      --muted: #555;
+      --accent: #333;
+      --accent2: #666;
+    }
+    .resume { padding: 0; max-width: 100%; }
+    .r-name { font-size: 1.9rem; }
+    .exp-item, .proj-item, .skill-row, .cred-item { break-inside: avoid; }
+    .r-section { break-inside: avoid; }
+    a { text-decoration: none; color: inherit; }
+  }
+</style>
+</head>
+<body>
+
+<div class="print-bar">
+  <button class="btn-print" onclick="window.print()">print / save PDF</button>
+</div>
+
+<div class="resume">
+
+  <!-- HEADER -->
+  <div class="r-header">
+    <div>
+      <h1 class="r-name">Nigel Dumont</h1>
+      <p class="r-tagline">Senior Systems &amp; Infrastructure Engineer &middot; Chicago, IL</p>
+      <div class="r-contact">
+        <a href="mailto:dumontnigel@gmail.com">dumontnigel@gmail.com</a>
+        <a href="https://linkedin.com/in/nigel-dumont" target="_blank">linkedin.com/in/nigel-dumont</a>
+        <a href="https://github.com/dumont94" target="_blank">github.com/dumont94</a>
+      </div>
+    </div>
+    <div class="r-certs">
+      <span class="cert-badge">CompTIA Security+</span>
+      <span class="cert-badge">SecAI+ CY0-001</span>
+      <span class="cert-badge">Cisco CCENT</span>
+      <span class="cert-badge">AAS, Info Systems</span>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="r-section">
+    <p class="r-label">Summary</p>
+    <p class="r-summary">Senior IT engineer with 8+ years designing, securing, and scaling enterprise infrastructure — from early-stage startups to 5,000-user, 50+ location multi-site operations. Deep expertise in identity &amp; access management, endpoint security, network infrastructure, and compliance. Proven track record driving measurable cost savings, automating manual workflows, and maintaining zero audit failures across SOC 2, HIPAA, PCI DSS, and METRC frameworks.</p>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="r-section">
+    <p class="r-label">Experience</p>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-period">May 2022 — Nov 2025</p>
+        <p class="exp-company">Green Thumb Industries</p>
+        <p class="exp-loc">Chicago, IL &middot; Hybrid</p>
+      </div>
+      <div>
+        <p class="exp-role">Senior Systems &amp; Infrastructure Administrator</p>
+        <ul class="exp-bullets">
+          <li>Sole Tier 3 IT lead for a cannabis multi-state operator spanning 50+ locations and 5,000+ users — owned the full stack: identity, endpoint, security, networking, telecom, compliance, and vendor management.</li>
+          <li>Administered IAM across Azure AD / Entra ID, Google Workspace, and Okta — user lifecycle, SAML/OIDC integrations, MFA, and conditional access policies.</li>
+          <li>Automated onboarding/offboarding via HRIS-to-Entra ID sync and least-privilege workflows, eliminating manual provisioning steps.</li>
+          <li>Led incident response across all major outages; cut documentation time 40% with Freshservice SLA dashboards and war-room playbooks.</li>
+          <li>Replaced legacy PBX with MS Teams VoIP across 300+ endpoints — saved $30K annually in telecom costs.</li>
+          <li>Managed 5,000+ device fleet across Intune, Jamf, and Kandji — compliance enforcement, patch management, and OS/app inventory.</li>
+          <li>Monitored multi-site network health via SolarWinds and Cisco Meraki; managed Fortinet firewall and VPN configs across 50+ locations.</li>
+          <li>Zero audit failures over 3.5 years under SOC 2, HIPAA, PCI DSS, and METRC compliance frameworks.</li>
+          <li>Cut printer spend by $5K annually by consolidating managed print contracts and removing redundant hardware.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Okta</span>
+          <span class="tag">Entra ID</span>
+          <span class="tag">Intune</span>
+          <span class="tag">Jamf</span>
+          <span class="tag">Kandji</span>
+          <span class="tag">Meraki</span>
+          <span class="tag">SolarWinds</span>
+          <span class="tag">Fortinet</span>
+          <span class="tag">CrowdStrike</span>
+          <span class="tag">Rapid7</span>
+          <span class="tag">Proofpoint</span>
+          <span class="tag">Freshservice</span>
+          <span class="tag">SOC 2</span>
+          <span class="tag">HIPAA</span>
+          <span class="tag">PCI DSS</span>
+          <span class="tag">PowerShell</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-period">Feb 2020 — May 2022</p>
+        <p class="exp-company">Lyric Opera House</p>
+        <p class="exp-loc">Chicago, IL</p>
+      </div>
+      <div>
+        <p class="exp-role">Support &amp; Network Administrator</p>
+        <ul class="exp-bullets">
+          <li>Deployed Fortinet firewall and VPN for 400+ remote users in two weeks during COVID-19 shutdown — zero operational disruption.</li>
+          <li>Managed Active Directory, Group Policy, OU structure, and desktop policy enforcement organization-wide.</li>
+          <li>Administered VoIP platforms — extension configuration, call routing, and phone provisioning.</li>
+          <li>Built escalation and remediation documentation for IT incidents still in active use after departure.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Fortinet</span>
+          <span class="tag">Active Directory</span>
+          <span class="tag">Group Policy</span>
+          <span class="tag">VoIP</span>
+          <span class="tag">VPN</span>
+          <span class="tag">Windows Server</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-period">Aug 2016 — Mar 2019</p>
+        <p class="exp-company">Uber Technologies</p>
+        <p class="exp-loc">Chicago, IL</p>
+      </div>
+      <div>
+        <p class="exp-role">IT Support Specialist</p>
+        <ul class="exp-bullets">
+          <li>Tier 1/2 support in a high-volume environment — maintained 92% CSAT with consistent ticket ownership from intake to resolution.</li>
+          <li>Identified and escalated recurring auth abuse and account compromise patterns, contributing signal to security investigations.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Tier 1/2 Support</span>
+          <span class="tag">92% CSAT</span>
+          <span class="tag">Auth Abuse Detection</span>
+          <span class="tag">Zendesk</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SKILLS -->
+  <div class="r-section">
+    <p class="r-label">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <span class="skill-cat">IAM</span>
+        <span class="skill-vals">Okta, OneLogin, Active Directory, Azure AD / Entra ID, SAML/OIDC, MFA, Conditional Access, SaaS App Integrations</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">Endpoint Security</span>
+        <span class="skill-vals">CrowdStrike Falcon, Microsoft Defender / Purview, Rapid7 InsightIDR, Proofpoint TAP, SOC 2, Least Privilege</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">MDM</span>
+        <span class="skill-vals">Intune, Jamf, Kandji, ManageEngine</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">Infrastructure</span>
+        <span class="skill-vals">On-prem &amp; Hybrid/Cloud, AWS Systems Manager, WSUS, VLANs, VPN, Fortinet, Cisco Meraki, SolarWinds</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">OS</span>
+        <span class="skill-vals">Windows, macOS, Linux, iOS, Android, Google Workspace</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">Telecom &amp; VoIP</span>
+        <span class="skill-vals">SIP, Digium Switchvox, MS Teams VoIP, Amazon Connect, IVR, E911 Compliance</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">Languages &amp; AI</span>
+        <span class="skill-vals">PowerShell, Bash/ZSH, Python, SQL, Claude, ChatGPT, GitHub Copilot</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">ITSM</span>
+        <span class="skill-vals">Freshservice, ServiceNow, Jira, Zendesk, Slack, MS Teams</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="r-section">
+    <p class="r-label">Projects</p>
+
+    <div class="proj-item">
+      <p class="proj-type">Network Infra Tool</p>
+      <div>
+        <p class="proj-name">Map Your Network Infrastructure</p>
+        <p class="proj-desc">Interactive tool guiding business owners through building an enterprise network from scratch. Three build paths, ten components — ISP failover, firewalls, switches, APs, VLANs, SD-WAN, monitoring — with real product picks and config steps.</p>
+        <div class="tag-row"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Python</span><span class="tag">FortiGate</span><span class="tag">Meraki</span><span class="tag">UniFi</span></div>
+      </div>
+    </div>
+
+    <div class="proj-item">
+      <p class="proj-type">Automation Pipeline</p>
+      <div>
+        <p class="proj-name">Automated Job Search Tracker</p>
+        <p class="proj-desc">Apps Script + JavaScript pipeline that ingests Gmail threads, parses application status, writes to Google Sheets by stage, and sends weekly color-coded recap emails via time-based cron. Zero manual steps.</p>
+        <div class="tag-row"><span class="tag">Google Apps Script</span><span class="tag">JavaScript</span><span class="tag">Gmail API</span><span class="tag">Google Sheets</span></div>
+      </div>
+    </div>
+
+    <div class="proj-item">
+      <p class="proj-type">IAM Homelab</p>
+      <div>
+        <p class="proj-name">Okta + Google Workspace Provisioning Lab</p>
+        <p class="proj-desc">Five-stage onboarding pipeline using Okta Identity Engine and Management API: form intake → IDX registration → reset token → branded activation email → password enrollment.</p>
+        <div class="tag-row"><span class="tag">Okta IDX</span><span class="tag">Okta API</span><span class="tag">Google Workspace</span><span class="tag">Node.js</span></div>
+      </div>
+    </div>
+
+    <div class="proj-item">
+      <p class="proj-type">Security Homelab</p>
+      <div>
+        <p class="proj-name">AWS + Wazuh SIEM Homelab</p>
+        <p class="proj-desc">Cloud-based SOC homelab on AWS EC2 running Wazuh SIEM — log ingestion, real-time threat detection, and alert triage replicating core SOC analyst workflows.</p>
+        <div class="tag-row"><span class="tag">AWS EC2</span><span class="tag">Wazuh</span><span class="tag">SIEM</span><span class="tag">Linux</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CREDENTIALS -->
+  <div class="r-section">
+    <p class="r-label">Credentials</p>
+    <div class="cred-list">
+      <div class="cred-item">
+        <p class="cred-name">CompTIA Security+</p>
+        <p class="cred-issuer">CompTIA</p>
+      </div>
+      <div class="cred-item">
+        <p class="cred-name">CompTIA SecAI+ CY0-001</p>
+        <p class="cred-issuer">CompTIA</p>
+      </div>
+      <div class="cred-item">
+        <p class="cred-name">Cisco CCENT</p>
+        <p class="cred-issuer">Cisco</p>
+      </div>
+      <div class="cred-item">
+        <p class="cred-name">AAS, Information Systems</p>
+        <p class="cred-issuer">Robert Morris University</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /resume -->
+
+</body>
+</html>

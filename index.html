@@ -651,6 +651,69 @@
   .footer-links a { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--text); }
 
+  /* ── DEV LOG ── */
+  .log-feed { display: flex; flex-direction: column; gap: 0; }
+
+  .log-entry {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .log-entry:first-child { padding-top: 0; }
+  .log-entry:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .log-meta { padding-top: 3px; }
+
+  .log-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.4rem;
+  }
+
+  .log-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    border: 0.5px solid;
+    display: inline-block;
+  }
+
+  .log-tag-building { color: #4ade80; border-color: rgba(74,222,128,0.4); background: rgba(74,222,128,0.07); }
+  .log-tag-shipped  { color: #89b4fa; border-color: rgba(137,180,250,0.4); background: rgba(137,180,250,0.07); }
+  .log-tag-planning { color: #fab387; border-color: rgba(250,179,135,0.4); background: rgba(250,179,135,0.07); }
+  .log-tag-learning { color: #cba6f7; border-color: rgba(203,166,247,0.4); background: rgba(203,166,247,0.07); }
+
+  .log-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .log-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 640px;
+  }
+
+  .log-body a {
+    color: var(--muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+
+  .log-body a:hover { color: var(--text); }
+
   @media (max-width: 640px) {
     nav { padding: 1rem 1.25rem; }
     .nav-links { display: none; }
@@ -675,6 +738,7 @@
   </div>
   <div class="nav-right">
     <ul class="nav-links">
+      <li><a href="#log">log</a></li>
       <li><a href="#skills">skills</a></li>
       <li><a href="#work">work</a></li>
       <li><a href="#projects">projects</a></li>
@@ -701,6 +765,35 @@
     <a class="btn btn-primary" href="#work">View my work</a>
     <a class="btn btn-ghost" href="#projects">Projects →</a>
     <a class="btn btn-ghost" href="https://linkedin.com/in/nigel-dumont" target="_blank">LinkedIn →</a>
+  </div>
+</section>
+
+<section id="log">
+  <p class="section-label">// What I'm building</p>
+  <div class="log-feed">
+
+    <div class="log-entry">
+      <div class="log-meta">
+        <p class="log-date">Jun 2026</p>
+        <span class="log-tag log-tag-planning">Planning</span>
+      </div>
+      <div>
+        <p class="log-title">World Cup 2026 Tracker — Live Score Architecture</p>
+        <p class="log-body">Mapping out a live-update pipeline for the World Cup tracker. Working through the data source options — free tiers on API-Football and football-data.org — and designing a polling layer to keep scores current without burning API credits. Next step is wiring in a lightweight auto-refresh loop and figuring out how to handle the match state machine (pre-match → live → FT) cleanly.</p>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-meta">
+        <p class="log-date">Jun 2026</p>
+        <span class="log-tag log-tag-building">Building</span>
+      </div>
+      <div>
+        <p class="log-title">AWS + Wazuh SIEM Homelab</p>
+        <p class="log-body">Cloud-based SOC homelab on AWS EC2 running Wazuh SIEM. Working through log ingestion, real-time threat detection, and alert triage workflows — replicating what a security operations analyst would handle day-to-day in a controlled lab environment.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 

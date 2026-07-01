@@ -37,6 +37,8 @@
     --muted: #6B6864;
     --accent: #4A4845;
     --accent2: #767370;
+    --orange: #EA580C;
+    --orange-deep: #C2410C;
     --mono: 'Space Mono', monospace;
     --sans: 'Space Grotesk', sans-serif;
     --nav-bg: rgba(245,244,242,0.88);
@@ -52,6 +54,8 @@
     --muted: #C8C5C2;
     --accent: #FFFFFF;
     --accent2: #C8C5C2;
+    --orange: #F97316;
+    --orange-deep: #EA580C;
     --nav-bg: rgba(10,10,10,0.85);
   }
 
@@ -111,7 +115,7 @@
     transition: color 0.2s;
   }
 
-  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover { color: var(--orange); }
 
   .nav-tool-link {
     display: flex;
@@ -180,7 +184,7 @@
   .hero-eyebrow {
     font-family: var(--mono);
     font-size: 12px;
-    color: var(--accent);
+    color: var(--orange);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
@@ -194,7 +198,7 @@
     margin-bottom: 1.5rem;
   }
 
-  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero h1 em { font-style: normal; color: var(--orange); }
 
   .hero-sub {
     font-size: 1.15rem;
@@ -227,10 +231,41 @@
     background: rgba(176,173,168,0.09);
   }
 
+  .hero-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 2rem;
+  }
+
+  .hero-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    animation: pulse-green 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
   .cta-row {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
   }
 
   .btn {
@@ -246,11 +281,8 @@
     display: inline-block;
   }
 
-  .btn-primary { background: var(--accent); color: var(--bg); font-weight: 700; }
-  .btn-primary:hover { background: var(--accent2); }
-  .btn-primary { background: var(--text); color: var(--bg); }
-  body.dark .btn-primary { background: var(--accent); color: var(--bg); }
-  body.dark .btn-primary:hover { background: var(--accent2); }
+  .btn-primary { background: var(--orange); color: #FFFFFF; font-weight: 700; }
+  .btn-primary:hover { background: var(--orange-deep); }
   .btn-ghost { background: transparent; color: var(--muted); border: 0.5px solid var(--border-hi); }
   .btn-ghost:hover { color: var(--text); border-color: var(--accent); }
 
@@ -597,13 +629,15 @@
   }
 
   .project-link-primary {
-    background: var(--text);
-    color: var(--bg);
-    border-color: var(--text);
+    background: var(--orange);
+    color: #FFFFFF;
+    border-color: var(--orange);
   }
 
   .project-link-primary:hover {
-    opacity: 0.8;
+    background: var(--orange-deep);
+    color: #FFFFFF;
+    border-color: var(--orange-deep);
   }
 
   .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
@@ -631,8 +665,8 @@
     transition: color 0.2s;
   }
 
-  .contact-link:hover { color: var(--text); }
-  .contact-link-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .contact-link:hover { color: var(--orange); }
+  .contact-link-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
 
   .cert-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
 
@@ -866,6 +900,7 @@
     <span class="badge hi">Cisco CCENT</span>
     <span class="badge hi">AAS, Information Systems</span>
   </div>
+  <p class="hero-status"><span class="hero-status-dot"></span>Open to senior IAM &amp; infrastructure roles — Chicago, IL / remote</p>
   <div class="cta-row">
     <a class="btn btn-primary" href="#work">View my work</a>
     <a class="btn btn-ghost" href="#projects">Projects →</a>
@@ -955,97 +990,79 @@
   <p class="section-label">// Core competencies</p>
   <div class="skills-grid">
     <div class="skill-cell">
-      <p class="skill-cell-title">Operating Systems</p>
+      <p class="skill-cell-title">IAM</p>
       <div class="skill-tags">
-        <span class="skill-tag">Windows 365</span>
-        <span class="skill-tag">Android</span>
-        <span class="skill-tag">MacOS</span>
-        <span class="skill-tag">iOS</span>
-        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Okta</span>
+        <span class="skill-tag">Entra ID (Azure AD)</span>
+        <span class="skill-tag">Active Directory</span>
         <span class="skill-tag">Google Workspace</span>
-        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">SAML/OIDC</span>
+        <span class="skill-tag">SaaS App Integrations</span>
       </div>
     </div>
     <div class="skill-cell">
       <p class="skill-cell-title">Infrastructure</p>
       <div class="skill-tags">
-        <span class="skill-tag">On-prem</span>
-        <span class="skill-tag">Hybrid/Cloud</span>
-        <span class="skill-tag">AWS Systems Manager</span>
-        <span class="skill-tag">WSUS</span>
+        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">Cisco Meraki</span>
+        <span class="skill-tag">Fortinet</span>
         <span class="skill-tag">VLANs</span>
         <span class="skill-tag">VPN</span>
-        <span class="skill-tag">Fortinet</span>
-        <span class="skill-tag">Cisco Meraki</span>
         <span class="skill-tag">SolarWinds</span>
       </div>
     </div>
     <div class="skill-cell">
       <p class="skill-cell-title">Endpoint Security</p>
       <div class="skill-tags">
-        <span class="skill-tag">SOC 2 Framework</span>
-        <span class="skill-tag">Least Privilege</span>
         <span class="skill-tag">CrowdStrike Falcon</span>
         <span class="skill-tag">Microsoft Defender/Purview</span>
-        <span class="skill-tag">Rapid7 InsightIDR</span>
         <span class="skill-tag">Proofpoint TAP</span>
-      </div>
-    </div>
-    <div class="skill-cell">
-      <p class="skill-cell-title">Telecom & VoIP</p>
-      <div class="skill-tags">
-        <span class="skill-tag">SIP</span>
-        <span class="skill-tag">Digium Switchvox</span>
-        <span class="skill-tag">MS Teams VoIP</span>
-        <span class="skill-tag">Amazon Connect</span>
-        <span class="skill-tag">IVR</span>
-        <span class="skill-tag">E911 Compliance</span>
-      </div>
-    </div>
-    <div class="skill-cell">
-      <p class="skill-cell-title">Languages & AI</p>
-      <div class="skill-tags">
-        <span class="skill-tag">PowerShell</span>
-        <span class="skill-tag">Bash/ZSH</span>
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">Claude</span>
-        <span class="skill-tag">ChatGPT</span>
-        <span class="skill-tag">Co-Pilot</span>
-        <span class="skill-tag">Gemini</span>
+        <span class="skill-tag">SOC 2 Framework</span>
       </div>
     </div>
     <div class="skill-cell">
       <p class="skill-cell-title">MDM</p>
       <div class="skill-tags">
         <span class="skill-tag">Kandji</span>
-        <span class="skill-tag">JAMF</span>
+        <span class="skill-tag">Jamf</span>
         <span class="skill-tag">Intune</span>
-        <span class="skill-tag">ManageEngine</span>
       </div>
     </div>
     <div class="skill-cell">
-      <p class="skill-cell-title">Ticketing & Communications</p>
+      <p class="skill-cell-title">Automation & AI</p>
       <div class="skill-tags">
-        <span class="skill-tag">Freshservice</span>
+        <span class="skill-tag">PowerShell</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Bash/ZSH</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Claude Code</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">Telecom & VoIP</p>
+      <div class="skill-tags">
+        <span class="skill-tag">MS Teams VoIP</span>
+        <span class="skill-tag">Amazon Connect</span>
+        <span class="skill-tag">SIP</span>
+        <span class="skill-tag">E911 Compliance</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">ITSM</p>
+      <div class="skill-tags">
         <span class="skill-tag">ServiceNow</span>
         <span class="skill-tag">Jira</span>
+        <span class="skill-tag">Freshservice</span>
         <span class="skill-tag">Zendesk</span>
-        <span class="skill-tag">Slack</span>
-        <span class="skill-tag">Zoom</span>
-        <span class="skill-tag">MS Teams</span>
       </div>
     </div>
     <div class="skill-cell">
-      <p class="skill-cell-title">IAM</p>
+      <p class="skill-cell-title">Operating Systems</p>
       <div class="skill-tags">
-        <span class="skill-tag">Okta</span>
-        <span class="skill-tag">OneLogin</span>
-        <span class="skill-tag">Active Directory</span>
-        <span class="skill-tag">Azure AD</span>
-        <span class="skill-tag">Entra ID</span>
-        <span class="skill-tag">SAML/OIDC</span>
-        <span class="skill-tag">SaaS App Integrations</span>
+        <span class="skill-tag">Windows / M365</span>
+        <span class="skill-tag">macOS</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">iOS &amp; Android</span>
       </div>
     </div>
   </div>
@@ -1394,6 +1411,23 @@
     themeBtn.textContent = isDark ? '☾ dark' : '☀ light';
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
+
+  // ── SCROLL REVEAL ──
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('section:not(.hero)').forEach(s => {
+      s.classList.add('reveal');
+      revealObserver.observe(s);
+    });
+  }
 </script>
 
 </body>

@@ -31,6 +31,7 @@
     --bg: #F5F4F2; --surface: #ECEAE7; --surface2: #E2E0DC;
     --border: rgba(0,0,0,0.08); --border-hi: rgba(0,0,0,0.18);
     --text: #1A1A1A; --muted: #6B6864; --accent: #4A4845; --accent2: #767370;
+    --orange: #EA580C; --orange-deep: #C2410C;
     --mono: 'Space Mono', monospace; --sans: 'Space Grotesk', sans-serif;
     --nav-bg: rgba(245,244,242,0.88);
   }
@@ -38,6 +39,7 @@
     --bg: #0A0A0A; --surface: #111111; --surface2: #1A1A1A;
     --border: rgba(255,255,255,0.08); --border-hi: rgba(255,255,255,0.18);
     --text: #FFFFFF; --muted: #C8C5C2; --accent: #FFFFFF; --accent2: #C8C5C2;
+    --orange: #F97316; --orange-deep: #EA580C;
     --nav-bg: rgba(10,10,10,0.85);
   }
 
@@ -52,7 +54,8 @@
   .nav-right { display: flex; align-items: center; gap: 0.75rem; margin-left: auto; }
   .nav-links { display: flex; gap: 1.5rem; list-style: none; }
   .nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; font-family: var(--mono); letter-spacing: 0.04em; transition: color 0.2s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-links a.active { color: var(--text); }
   .nav-tool-link { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #F97316; text-decoration: none; border: 0.5px solid rgba(249,115,22,0.45); border-radius: 4px; padding: 5px 10px; transition: background 0.15s, border-color 0.15s; line-height: 1; font-family: var(--mono); }
   .nav-tool-link:hover { background: rgba(249,115,22,0.08); border-color: #F97316; }
   .nav-new-badge { font-family: var(--mono); font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; color: #FFFFFF; background: #F97316; border-radius: 3px; padding: 1px 4px; font-weight: 700; }

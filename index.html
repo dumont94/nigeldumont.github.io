@@ -70,13 +70,19 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 2.5rem;
+    padding: 1.25rem 0;
     background: var(--nav-bg);
     backdrop-filter: blur(12px);
     border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .nav-brand { display: flex; flex-direction: column; gap: 3px; }
@@ -547,23 +553,6 @@
   }
 
   .project-card:hover { background: var(--surface2); }
-
-  .project-shot {
-    display: block;
-    margin: -2rem -2rem 0.5rem;
-    overflow: hidden;
-    border-bottom: 0.5px solid var(--border);
-  }
-  .project-shot img {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    object-position: top;
-    transition: transform 0.3s ease;
-  }
-  .project-card:hover .project-shot img { transform: scale(1.02); }
-
   .project-type { font-family: var(--mono); font-size: 10px; color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase; }
   .project-name { font-size: 1rem; font-weight: 500; line-height: 1.3; }
   .project-desc { font-size: 13px; color: var(--muted); line-height: 1.65; flex: 1; }
@@ -828,7 +817,8 @@
   .log-repo:hover { color: var(--text); }
 
   @media (max-width: 640px) {
-    nav { padding: 1rem 1.25rem; }
+    nav { padding: 1rem 0; }
+    .nav-inner { padding: 0 1.25rem; }
     .nav-links { display: none; }
     .nav-built { display: none; }
     .nav-tool-link { font-size: 11px; padding: 4px 8px; }
@@ -845,21 +835,23 @@
 <body>
 
 <nav>
-  <div class="nav-brand">
-    <a class="nav-logo" href="#hero">nigeldumont.io</a>
-    <span class="nav-built">Built with Claude Code &middot; HTML &middot; CSS &middot; JS</span>
-  </div>
-  <div class="nav-right">
-    <ul class="nav-links">
-      <li><a href="#skills">skills</a></li>
-      <li><a href="#work">work</a></li>
-      <li><a href="#projects">projects</a></li>
-      <li><a href="work-samples.html">samples</a></li>
-      <li><a href="https://dumont94.github.io/design-portfolio/" target="_blank">design</a></li>
-      <li><a href="#contact">contact</a></li>
-    </ul>
-    <a class="nav-tool-link" href="https://dumont94.github.io/nigeldumont.github.io/network-builder/app/" target="_blank">network builder tool <span class="nav-new-badge">new</span></a>
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">☀ light</button>
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <a class="nav-logo" href="#hero">nigeldumont.io</a>
+      <span class="nav-built">Built with Claude Code &middot; HTML &middot; CSS &middot; JS</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#skills">skills</a></li>
+        <li><a href="#work">work</a></li>
+        <li><a href="#projects">projects</a></li>
+        <li><a href="work-samples.html">samples</a></li>
+        <li><a href="https://dumont94.github.io/design-portfolio/" target="_blank">design</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+      <a class="nav-tool-link" href="https://dumont94.github.io/nigeldumont.github.io/network-builder/app/" target="_blank">network builder tool <span class="nav-new-badge">new</span></a>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">☀ light</button>
+    </div>
   </div>
 </nav>
 
@@ -1132,9 +1124,6 @@
   <p class="section-label">// Side projects</p>
   <div class="projects-grid">
     <div class="project-card">
-      <a class="project-shot" href="https://dumont94.github.io/nigeldumont.github.io/network-builder/app/" target="_blank" aria-label="Open the Network Infrastructure Builder">
-        <img src="preview-network-builder.png" alt="Network Infrastructure Builder — dark-themed questionnaire app" loading="lazy">
-      </a>
       <p class="project-type">Network infrastructure builder</p>
       <p class="project-name">Network Infrastructure Builder — Live Tool</p>
       <p class="project-desc">Routes business owners through three build paths (Budget DIY, Enterprise DIY, Fully Outsourced) across ten components—firewall, switches, VLANs, SD-WAN, monitoring—with product recommendations, pricing, and config steps.</p>
@@ -1150,9 +1139,6 @@
       </div>
     </div>
     <div class="project-card">
-      <a class="project-shot" href="world-cup-2026.html" target="_blank" aria-label="Open the 2026 World Cup dashboard">
-        <img src="preview-world-cup.png" alt="2026 FIFA World Cup dashboard — all-time scorers and Golden Boot race" loading="lazy">
-      </a>
       <p class="project-type">Sports data tracker</p>
       <p class="project-name">2026 FIFA World Cup — Live WebApp</p>
       <p class="project-desc">Full-stack dashboard tracking tournament data: Messi's all-time record, Golden Boot standings, group results, and Round of 32 bracket with live scoring.</p>

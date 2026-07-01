@@ -17,7 +17,7 @@ export default function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const [error, setError] = useState(null);
   const [theme, setTheme] = useState(
-    () => localStorage.getItem("nb-theme") || "dark"
+    () => localStorage.getItem("nb-theme") || "light"
   );
 
   useEffect(() => {

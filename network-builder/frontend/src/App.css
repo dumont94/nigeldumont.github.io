@@ -29,11 +29,11 @@
   --text-muted: #888580;
   --text-dim:   #555552;
 
-  /* Accent — orange */
-  --accent:        #F97316;
+  /* Accent — royal blue */
+  --accent:        #4169E1;
   --accent-dim:    rgba(249, 115, 22, 0.10);
   --accent-border: rgba(249, 115, 22, 0.28);
-  --accent-dark:   #EA580C;
+  --accent-dark:   #1E40AF;
 
   /* Semantic section colors — kept subtle to stay in palette */
   --blue:        #8BAACC;
@@ -265,7 +265,7 @@ body {
   text-align: center;
   margin-bottom: var(--space-12);
   padding: var(--space-12) 0 var(--space-8);
-  background: radial-gradient(ellipse 80% 55% at 50% 0%, rgba(249,115,22,0.07) 0%, transparent 100%);
+  background: radial-gradient(ellipse 80% 55% at 50% 0%, rgba(65,105,225,0.07) 0%, transparent 100%);
   border-radius: var(--radius-lg);
 }
 
@@ -374,9 +374,9 @@ body {
 }
 
 .option-card--selected {
-  border-color: #F97316;
-  background: rgba(249,115,22,0.08);
-  box-shadow: 0 0 0 1px rgba(249,115,22,0.15);
+  border-color: #4169E1;
+  background: rgba(65,105,225,0.08);
+  box-shadow: 0 0 0 1px rgba(65,105,225,0.15);
 }
 
 .option-card--disabled {
@@ -414,7 +414,7 @@ body {
   right: 8px;
   width: 18px;
   height: 18px;
-  background: #F97316;
+  background: #4169E1;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -487,7 +487,7 @@ body {
 .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
 .btn--primary {
-  background: #F97316;
+  background: #4169E1;
   color: #FFFFFF;
   letter-spacing: 0.01em;
 }
@@ -1179,10 +1179,10 @@ body.light {
   --text:       #1A1A1A;
   --text-muted: #6B6864;
   --text-dim:   #9E9B97;
-  --accent:        #EA580C;
-  --accent-dim:    rgba(234,88,12,0.09);
-  --accent-border: rgba(234,88,12,0.25);
-  --accent-dark:   #C2410C;
+  --accent:        #1E40AF;
+  --accent-dim:    rgba(30,64,175,0.09);
+  --accent-border: rgba(30,64,175,0.25);
+  --accent-dark:   #1E3A8A;
   --blue:        #3B6B9E;
   --blue-dim:    rgba(59,107,158,0.08);
   --blue-border: rgba(59,107,158,0.20);
@@ -1209,21 +1209,21 @@ body.light .questionnaire__hero {
 }
 
 body.light .btn--primary {
-  background: #EA580C;
+  background: #1E40AF;
   color: #FFFFFF;
 }
 
 body.light .option-card--selected {
-  border-color: #EA580C;
-  background: rgba(234,88,12,0.07);
-  box-shadow: 0 0 0 1px rgba(234,88,12,0.15);
+  border-color: #1E40AF;
+  background: rgba(30,64,175,0.07);
+  box-shadow: 0 0 0 1px rgba(30,64,175,0.15);
 }
 
-body.light .option-card__check { background: #EA580C; }
+body.light .option-card__check { background: #1E40AF; }
 body.light .option-card__check::after { border-color: #FFFFFF; }
 
 body.light .questionnaire__hero {
-  background: radial-gradient(ellipse 80% 55% at 50% 0%, rgba(234,88,12,0.06) 0%, transparent 100%);
+  background: radial-gradient(ellipse 80% 55% at 50% 0%, rgba(30,64,175,0.06) 0%, transparent 100%);
 }
 
 body.light .option-card:hover:not(.option-card--disabled) {
@@ -1232,7 +1232,7 @@ body.light .option-card:hover:not(.option-card--disabled) {
 }
 
 body.light .step-list__item--completed .step-list__num {
-  background: #EA580C;
+  background: #1E40AF;
   color: #FFFFFF;
 }
 

@@ -37,8 +37,10 @@
     --muted: #6B6864;
     --accent: #4A4845;
     --accent2: #767370;
-    --orange: #EA580C;
-    --orange-deep: #C2410C;
+    --blue: #1E40AF;
+    --blue-deep: #1E3A8A;
+    --blue-dim: rgba(30,64,175,0.08);
+    --blue-border: rgba(30,64,175,0.45);
     --mono: 'Space Mono', monospace;
     --sans: 'Space Grotesk', sans-serif;
     --nav-bg: rgba(245,244,242,0.88);
@@ -54,8 +56,10 @@
     --muted: #C8C5C2;
     --accent: #FFFFFF;
     --accent2: #C8C5C2;
-    --orange: #F97316;
-    --orange-deep: #EA580C;
+    --blue: #4169E1;
+    --blue-deep: #2F4FC7;
+    --blue-dim: rgba(65,105,225,0.12);
+    --blue-border: rgba(65,105,225,0.55);
     --nav-bg: rgba(10,10,10,0.85);
   }
 
@@ -115,24 +119,24 @@
     transition: color 0.2s;
   }
 
-  .nav-links a:hover { color: var(--orange); }
+  .nav-links a:hover { color: var(--blue); }
 
   .nav-tool-link {
     display: flex;
     align-items: center;
     gap: 5px;
     font-size: 12px;
-    color: #F97316;
+    color: var(--blue);
     text-decoration: none;
-    border: 0.5px solid rgba(249,115,22,0.45);
+    border: 0.5px solid var(--blue-border);
     border-radius: 4px;
     padding: 5px 10px;
     transition: background 0.15s, border-color 0.15s;
     line-height: 1;
   }
   .nav-tool-link:hover {
-    background: rgba(249,115,22,0.08);
-    border-color: #F97316;
+    background: var(--blue-dim);
+    border-color: var(--blue);
   }
   .nav-new-badge {
     font-family: var(--mono);
@@ -140,7 +144,7 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #FFFFFF;
-    background: #F97316;
+    background: var(--blue);
     border-radius: 3px;
     padding: 1px 4px;
     font-weight: 700;
@@ -184,7 +188,7 @@
   .hero-eyebrow {
     font-family: var(--mono);
     font-size: 12px;
-    color: var(--orange);
+    color: var(--blue);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
@@ -198,7 +202,7 @@
     margin-bottom: 1.5rem;
   }
 
-  .hero h1 em { font-style: normal; color: var(--orange); }
+  .hero h1 em { font-style: normal; color: var(--blue); }
 
   .hero-sub {
     font-size: 1.15rem;
@@ -281,8 +285,8 @@
     display: inline-block;
   }
 
-  .btn-primary { background: var(--orange); color: #FFFFFF; font-weight: 700; }
-  .btn-primary:hover { background: var(--orange-deep); }
+  .btn-primary { background: var(--blue); color: #FFFFFF; font-weight: 700; }
+  .btn-primary:hover { background: var(--blue-deep); }
   .btn-ghost { background: transparent; color: var(--muted); border: 0.5px solid var(--border-hi); }
   .btn-ghost:hover { color: var(--text); border-color: var(--accent); }
 
@@ -629,15 +633,15 @@
   }
 
   .project-link-primary {
-    background: var(--orange);
+    background: var(--blue);
     color: #FFFFFF;
-    border-color: var(--orange);
+    border-color: var(--blue);
   }
 
   .project-link-primary:hover {
-    background: var(--orange-deep);
+    background: var(--blue-deep);
     color: #FFFFFF;
-    border-color: var(--orange-deep);
+    border-color: var(--blue-deep);
   }
 
   .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
@@ -665,8 +669,8 @@
     transition: color 0.2s;
   }
 
-  .contact-link:hover { color: var(--orange); }
-  .contact-link-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+  .contact-link:hover { color: var(--blue); }
+  .contact-link-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
 
   .cert-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
 

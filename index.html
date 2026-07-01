@@ -4,6 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nigel Dumont — Senior IT Engineer</title>
+<meta name="description" content="Nigel Dumont — Senior Systems & Infrastructure Engineer in Chicago. 8+ years designing and securing enterprise IT at scale: IAM, network infrastructure, automation, and security policy.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://dumont94.github.io/nigeldumont.github.io/">
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="nigeldumont.io">
+<meta property="og:title" content="Nigel Dumont — Identity. Infrastructure. Security.">
+<meta property="og:description" content="Senior Systems & Infrastructure Engineer in Chicago. 8+ years designing and securing enterprise IT at scale — IAM, automation, and the policies that keep data locked down.">
+<meta property="og:url" content="https://dumont94.github.io/nigeldumont.github.io/">
+<meta property="og:image" content="https://dumont94.github.io/nigeldumont.github.io/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nigel Dumont — Identity. Infrastructure. Security.">
+<meta name="twitter:description" content="Senior Systems & Infrastructure Engineer in Chicago. 8+ years securing enterprise IT at scale.">
+<meta name="twitter:image" content="https://dumont94.github.io/nigeldumont.github.io/og-card.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -529,6 +547,23 @@
   }
 
   .project-card:hover { background: var(--surface2); }
+
+  .project-shot {
+    display: block;
+    margin: -2rem -2rem 0.5rem;
+    overflow: hidden;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .project-shot img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.3s ease;
+  }
+  .project-card:hover .project-shot img { transform: scale(1.02); }
+
   .project-type { font-family: var(--mono); font-size: 10px; color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase; }
   .project-name { font-size: 1rem; font-weight: 500; line-height: 1.3; }
   .project-desc { font-size: 13px; color: var(--muted); line-height: 1.65; flex: 1; }
@@ -1097,6 +1132,9 @@
   <p class="section-label">// Side projects</p>
   <div class="projects-grid">
     <div class="project-card">
+      <a class="project-shot" href="https://dumont94.github.io/nigeldumont.github.io/network-builder/app/" target="_blank" aria-label="Open the Network Infrastructure Builder">
+        <img src="preview-network-builder.png" alt="Network Infrastructure Builder — dark-themed questionnaire app" loading="lazy">
+      </a>
       <p class="project-type">Network infrastructure builder</p>
       <p class="project-name">Network Infrastructure Builder — Live Tool</p>
       <p class="project-desc">Routes business owners through three build paths (Budget DIY, Enterprise DIY, Fully Outsourced) across ten components—firewall, switches, VLANs, SD-WAN, monitoring—with product recommendations, pricing, and config steps.</p>
@@ -1112,6 +1150,9 @@
       </div>
     </div>
     <div class="project-card">
+      <a class="project-shot" href="world-cup-2026.html" target="_blank" aria-label="Open the 2026 World Cup dashboard">
+        <img src="preview-world-cup.png" alt="2026 FIFA World Cup dashboard — all-time scorers and Golden Boot race" loading="lazy">
+      </a>
       <p class="project-type">Sports data tracker</p>
       <p class="project-name">2026 FIFA World Cup — Live WebApp</p>
       <p class="project-desc">Full-stack dashboard tracking tournament data: Messi's all-time record, Golden Boot standings, group results, and Round of 32 bracket with live scoring.</p>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automated Job Search Tracker — Live Demo</title>
+<meta name="description" content="Interactive demo of a Gmail-parsing job-application tracker. Sample data shown for demonstration; company names are illustrative.">
+<meta name="robots" content="index,follow">
+<style>
+  :root{
+    --bg:#0e1116; --panel:#161b22; --panel2:#1c232d; --border:#2a323d;
+    --text:#e6edf3; --muted:#8b98a5; --accent:#4f8cff;
+    --offer:#2ea043; --next:#4f8cff; --applied:#a371f7; --ghost:#d29922; --denied:#6e7681;
+    --shadow:0 1px 3px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;padding:28px 20px 60px}
+  .wrap{max-width:1200px;margin:0 auto}
+  h1{font-size:24px;margin:0 0 2px}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:22px}
+  .demopill{display:inline-block;background:rgba(210,153,34,.16);color:#e3b341;border:1px solid rgba(210,153,34,.5);
+    border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;letter-spacing:.4px;margin-left:8px;vertical-align:middle}
+  .banner{background:linear-gradient(90deg,rgba(79,140,255,.16),rgba(79,140,255,.02));
+    border:1px solid rgba(79,140,255,.45);border-radius:12px;padding:16px 20px;margin-bottom:24px;
+    display:flex;align-items:center;gap:14px;font-size:14px}
+  .banner .em{font-size:26px}
+  .banner b{color:#79b8ff}
+  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:24px}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:28px;font-weight:700;line-height:1}
+  .kpi .l{font-size:12px;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.4px}
+  .kpi.b-offer{border-top:3px solid var(--offer)}
+  .kpi.b-next{border-top:3px solid var(--next)}
+  .kpi.b-applied{border-top:3px solid var(--applied)}
+  .kpi.b-ghost{border-top:3px solid var(--ghost)}
+  .kpi.b-denied{border-top:3px solid var(--denied)}
+  .kpi.b-total{border-top:3px solid var(--accent)}
+  .cols{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
+  .card h2{font-size:14px;margin:0 0 14px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+  .legend{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+  .legrow{display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;padding:3px 6px;border-radius:6px}
+  .legrow:hover{background:var(--panel2)}
+  .dot{width:11px;height:11px;border-radius:3px;flex:0 0 auto}
+  .legrow .c{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums}
+  .howto{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:12.5px;color:var(--muted)}
+  .howto b{color:var(--text)}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .chip{background:var(--panel2);border:1px solid var(--border);color:var(--text);
+    padding:7px 13px;border-radius:20px;font-size:13px;cursor:pointer;user-select:none}
+  .chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  input.search{flex:1;min-width:180px;background:var(--panel2);border:1px solid var(--border);
+    color:var(--text);border-radius:20px;padding:7px 15px;font-size:13px;outline:none}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{text-align:left;color:var(--muted);font-weight:600;font-size:11.5px;text-transform:uppercase;
+    letter-spacing:.4px;padding:8px 10px;border-bottom:1px solid var(--border);cursor:pointer;white-space:nowrap}
+  th:hover{color:var(--text)}
+  td{padding:10px;border-bottom:1px solid var(--border);vertical-align:top}
+  tr:hover td{background:var(--panel2)}
+  .company{font-weight:600}
+  .role{color:var(--muted);font-size:12.5px}
+  .note{color:var(--muted);font-size:12px}
+  .badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11.5px;font-weight:600;white-space:nowrap}
+  .badge.Offer{background:rgba(46,160,67,.18);color:#3fb950}
+  .badge.NextSteps{background:rgba(79,140,255,.18);color:#79b8ff}
+  .badge.Applied{background:rgba(163,113,247,.18);color:#c297ff}
+  .badge.Ghosted{background:rgba(210,153,34,.18);color:#e3b341}
+  .badge.Denied{background:rgba(139,148,158,.18);color:#adbac7}
+  .date{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .count{color:var(--muted);font-size:12.5px;margin-bottom:8px}
+  @media(max-width:900px){.kpis{grid-template-columns:repeat(3,1fr)}.cols{grid-template-columns:1fr}.role,.note{display:none}}
+  footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
+  footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Automated Job Search Tracker<span class="demopill">DEMO · SAMPLE DATA</span></h1>
+  <div class="sub">A Gmail-parsing pipeline that auto-categorizes job applications into stages and renders them as a live dashboard.</div>
+
+  <div class="banner">
+    <div class="em">&#9881;&#65039;</div>
+    <div>This is an <b>example</b> of the tool. It ingests Gmail application threads, classifies each into
+    <b>Offer / Next Steps / Applied / Ghosted / Denied</b>, and visualizes the pipeline.
+    The companies and figures below are <b>illustrative sample data</b>, not real applications.</div>
+  </div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="cols">
+    <div>
+      <div class="card">
+        <h2>Status Breakdown</h2>
+        <svg id="donut" viewBox="0 0 120 120" width="100%" style="max-width:220px;display:block;margin:0 auto"></svg>
+        <div class="legend" id="legend"></div>
+        <div class="howto">
+          <b>How it works:</b> a scheduled job parses new Gmail threads, extracts company &amp; stage,
+          writes to a structured store, and this dashboard renders it &mdash; filterable, sortable, searchable.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="toolbar">
+        <div class="chip active" data-f="all">All</div>
+        <div class="chip" data-f="Offer">Offer</div>
+        <div class="chip" data-f="Next Steps">Next Steps</div>
+        <div class="chip" data-f="Applied">Applied</div>
+        <div class="chip" data-f="Ghosted / Stalled">Ghosted</div>
+        <div class="chip" data-f="Denied">Denied</div>
+        <input class="search" id="search" placeholder="Search company, role, notes&hellip;">
+      </div>
+      <div class="count" id="count"></div>
+      <table>
+        <thead><tr>
+          <th data-s="company">Company</th>
+          <th data-s="status">Status</th>
+          <th data-s="date">Updated</th>
+          <th data-s="note">Notes</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>Demo of the Automated Job Search Tracker &middot; sample data &middot; <a href="../index.html">&larr; back to portfolio</a></footer>
+</div>
+
+<script>
+// ---- Illustrative SAMPLE data only (not real applications) ----
+const DATA = [
+ {company:"Specialty Pharmacy",   role:"Service Desk Engineer II",   status:"Offer",             date:"2026-07-02", note:"Offer extended — accepted"},
+ {company:"GRC SaaS Co",          role:"IT Operations Engineer",     status:"Next Steps",        date:"2026-07-02", note:"Recruiter screen scheduled"},
+ {company:"Managed IT Services",  role:"SOC Engineer",               status:"Next Steps",        date:"2026-07-01", note:"Interviewing with hiring manager"},
+ {company:"Cybersecurity Vendor", role:"Support Engineer",           status:"Next Steps",        date:"2026-06-30", note:"Prescreen completed"},
+ {company:"AI Lab",               role:"Security Engineer",          status:"Applied",           date:"2026-07-03", note:"Application submitted — awaiting response"},
+ {company:"Streaming Media Co",   role:"IT Support Specialist",      status:"Applied",           date:"2026-07-03", note:"Application submitted — awaiting response"},
+ {company:"Healthcare Co",        role:"Systems Administrator",      status:"Applied",           date:"2026-06-30", note:"Application submitted — awaiting response"},
+ {company:"Payments Co",          role:"System & Network Admin",     status:"Ghosted / Stalled", date:"2026-05-13", note:"Reached final-round interview, then no response"},
+ {company:"Energy Co",            role:"IT Systems Engineer",        status:"Ghosted / Stalled", date:"2026-06-30", note:"Interview process paused by employer"},
+ {company:"Logistics Co",         role:"Security Engineer",          status:"Denied",            date:"2026-06-18", note:"Not selected"},
+ {company:"Insurance Co",         role:"Operations & Tech Specialist",status:"Denied",           date:"2026-06-18", note:"Position filled"},
+ {company:"Gaming Studio",        role:"Systems Engineer",           status:"Denied",            date:"2026-06-18", note:"Rejected after interview"},
+ {company:"Trading Firm",         role:"Network Engineer",           status:"Denied",            date:"2026-06-13", note:"Not selected"},
+ {company:"B2B SaaS Co",          role:"Technical Support Engineer", status:"Denied",            date:"2026-06-16", note:"Position filled"},
+ {company:"Defense Contractor",   role:"Help Desk Specialist",       status:"Denied",            date:"2026-06-18", note:"Not selected"},
+];
+
+const COLORS={"Offer":"#2ea043","Next Steps":"#4f8cff","Applied":"#a371f7","Ghosted / Stalled":"#d29922","Denied":"#6e7681"};
+const ORDER=["Offer","Next Steps","Applied","Ghosted / Stalled","Denied"];
+const badgeClass=s=>({"Offer":"Offer","Next Steps":"NextSteps","Applied":"Applied","Ghosted / Stalled":"Ghosted","Denied":"Denied"}[s]);
+
+const counts={}; ORDER.forEach(s=>counts[s]=0);
+DATA.forEach(d=>counts[d.status]++);
+const total=DATA.length;
+
+document.getElementById('kpis').innerHTML=[
+ ["b-total",total,"Sample Rows"],
+ ["b-offer",counts["Offer"],"Offers"],
+ ["b-next",counts["Next Steps"],"Next Steps"],
+ ["b-applied",counts["Applied"],"Applied"],
+ ["b-ghost",counts["Ghosted / Stalled"],"Ghosted"],
+ ["b-denied",counts["Denied"],"Denied"],
+].map(k=>`<div class="kpi ${k[0]}"><div class="n">${k[1]}</div><div class="l">${k[2]}</div></div>`).join('');
+
+const donut=document.getElementById('donut');const R=45,C=60,circ=2*Math.PI*R;let off=0;
+ORDER.forEach(s=>{
+  if(!counts[s])return;
+  const len=counts[s]/total*circ;
+  const el=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  el.setAttribute('cx',C);el.setAttribute('cy',C);el.setAttribute('r',R);
+  el.setAttribute('fill','none');el.setAttribute('stroke',COLORS[s]);el.setAttribute('stroke-width',16);
+  el.setAttribute('stroke-dasharray',`${len} ${circ-len}`);el.setAttribute('stroke-dashoffset',-off);
+  el.setAttribute('transform',`rotate(-90 ${C} ${C})`);
+  donut.appendChild(el);off+=len;
+});
+function txt(y,size,color,weight,t){const e=document.createElementNS('http://www.w3.org/2000/svg','text');
+  e.setAttribute('x',C);e.setAttribute('y',y);e.setAttribute('text-anchor','middle');
+  e.setAttribute('fill',color);e.setAttribute('font-size',size);if(weight)e.setAttribute('font-weight',weight);
+  e.textContent=t;donut.appendChild(e);}
+txt(C-2,20,'#e6edf3',700,total);txt(C+13,8,'#8b98a5',null,'samples');
+
+document.getElementById('legend').innerHTML=ORDER.map(s=>
+ `<div class="legrow" data-f="${s}"><span class="dot" style="background:${COLORS[s]}"></span>${s}<span class="c">${counts[s]}</span></div>`).join('');
+
+let filter="all",q="",sortKey="date",sortDir=-1;
+function render(){
+  let rows=DATA.filter(d=>(filter==="all"||d.status===filter)&&
+    (q===""||(d.company+d.role+d.note).toLowerCase().includes(q)));
+  rows.sort((a,b)=>{
+    if(sortKey==="status")return (ORDER.indexOf(a.status)-ORDER.indexOf(b.status))*sortDir;
+    let x=a[sortKey]||"",y=b[sortKey]||"";return (x<y?-1:x>y?1:0)*sortDir;
+  });
+  document.getElementById('count').textContent=`Showing ${rows.length} of ${total} sample rows`;
+  document.getElementById('rows').innerHTML=rows.map(d=>`
+    <tr>
+      <td><div class="company">${d.company}</div><div class="role">${d.role}</div></td>
+      <td><span class="badge ${badgeClass(d.status)}">${d.status}</span></td>
+      <td class="date">${d.date}</td>
+      <td class="note">${d.note}</td>
+    </tr>`).join('');
+}
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
+  document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+  c.classList.add('active');filter=c.dataset.f;render();
+});
+document.querySelectorAll('.legrow').forEach(l=>l.onclick=()=>{
+  filter=l.dataset.f;
+  document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x.dataset.f===filter));
+  render();
+});
+document.getElementById('search').oninput=e=>{q=e.target.value.toLowerCase();render();};
+document.querySelectorAll('th').forEach(th=>th.onclick=()=>{
+  const k=th.dataset.s;if(k===sortKey)sortDir*=-1;else{sortKey=k;sortDir=1;}render();
+});
+render();
+</script>
+</body>
+</html>

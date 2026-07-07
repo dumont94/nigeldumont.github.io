@@ -8,7 +8,7 @@ Personal portfolio site for Nigel Dumont — Senior Systems & Infrastructure Eng
 
 ## About
 
-A single-file static portfolio built with plain HTML and CSS — no frameworks, no build tools. Everything lives in `index.html`. Also includes a full interactive network infrastructure builder tool built with React + Vite, deployed as a static app.
+A single-file static portfolio built with plain HTML and CSS — no frameworks, no build tools. Everything lives in `index.html`. Also includes a full interactive network infrastructure builder tool built with React + Vite, deployed as a static app, and links out to the [SOC Foundations Builder](https://github.com/dumont94/soc-builder-tool) — a companion security-operations tool in its own repo.
 
 Hosted on GitHub Pages, served directly from the `main` branch.
 
@@ -53,6 +53,7 @@ nigeldumont.github.io/
 - Credentials section with certs and education
 - Fully responsive — mobile layout via CSS
 - **Network Builder Tool** — interactive SOHO infrastructure planner, pure client-side React, no backend required
+- **SOC Foundations Builder** — build-your-own-security-posture tool: four questions → a 10-step first-90-days SOC plan with day-one checks, tooling, and pricing
 
 ---
 
@@ -63,6 +64,14 @@ Located at `/network-builder/`. A guided questionnaire that recommends a full ne
 - Pure static — no Flask backend, all logic runs client-side via `recommendations.js`
 - Data exported from Python to `networkData.json` and bundled at build time
 - Build with: `cd network-builder/frontend && npm run build`
+
+---
+
+## SOC Foundations Builder
+
+The security-operations companion to the network builder, in its own repo: [github.com/dumont94/soc-builder-tool](https://github.com/dumont94/soc-builder-tool) · **Live:** [dumont94.github.io/soc-builder-tool](https://dumont94.github.io/soc-builder-tool/)
+
+Answer four questions (environment, size, current security state, budget) and get a 10-step, first-90-days plan to monitor and secure a company — three build paths (Microsoft-native Defender + Sentinel, open-source Wazuh/Security Onion, best-of-breed CrowdStrike/Splunk/Tenable), each with day-one look-fors, pricing, alternatives, and implementation steps. Deploys automatically to GitHub Pages via Actions on every push to its `main`.
 
 ---
 

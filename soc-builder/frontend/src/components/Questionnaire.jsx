@@ -95,12 +95,10 @@ export default function Questionnaire({ onSubmit, error }) {
       {/* ── Hero ── */}
       <div className="questionnaire__hero">
         <div className="questionnaire__eyebrow">SOC Foundations Builder</div>
-        <h1 className="questionnaire__title">You're the new security hire. Day one starts now — here's what to look for and what to build first.</h1>
+        <h1 className="questionnaire__title">Build your own security posture.</h1>
         <p className="questionnaire__subtitle">
-          Answer four questions about the company you just walked into.
-          Get a 10-step, first-90-days plan for monitoring and securing it —
-          what to check on day one, which tools to deploy, what they cost,
-          and how to stand each one up.
+          Answer four questions. Get a 10-step plan to monitor and secure
+          a company — the checks, the tools, and the costs.
         </p>
         <p className="questionnaire__byline">Built by Nigel Dumont</p>
       </div>

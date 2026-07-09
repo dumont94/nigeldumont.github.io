@@ -276,16 +276,46 @@
     background: rgba(6,8,12,0.62);
   }
 
-  .tech-band p {
+  .band-inner {
     position: relative;
+    text-align: center;
+    padding: 0 2rem;
+    max-width: 680px;
+  }
+
+  .tech-band p {
     font-family: var(--sans);
     font-size: 1.25rem;
     color: #FFFFFF;
-    text-align: center;
-    padding: 0 2rem;
-    max-width: 640px;
     line-height: 1.7;
+    min-height: 5.1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: opacity 0.4s ease;
   }
+
+  .tech-band p.fading { opacity: 0; }
+
+  .band-dots {
+    display: flex;
+    gap: 9px;
+    justify-content: center;
+    margin-top: 1.25rem;
+  }
+
+  .band-dots button {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .band-dots button.active { background: #FFFFFF; }
 
   .tech-band-attr {
     display: block;
@@ -1291,8 +1321,11 @@
   </div>
 </section>
 
-<div class="tech-band" role="img" aria-label="Server racks in a dimly lit data center">
-  <p>"Design is not just what it looks like and feels like. Design is how it works."<span class="tech-band-attr">— Steve Jobs</span></p>
+<div class="tech-band" role="region" aria-label="Quotes from technology leaders">
+  <div class="band-inner">
+    <p id="band-quote">"Design is not just what it looks like and feels like. Design is how it works."<span class="tech-band-attr">— Steve Jobs</span></p>
+    <div class="band-dots" id="band-dots"></div>
+  </div>
 </div>
 
 <section id="projects">
@@ -1601,6 +1634,54 @@
     themeBtn.textContent = isDark ? '☾ dark' : '☀ light';
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
+
+  // ── QUOTE CAROUSEL ──
+  const bandQuotes = [
+    { q: "Design is not just what it looks like and feels like. Design is how it works.", a: "Steve Jobs" },
+    { q: "We always overestimate the change that will occur in the next two years and underestimate the change that will occur in the next ten.", a: "Bill Gates" },
+    { q: "Software is eating the world, but AI is going to eat software.", a: "Jensen Huang" },
+    { q: "Any product that needs a manual to work is broken.", a: "Elon Musk" },
+    { q: "The days are long but the decades are short.", a: "Sam Altman" }
+  ];
+  const bandQuoteEl = document.getElementById('band-quote');
+  const bandDotsEl = document.getElementById('band-dots');
+  const bandEl = document.querySelector('.tech-band');
+  let bandIdx = 0, bandTimer = null;
+  const bandReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  bandQuotes.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.setAttribute('aria-label', 'Show quote ' + (i + 1));
+    dot.addEventListener('click', () => { showBandQuote(i); startBandTimer(); });
+    bandDotsEl.appendChild(dot);
+  });
+
+  function updateBandDots() {
+    [...bandDotsEl.children].forEach((d, i) => d.classList.toggle('active', i === bandIdx));
+  }
+
+  function showBandQuote(i) {
+    if (i === bandIdx && bandQuoteEl.dataset.init) return;
+    bandQuoteEl.dataset.init = '1';
+    bandQuoteEl.classList.add('fading');
+    setTimeout(() => {
+      bandIdx = i;
+      bandQuoteEl.innerHTML = '"' + bandQuotes[i].q + '"<span class="tech-band-attr">— ' + bandQuotes[i].a + '</span>';
+      updateBandDots();
+      bandQuoteEl.classList.remove('fading');
+    }, 400);
+  }
+
+  function startBandTimer() {
+    if (bandReduceMotion) return;
+    clearInterval(bandTimer);
+    bandTimer = setInterval(() => showBandQuote((bandIdx + 1) % bandQuotes.length), 7000);
+  }
+
+  updateBandDots();
+  startBandTimer();
+  bandEl.addEventListener('mouseenter', () => clearInterval(bandTimer));
+  bandEl.addEventListener('mouseleave', startBandTimer);
 
   // ── HERO PARALLAX ──
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

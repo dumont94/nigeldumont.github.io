@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nigel Dumont — Senior IT Engineer (revamp preview)</title>
+<meta name="description" content="Nigel Dumont — Senior Systems & Infrastructure Engineer in Chicago. 8+ years designing and securing enterprise IT at scale: IAM, network infrastructure, automation, and security policy.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://dumont94.github.io/nigeldumont.github.io/">
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="nigeldumont.io">
+<meta property="og:title" content="Nigel Dumont — Identity. Infrastructure. Security.">
+<meta property="og:description" content="Senior Systems & Infrastructure Engineer in Chicago. 8+ years designing and securing enterprise IT at scale — IAM, automation, and the policies that keep data locked down.">
+<meta property="og:url" content="https://dumont94.github.io/nigeldumont.github.io/">
+<meta property="og:image" content="https://dumont94.github.io/nigeldumont.github.io/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nigel Dumont — Identity. Infrastructure. Security.">
+<meta name="twitter:description" content="Senior Systems & Infrastructure Engineer in Chicago. 8+ years securing enterprise IT at scale.">
+<meta name="twitter:image" content="https://dumont94.github.io/nigeldumont.github.io/og-card.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F5F4F2;
+    --surface: #ECEAE7;
+    --surface2: #E2E0DC;
+    --border: rgba(0,0,0,0.08);
+    --border-hi: rgba(0,0,0,0.18);
+    --text: #1A1A1A;
+    --muted: #6B6864;
+    --accent: #4A4845;
+    --accent2: #767370;
+    --blue: #1E40AF;
+    --blue-deep: #1E3A8A;
+    --blue-dim: rgba(30,64,175,0.08);
+    --blue-border: rgba(30,64,175,0.45);
+    --mono: 'Space Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+    --nav-bg: rgba(245,244,242,0.88);
+  }
+
+  body.dark {
+    --bg: #0A0A0A;
+    --surface: #111111;
+    --surface2: #1A1A1A;
+    --border: rgba(255,255,255,0.08);
+    --border-hi: rgba(255,255,255,0.18);
+    --text: #FFFFFF;
+    --muted: #C8C5C2;
+    --accent: #FFFFFF;
+    --accent2: #C8C5C2;
+    --blue: #4169E1;
+    --blue-deep: #2F4FC7;
+    --blue-dim: rgba(65,105,225,0.12);
+    --blue-border: rgba(65,105,225,0.55);
+    --nav-bg: rgba(10,10,10,0.85);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 0;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-brand { display: flex; flex-direction: column; gap: 3px; }
+  .nav-built { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.05em; }
+  .nav-logo {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--blue); }
+
+  .nav-tool-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--blue);
+    text-decoration: none;
+    border: 0.5px solid var(--blue-border);
+    border-radius: 4px;
+    padding: 5px 10px;
+    transition: background 0.15s, border-color 0.15s;
+    line-height: 1;
+  }
+  .nav-tool-link:hover {
+    background: var(--blue-dim);
+    border-color: var(--blue);
+  }
+  .nav-new-badge {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: var(--blue);
+    border-radius: 3px;
+    padding: 1px 4px;
+    font-weight: 700;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+  }
+
+  .theme-toggle {
+    background: none;
+    border: 0.5px solid var(--border-hi);
+    color: var(--muted);
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    line-height: 1;
+  }
+
+  .theme-toggle:hover { color: var(--text); border-color: var(--accent); }
+
+  section { padding: 3.5rem 2.5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    border-bottom: 0.5px solid var(--border);
+    position: relative;
+  }
+
+  .hero > * { position: relative; z-index: 1; }
+
+  .hero-backdrop {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -50vw;
+    width: 100vw;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: -6% 0;
+    background-size: cover;
+    background-position: center 30%;
+    transition: opacity 0.9s ease;
+    will-change: transform;
+  }
+
+  .hero-bg-day { background-image: url('hero-day.jpg'); opacity: 1; }
+  .hero-bg-night { background-image: url('hero-night.webp'); opacity: 0; }
+  body.dark .hero-bg-day { opacity: 0; }
+  body.dark .hero-bg-night { opacity: 1; }
+
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(245,244,242,0.88) 0%,
+      rgba(245,244,242,0.72) 40%,
+      rgba(245,244,242,0.55) 70%,
+      #F5F4F2 98%);
+    transition: opacity 0.9s ease;
+  }
+
+  .hero-veil-night {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(10,10,10,0.78) 0%,
+      rgba(10,10,10,0.60) 40%,
+      rgba(10,10,10,0.48) 70%,
+      #0A0A0A 98%);
+    opacity: 0;
+    transition: opacity 0.9s ease;
+  }
+
+  body.dark .hero-veil { opacity: 0; }
+  body.dark .hero-veil-night { opacity: 1; }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--blue);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em { font-style: normal; color: var(--blue); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 0.5px solid var(--border-hi);
+    border-radius: 3px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .badge.hi {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(176,173,168,0.09);
+  }
+
+  .hero-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 2rem;
+  }
+
+  .hero-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    animation: pulse-green 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 10px 22px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+  }
+
+  .btn-primary { background: var(--blue); color: #FFFFFF; font-weight: 700; }
+  .btn-primary:hover { background: var(--blue-deep); }
+  .btn-ghost { background: transparent; color: var(--muted); border: 0.5px solid var(--border-hi); }
+  .btn-ghost:hover { color: var(--text); border-color: var(--accent); }
+
+  .section-label {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .skill-cell { background: var(--surface); padding: 1.5rem; transition: background 0.2s; }
+  .skill-cell:hover { background: var(--surface2); }
+
+  .skill-cell-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .skill-tag {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 3px 8px;
+    background: var(--surface2);
+    border-radius: 3px;
+  }
+
+  /* ── WORK SAMPLES SECTION ── */
+  
+  .samples-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .sample-block { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .sample-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .sample-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+    border: 0.5px solid;
+    flex-shrink: 0;
+  }
+
+  .tag-iam   { color: #7dcfb6; border-color: rgba(125,207,182,0.35); background: rgba(125,207,182,0.07); }
+  .tag-mon   { color: #89b4fa; border-color: rgba(137,180,250,0.35); background: rgba(137,180,250,0.07); }
+  .tag-net   { color: #a6e3a1; border-color: rgba(166,227,161,0.35); background: rgba(166,227,161,0.07); }
+  .tag-voip  { color: #fab387; border-color: rgba(250,179,135,0.35); background: rgba(250,179,135,0.07); }
+  .tag-sec   { color: #f38ba8; border-color: rgba(243,139,168,0.35); background: rgba(243,139,168,0.07); }
+  .tag-itsm  { color: #cba6f7; border-color: rgba(203,166,247,0.35); background: rgba(203,166,247,0.07); }
+
+  .sample-header h3 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .sample-desc {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 680px;
+    line-height: 1.7;
+  }
+
+  /* ── SLIDESHOW ── */
+  .slideshow {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .slideshow-track { position: relative; }
+
+  .slide {
+    display: none;
+    position: relative;
+  }
+
+  .slide.active { display: block; }
+
+  .slide-img-wrap {
+    width: 100%;
+    cursor: zoom-in;
+    background: #060606;
+  }
+
+  .slide-img-wrap img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    transition: transform 0.3s;
+  }
+
+  .slide-img-wrap:hover img { transform: scale(1.02); }
+
+  .slide-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 4rem 1.25rem 2.5rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.88));
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    pointer-events: none;
+  }
+
+  .slide-caption strong {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .slide-caption span {
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+  }
+
+  .slide-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 1.25rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 5;
+  }
+
+  .slide-btn {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(10,10,10,0.55);
+    border: 0.5px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.85);
+    font-size: 18px;
+    font-family: var(--mono);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .slide-btn:hover { background: rgba(10,10,10,0.85); color: #fff; border-color: rgba(255,255,255,0.4); }
+  .slide-btn:disabled { opacity: 0.15; cursor: default; }
+  .slide-btn-prev { left: 10px; }
+  .slide-btn-next { right: 10px; }
+
+  .slide-dots {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    padding: 0;
+  }
+
+  .dot.active { background: rgba(255,255,255,0.9); transform: scale(1.4); }
+
+  .slide-counter {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── LIGHTBOX ── */
+  #lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    cursor: zoom-out;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 92vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+    cursor: default;
+  }
+  #lb-close {
+    position: fixed;
+    top: 1rem; right: 1.25rem;
+    background: var(--surface);
+    border: 0.5px solid var(--border-hi);
+    color: var(--muted);
+    font-size: 1.1rem;
+    width: 32px; height: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono);
+    transition: color 0.15s;
+  }
+  #lb-close:hover { color: var(--text); }
+
+  /* ── REST OF EXISTING STYLES ── */
+  .work-list { display: flex; flex-direction: column; gap: 0; }
+
+  .work-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .work-item:first-child { padding-top: 0; }
+  .work-meta { padding-top: 3px; }
+
+  .work-period { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+  .work-company { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 0.2rem; }
+  .work-loc { font-size: 12px; color: var(--muted); }
+  .work-title { font-size: 1.15rem; font-weight: 500; margin-bottom: 0.75rem; }
+  .work-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+  .work-wins { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .win-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 3px;
+    background: rgba(176,173,168,0.1);
+    color: var(--accent);
+    border: 0.5px solid rgba(176,173,168,0.25);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .project-card {
+    background: var(--surface);
+    padding: 2rem;
+    transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .project-card:hover { background: var(--surface2); }
+  .project-type { font-family: var(--mono); font-size: 10px; color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase; }
+  .project-name { font-size: 1rem; font-weight: 500; line-height: 1.3; }
+  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.65; flex: 1; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .stack-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--surface2);
+    color: var(--muted);
+    border: 0.5px solid var(--border);
+  }
+
+  .project-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .project-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--border-hi);
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    letter-spacing: 0.03em;
+  }
+
+  .project-link:hover {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+
+  .project-link-primary {
+    background: var(--blue);
+    color: #FFFFFF;
+    border-color: var(--blue);
+  }
+
+  .project-link-primary:hover {
+    background: var(--blue-deep);
+    color: #FFFFFF;
+    border-color: var(--blue-deep);
+  }
+
+  .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+  .contact-left h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+  }
+
+  .contact-left h2 em { font-style: normal; color: var(--accent); }
+  .contact-left p { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-link:hover { color: var(--blue); }
+  .contact-link-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+
+  .cert-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
+
+  .cert-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .cert-icon {
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    background: rgba(176,173,168,0.1);
+    border: 0.5px solid rgba(176,173,168,0.25);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .cert-icon svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .cert-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .cert-issuer { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text); }
+
+  /* ── DEV LOG ── */
+  #log { padding-bottom: 2rem; }
+  #log .section-label { margin-bottom: 1rem; }
+  .log-feed { display: flex; flex-direction: column; gap: 0; }
+
+  .log-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 1rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .log-row:first-child { padding-top: 0; }
+  .log-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .log-pulse-wrap { padding-top: 5px; flex-shrink: 0; }
+
+  .log-pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: block;
+  }
+
+  .log-pulse-building {
+    background: #4ade80;
+    animation: pulse-green 2s ease-in-out infinite;
+  }
+
+  .log-pulse-planning {
+    background: #fab387;
+    animation: pulse-orange 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-green {
+    0%   { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+    70%  { box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+    100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+  }
+
+  @keyframes pulse-orange {
+    0%   { box-shadow: 0 0 0 0 rgba(250,179,135,0.5); }
+    70%  { box-shadow: 0 0 0 6px rgba(250,179,135,0); }
+    100% { box-shadow: 0 0 0 0 rgba(250,179,135,0); }
+  }
+
+  .log-row-content { flex: 1; min-width: 0; }
+
+  .log-row-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .log-row-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .log-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    border: 0.5px solid;
+    flex-shrink: 0;
+  }
+
+  .log-tag-building { color: #4ade80; border-color: rgba(74,222,128,0.4); background: rgba(74,222,128,0.07); }
+  .log-tag-planning { color: #fab387; border-color: rgba(250,179,135,0.4); background: rgba(250,179,135,0.07); }
+  .log-tag-shipped  { color: #89b4fa; border-color: rgba(137,180,250,0.4); background: rgba(137,180,250,0.07); }
+  .log-tag-learning { color: #cba6f7; border-color: rgba(203,166,247,0.4); background: rgba(203,166,247,0.07); }
+
+  .log-row-status {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    margin-bottom: 0.6rem;
+  }
+
+  .log-row-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .log-stages {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .log-stage {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    color: var(--border-hi);
+    text-transform: uppercase;
+  }
+
+  .log-stage-done {
+    color: var(--accent2);
+    text-decoration: line-through;
+    text-decoration-color: var(--accent2);
+  }
+
+  .log-stage-active {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .log-stage-sep {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--border-hi);
+  }
+
+  .log-repo {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .log-repo:hover { color: var(--text); }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 0; }
+    .nav-inner { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    .nav-built { display: none; }
+    .nav-tool-link { font-size: 11px; padding: 4px 8px; }
+    .nav-right { gap: 0.5rem; }
+    section { padding: 3.5rem 1.25rem 2.5rem; }
+    .work-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .contact-block { grid-template-columns: 1fr; gap: 2.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .slide-img-wrap { max-height: 260px; }
+    .slide-img-wrap img { max-height: 260px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <a class="nav-logo" href="#hero">nigeldumont.io</a>
+      <span class="nav-built">Built with Claude Code &middot; HTML &middot; CSS &middot; JS</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#skills">skills</a></li>
+        <li><a href="#work">work</a></li>
+        <li><a href="#projects">projects</a></li>
+        <li><a href="work-samples.html">samples</a></li>
+        <li><a href="https://dumont94.github.io/design-portfolio/" target="_blank">design</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+      <a class="nav-tool-link" href="https://dumont94.github.io/soc-builder-tool/" target="_blank">soc posture tool <span class="nav-new-badge">new</span></a>
+      <a class="nav-tool-link" href="https://dumont94.github.io/network-builder-tool/" target="_blank">network builder tool</a>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">☀ light</button>
+    </div>
+  </div>
+</nav>
+
+
+<section class="hero" id="hero">
+  <div class="hero-backdrop" aria-hidden="true">
+    <div class="hero-bg hero-bg-day"></div>
+    <div class="hero-bg hero-bg-night"></div>
+    <div class="hero-veil"></div>
+    <div class="hero-veil-night"></div>
+  </div>
+  <p class="hero-eyebrow">// Senior Systems & Infrastructure Engineer — Chicago, IL</p>
+  <h1>Identity. Infrastructure. <em>Security.</em></h1>
+  <p class="hero-sub">8+ years designing and securing enterprise IT at scale — from startups to 5,000-user, 50+ location operations. I help organizations run tighter IAM systems, automate user and hardware lifecycles, and implement the security policies that keep data locked down.</p>
+  <div class="hero-badges">
+    <span class="badge hi">CompTIA Security+</span>
+    <span class="badge hi">SecAI+ CY0-001</span>
+    <span class="badge hi">Cisco CCENT</span>
+    <span class="badge hi">AAS, Information Systems</span>
+  </div>
+  <p class="hero-status"><span class="hero-status-dot"></span>Open to senior IAM &amp; infrastructure roles — Chicago, IL / remote</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#work">View my work</a>
+    <a class="btn btn-ghost" href="#projects">Projects →</a>
+    <a class="btn btn-ghost" href="https://linkedin.com/in/nigel-dumont" target="_blank">LinkedIn →</a>
+    <a class="btn btn-ghost" href="https://github.com/dumont94" target="_blank">GitHub →</a>
+  </div>
+</section>
+
+<section id="log">
+  <p class="section-label">// What I'm currently working on</p>
+  <div class="log-feed">
+
+    <div class="log-row">
+      <div class="log-pulse-wrap"><span class="log-pulse log-pulse-building"></span></div>
+      <div class="log-row-content">
+        <div class="log-row-top">
+          <span class="log-row-name">SOC Posture Tool — Five-Pillar Maturity Assessment</span>
+          <span class="log-tag log-tag-shipped">Shipped</span>
+        </div>
+        <p class="log-row-status">Rebuilt around the five pillars of SOC maturity — visibility, detection engineering, alert management, compliance, and org standing. Assess each pillar and get a posture read: levels, gaps, and fix-first priorities.</p>
+        <div class="log-row-footer">
+          <div class="log-stages">
+            <span class="log-stage log-stage-done">design</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage log-stage-done">content</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage log-stage-done">build</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage log-stage-done">ship</span>
+          </div>
+          <a class="log-repo" href="https://dumont94.github.io/soc-builder-tool/" target="_blank">dumont94.github.io/soc-builder-tool →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-row">
+      <div class="log-pulse-wrap"><span class="log-pulse log-pulse-building"></span></div>
+      <div class="log-row-content">
+        <div class="log-row-top">
+          <span class="log-row-name">Personal Creative Direction & Design Portfolio</span>
+          <span class="log-tag log-tag-building">Building</span>
+        </div>
+        <p class="log-row-status">Rebuilding my design identity from the ground up — apparel, automotive photography, brand work, and creative direction. Separate site from this IT portfolio, live at nigeldumont.io.</p>
+        <div class="log-row-footer">
+          <div class="log-stages">
+            <span class="log-stage log-stage-done">design</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage log-stage-done">build</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage log-stage-active">content</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage">ship</span>
+          </div>
+          <a class="log-repo" href="https://dumont94.github.io/design-portfolio/" target="_blank">dumont94.github.io/design-portfolio →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-row">
+      <div class="log-pulse-wrap"><span class="log-pulse log-pulse-planning"></span></div>
+      <div class="log-row-content">
+        <div class="log-row-top">
+          <span class="log-row-name">World Cup 2026 Tracker — Live Score Architecture</span>
+          <span class="log-tag log-tag-planning">Planning</span>
+        </div>
+        <p class="log-row-status">Mapping out the live-update pipeline — API source selection, polling layer, and match state machine (pre-match → live → FT).</p>
+        <div class="log-row-footer">
+          <div class="log-stages">
+            <span class="log-stage log-stage-active">plan</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage">api</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage">build</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage">test</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage">ship</span>
+          </div>
+          <a class="log-repo" href="https://github.com/dumont94/fifa-world-cup-dashboard" target="_blank">github.com/dumont94/fifa-world-cup-dashboard →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-row">
+      <div class="log-pulse-wrap"><span class="log-pulse log-pulse-building"></span></div>
+      <div class="log-row-content">
+        <div class="log-row-top">
+          <span class="log-row-name">AWS + Wazuh SIEM Homelab</span>
+          <span class="log-tag log-tag-building">Building</span>
+        </div>
+        <p class="log-row-status">Cloud SOC homelab on EC2 — working through log ingestion, threat detection rules, and alert triage workflows.</p>
+        <div class="log-row-footer">
+          <div class="log-stages">
+            <span class="log-stage log-stage-done">setup</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage log-stage-active">build</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage">test</span>
+            <span class="log-stage-sep">→</span>
+            <span class="log-stage">ship</span>
+          </div>
+          <a class="log-repo" href="https://github.com/dumont94/aws-siem-homelab" target="_blank">github.com/dumont94/aws-siem-homelab →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="skills">
+  <p class="section-label">// Core competencies</p>
+  <div class="skills-grid">
+    <div class="skill-cell">
+      <p class="skill-cell-title">IAM</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Okta</span>
+        <span class="skill-tag">Entra ID (Azure AD)</span>
+        <span class="skill-tag">Active Directory</span>
+        <span class="skill-tag">Google Workspace</span>
+        <span class="skill-tag">SAML/OIDC</span>
+        <span class="skill-tag">SaaS App Integrations</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">Infrastructure</p>
+      <div class="skill-tags">
+        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">Cisco Meraki</span>
+        <span class="skill-tag">Fortinet</span>
+        <span class="skill-tag">VLANs</span>
+        <span class="skill-tag">VPN</span>
+        <span class="skill-tag">SolarWinds</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">Endpoint Security</p>
+      <div class="skill-tags">
+        <span class="skill-tag">CrowdStrike Falcon</span>
+        <span class="skill-tag">Microsoft Defender/Purview</span>
+        <span class="skill-tag">Proofpoint TAP</span>
+        <span class="skill-tag">SOC 2 Framework</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">SIEM</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Splunk</span>
+        <span class="skill-tag">Wazuh</span>
+        <span class="skill-tag">Log Ingestion</span>
+        <span class="skill-tag">Detection Rules &amp; Alert Triage</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">MDM</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Kandji</span>
+        <span class="skill-tag">Jamf</span>
+        <span class="skill-tag">Intune</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">Automation & AI</p>
+      <div class="skill-tags">
+        <span class="skill-tag">PowerShell</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Bash/ZSH</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Claude Code</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">Telecom & VoIP</p>
+      <div class="skill-tags">
+        <span class="skill-tag">MS Teams VoIP</span>
+        <span class="skill-tag">Amazon Connect</span>
+        <span class="skill-tag">SIP</span>
+        <span class="skill-tag">E911 Compliance</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">ITSM</p>
+      <div class="skill-tags">
+        <span class="skill-tag">ServiceNow</span>
+        <span class="skill-tag">Jira</span>
+        <span class="skill-tag">Freshservice</span>
+        <span class="skill-tag">Zendesk</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-cell-title">Operating Systems</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Windows / M365</span>
+        <span class="skill-tag">macOS</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">iOS &amp; Android</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════ -->
+<!--  WORK SAMPLES                             -->
+<!-- ══════════════════════════════════════════ -->
+
+
+<section id="work">
+  <p class="section-label">// Experience</p>
+  <div class="work-list">
+    <div class="work-item">
+      <div class="work-meta">
+        <p class="work-period">May 2022 — Nov 2025</p>
+        <p class="work-company">Green Thumb Industries</p>
+        <p class="work-loc">Chicago, IL · Hybrid</p>
+      </div>
+      <div class="work-content">
+        <p class="work-title">Senior Systems & Infrastructure Administrator</p>
+        <p class="work-desc">Sole Tier 3 IT lead for a cannabis multi-state operator. Owned the full stack — identity, endpoint, security, networking, telecom, compliance, and vendor relationships. Administered IAM across Azure AD, Google Workspace, and Okta. Managed onboarding and offboarding via HRIS-to-Entra ID sync, automated least privilege approval workflows, and led incident response for every major outage across 50+ locations.</p>
+        <div class="work-wins">
+          <span class="win-tag">HRIS → Entra ID sync</span>
+          <span class="win-tag">$30K telecom savings</span>
+          <span class="win-tag">$5K printer spend cut</span>
+          <span class="win-tag">40% faster incident docs</span>
+          <span class="win-tag">E911 compliance · 300+ VoIP endpoints</span>
+          <span class="win-tag">SOC 2 · HIPAA · PCI DSS · METRC</span>
+          <span class="win-tag">Zero audit failures · 3.5 yrs</span>
+          <span class="win-tag">Freshservice SLA dashboard</span>
+          <span class="win-tag">Least privilege automation</span>
+          <span class="win-tag">Intune · Jamf · Kandji endpoint mgmt</span>
+          <span class="win-tag">SolarWinds · Meraki · Fortinet monitoring</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-meta">
+        <p class="work-period">Feb 2020 — May 2022</p>
+        <p class="work-company">Lyric Opera House</p>
+        <p class="work-loc">Chicago, IL</p>
+      </div>
+      <div class="work-content">
+        <p class="work-title">Support & Network Administrator</p>
+        <p class="work-desc">Deployed Fortinet firewall and VPN for 400+ remote users during COVID in two weeks with zero operational disruption. Managed AD, Group Policy, and VoIP platforms. Built escalation and remediation documentation still in use today.</p>
+        <div class="work-wins">
+          <span class="win-tag">Fortinet deployment · 2 weeks</span>
+          <span class="win-tag">400+ remote users</span>
+          <span class="win-tag">AD & Group Policy</span>
+          <span class="win-tag">VoIP platforms</span>
+          <span class="win-tag">Escalation docs</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-meta">
+        <p class="work-period">Aug 2016 — Mar 2019</p>
+        <p class="work-company">Uber Technologies</p>
+        <p class="work-loc">Chicago, IL</p>
+      </div>
+      <div class="work-content">
+        <p class="work-title">IT Support Specialist</p>
+        <p class="work-desc">Tier 1/2 support in a high-volume environment with 92% CSAT and consistent ticket ownership. Early experience spotting and escalating auth abuse and account compromise patterns.</p>
+        <div class="work-wins">
+          <span class="win-tag">92% CSAT</span>
+          <span class="win-tag">Auth abuse detection</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="section-label">// Side projects</p>
+  <div class="projects-grid">
+    <div class="project-card">
+      <p class="project-type">SOC maturity assessment</p>
+      <p class="project-name">SOC Posture Tool — Live Assessment</p>
+      <p class="project-desc">Five-pillar SOC maturity read — visibility, detection engineering, alert management, compliance posture, and organizational standing. Assess each pillar honestly and get a posture read: maturity level, named blind spots, and what to fix first.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Claude Code</span>
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">Vite</span>
+        <span class="stack-tag">SecOps</span>
+      </div>
+      <div class="project-actions">
+        <a class="project-link project-link-primary" href="https://dumont94.github.io/soc-builder-tool/" target="_blank">Live Demo →</a>
+        <a class="project-link" href="https://github.com/dumont94/soc-builder-tool" target="_blank">GitHub →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <p class="project-type">Security knowledge base</p>
+      <p class="project-name">SOC Engineer Essential Knowledge — Live WebApp</p>
+      <p class="project-desc">Interactive knowledge base covering the core domains every SOC engineer is expected to know — security operations, blue team defense, GRC, network security, and cloud security. Breaks 25 essential topics into strong vs. weak framings with detailed explanations, practitioner insights, and a self-assessment mode that tracks understanding by domain.</p>
+      <div class="project-stack">
+        <span class="stack-tag">HTML</span>
+        <span class="stack-tag">CSS</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">Claude Code</span>
+        <span class="stack-tag">GitHub Pages</span>
+      </div>
+      <div class="project-actions">
+        <a class="project-link project-link-primary" href="https://dumont94.github.io/SOC-Engineer-FAQ/" target="_blank">Live Demo →</a>
+        <a class="project-link" href="https://github.com/dumont94/SOC-Engineer-FAQ" target="_blank">GitHub →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <p class="project-type">Network infrastructure builder</p>
+      <p class="project-name">Network Infrastructure Builder — Live Tool</p>
+      <p class="project-desc">Routes business owners through three build paths (Budget DIY, Enterprise DIY, Fully Outsourced) across ten components—firewall, switches, VLANs, SD-WAN, monitoring—with product recommendations, pricing, and config steps.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Claude Code</span>
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">Vite</span>
+        <span class="stack-tag">Python</span>
+      </div>
+      <div class="project-actions">
+        <a class="project-link project-link-primary" href="https://dumont94.github.io/network-builder-tool/" target="_blank">Live Demo →</a>
+        <a class="project-link" href="https://github.com/dumont94/network-builder-tool" target="_blank">GitHub →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <p class="project-type">Sports data tracker</p>
+      <p class="project-name">2026 FIFA World Cup — Live WebApp</p>
+      <p class="project-desc">Full-stack dashboard tracking tournament data: Messi's all-time record, Golden Boot standings, group results, and Round of 32 bracket with live scoring.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Claude Code</span>
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">APIs</span>
+      </div>
+      <div class="project-actions">
+        <a class="project-link project-link-primary" href="world-cup-2026.html" target="_blank">Live Demo →</a>
+        <a class="project-link" href="https://github.com/dumont94/fifa-world-cup-dashboard" target="_blank">GitHub →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <p class="project-type">Automation pipeline</p>
+      <p class="project-name">Automated Job Search Tracker — Live Dashboard</p>
+      <p class="project-desc">Gmail-parsing pipeline that ingests application threads, auto-classifies each into stages (Offer, Next Steps, Applied, Ghosted, Denied), and renders an interactive dashboard with a live status breakdown, filtering, sorting, and search. A time-based cron keeps it current with zero manual steps.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Google Apps Script</span>
+        <span class="stack-tag">Gmail API</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">SVG Charts</span>
+        <span class="stack-tag">Claude</span>
+      </div>
+      <div class="project-actions">
+        <a class="project-link project-link-primary" href="https://dumont94.github.io/nigeldumont.github.io/job-tracker/" target="_blank">Live Demo →</a>
+        <a class="project-link" href="https://github.com/dumont94/gmail-job-tracker" target="_blank">GitHub →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <p class="project-type">IAM homelab</p>
+      <p class="project-name">Okta + Google Workspace Provisioning Lab</p>
+      <p class="project-desc">Developer tenants across both platforms with a centralized onboarding flow using Okta Identity Engine (idx.register()) and the Okta Management API. Full five-stage pipeline: form intake → IDX registration → reset token → branded activation email → password enrollment.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Okta IDX</span>
+        <span class="stack-tag">Okta API</span>
+        <span class="stack-tag">Google Workspace</span>
+        <span class="stack-tag">Node.js</span>
+      </div>
+      <div class="project-actions">
+        <a class="project-link" href="https://github.com/dumont94/Okta-Lab-Provisioning" target="_blank">GitHub →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <p class="project-type">Web development</p>
+      <p class="project-name">Personal Portfolio — HTML, CSS, JavaScript &amp; Python</p>
+      <p class="project-desc">Built and deployed a personal portfolio site end-to-end on macOS using the terminal — custom light/dark theming, image redaction pipeline to sanitize sensitive screenshots, and a standalone work samples gallery. Version-controlled with Git and hosted on GitHub Pages.</p>
+      <div class="project-stack">
+        <span class="stack-tag">HTML</span>
+        <span class="stack-tag">CSS</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Pillow</span>
+        <span class="stack-tag">Git</span>
+        <span class="stack-tag">GitHub Pages</span>
+        <span class="stack-tag">Claude Code</span>
+      </div>
+      <div class="project-actions">
+        <a class="project-link project-link-primary" href="https://dumont94.github.io/nigeldumont.github.io/" target="_blank">Live Site →</a>
+        <a class="project-link" href="https://github.com/dumont94/nigeldumont.github.io" target="_blank">GitHub →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <p class="project-type">Security homelab</p>
+      <p class="project-name">AWS SIEM — Wazuh</p>
+      <p class="project-desc">Cloud SIEM on AWS EC2 with Wazuh agent-manager architecture. Registered agents on Linux and Windows via SSM/PowerShell. Used scoped IAM instance profile to manage Windows Server without exposing RDP.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Claude Code</span>
+        <span class="stack-tag">AWS EC2</span>
+        <span class="stack-tag">Wazuh</span>
+        <span class="stack-tag">AWS IAM</span>
+        <span class="stack-tag">AWS Systems Manager</span>
+      </div>
+      <div class="project-actions">
+        <a class="project-link" href="https://github.com/dumont94/aws-siem-homelab" target="_blank">GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="contact">
+  <p class="section-label">// Contact</p>
+  <div class="contact-block">
+    <div class="contact-left">
+      <h2>Let's build something <em>together.</em></h2>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:dumontnigel@gmail.com">
+          <span class="contact-link-dot"></span>dumontnigel@gmail.com
+        </a>
+        <a class="contact-link" href="https://linkedin.com/in/nigel-dumont" target="_blank">
+          <span class="contact-link-dot"></span>linkedin.com/in/nigel-dumont
+        </a>
+        <a class="contact-link" href="https://github.com/dumont94" target="_blank">
+          <span class="contact-link-dot"></span>github.com/dumont94
+        </a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <p style="font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; border-bottom: 0.5px solid var(--border); padding-bottom: 0.75rem;">// Credentials</p>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <p class="cert-name">CompTIA Security+</p>
+            <p class="cert-issuer">CompTIA</p>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+          </div>
+          <div>
+            <p class="cert-name">CompTIA SecAI+ CY0-001</p>
+            <p class="cert-issuer">CompTIA</p>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
+            <p class="cert-name">Cisco CCENT</p>
+            <p class="cert-issuer">Cisco</p>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <div>
+            <p class="cert-name">AAS, Information Systems</p>
+            <p class="cert-issuer">Robert Morris University</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-copy">© 2026 Nigel Dumont · Chicago, IL</p>
+  <div class="footer-links">
+    <a href="https://github.com/dumont94" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/nigel-dumont" target="_blank">LinkedIn</a>
+    <a href="mailto:dumontnigel@gmail.com">Email</a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button id="lb-close" onclick="closeLightbox()">✕</button>
+  <img id="lb-img" src="" alt="" onclick="event.stopPropagation()" />
+</div>
+
+<script>
+  // ── SLIDESHOW ──
+  const slideshows = {};
+
+  function initSlideshow(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const slides = el.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('dots-' + id);
+    const counter = document.getElementById('counter-' + id);
+    let current = 0;
+
+    slideshows[id] = { slides, current, total: slides.length };
+
+    if (dotsContainer) {
+      dotsContainer.innerHTML = '';
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goTo(id, i);
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    updateControls(id);
+  }
+
+  function goTo(id, index) {
+    const ss = slideshows[id];
+    ss.slides[ss.current].classList.remove('active');
+    ss.current = Math.max(0, Math.min(index, ss.total - 1));
+    ss.slides[ss.current].classList.add('active');
+    updateControls(id);
+  }
+
+  function nextSlide(id) {
+    const ss = slideshows[id];
+    if (ss.current < ss.total - 1) goTo(id, ss.current + 1);
+  }
+
+  function prevSlide(id) {
+    const ss = slideshows[id];
+    if (ss.current > 0) goTo(id, ss.current - 1);
+  }
+
+  function changeSlide(id, dir) {
+    if (dir < 0) prevSlide(id); else nextSlide(id);
+  }
+
+  function updateControls(id) {
+    const ss = slideshows[id];
+    const el = document.getElementById(id);
+    const dots = document.querySelectorAll('#dots-' + id + ' .dot');
+    const counter = document.getElementById('counter-' + id);
+    const btns = el.querySelectorAll('.slide-btn');
+
+    dots.forEach((d, i) => d.classList.toggle('active', i === ss.current));
+    counter.textContent = (ss.current + 1) + ' / ' + ss.total;
+    btns[0].disabled = ss.current === 0;
+    btns[1].disabled = ss.current === ss.total - 1;
+  }
+
+  ['ss-net','ss-ep','ss-iam','ss-voip','ss-auto'].forEach(initSlideshow);
+
+  // keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('lightbox').classList.contains('open')) {
+      if (e.key === 'Escape') closeLightbox();
+      return;
+    }
+  });
+
+  // ── LIGHTBOX ──
+  function openLightbox(src) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // ── THEME TOGGLE ──
+  const themeBtn = document.getElementById('theme-toggle');
+  const stored = localStorage.getItem('theme');
+  if (stored === 'dark') { document.body.classList.add('dark'); themeBtn.textContent = '☾ dark'; }
+
+  themeBtn.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark');
+    themeBtn.textContent = isDark ? '☾ dark' : '☀ light';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+
+  // ── HERO PARALLAX ──
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const heroBgs = document.querySelectorAll('.hero-bg');
+    let parallaxTick = false;
+    window.addEventListener('scroll', () => {
+      if (parallaxTick) return;
+      parallaxTick = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (y < window.innerHeight) {
+          heroBgs.forEach(bg => bg.style.transform = `translateY(${y * 0.22}px)`);
+        }
+        parallaxTick = false;
+      });
+    }, { passive: true });
+  }
+
+  // ── SCROLL REVEAL ──
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('section:not(.hero)').forEach(s => {
+      s.classList.add('reveal');
+      revealObserver.observe(s);
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -208,8 +208,8 @@
     will-change: transform;
   }
 
-  .hero-bg-day { background-image: url('hero-day.jpg'); opacity: 1; }
-  .hero-bg-night { background-image: url('hero-night.webp'); opacity: 0; }
+  .hero-bg-day { background-image: url('chicago-day.jpg'); opacity: 1; }
+  .hero-bg-night { background-image: url('chicago-night.jpg'); opacity: 0; }
   body.dark .hero-bg-day { opacity: 0; }
   body.dark .hero-bg-night { opacity: 1; }
 
@@ -238,6 +238,38 @@
 
   body.dark .hero-veil { opacity: 0; }
   body.dark .hero-veil-night { opacity: 1; }
+
+  .tech-band {
+    position: relative;
+    height: 300px;
+    background-image: url('tech-band.jpg');
+    background-size: cover;
+    background-position: center 62%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .tech-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(6,8,12,0.52);
+  }
+
+  .tech-band p {
+    position: relative;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: #ECEAE7;
+    text-align: center;
+    padding: 0 2rem;
+    max-width: 720px;
+    line-height: 1.8;
+  }
 
   .hero-eyebrow {
     font-family: var(--mono);
@@ -1235,6 +1267,10 @@
   </div>
 </section>
 
+<div class="tech-band" role="img" aria-label="Server racks in a dimly lit data center">
+  <p>// Racked, cabled, patched, and locked down — the hands-on infrastructure behind every line of this résumé.</p>
+</div>
+
 <section id="projects">
   <p class="section-label">// Side projects</p>
   <div class="projects-grid">
@@ -1429,7 +1465,7 @@
 </section>
 
 <footer>
-  <p class="footer-copy">© 2026 Nigel Dumont · Chicago, IL</p>
+  <p class="footer-copy">© 2026 Nigel Dumont · Chicago, IL · Photos: Chris Rycroft, Roman Boed (CC BY 2.0), The National Archives UK (CC BY 3.0)</p>
   <div class="footer-links">
     <a href="https://github.com/dumont94" target="_blank">GitHub</a>
     <a href="https://linkedin.com/in/nigel-dumont" target="_blank">LinkedIn</a>

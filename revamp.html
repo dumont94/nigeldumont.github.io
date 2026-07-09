@@ -37,10 +37,10 @@
     --muted: #6B6864;
     --accent: #4A4845;
     --accent2: #767370;
-    --blue: #1E40AF;
-    --blue-deep: #1E3A8A;
-    --blue-dim: rgba(30,64,175,0.08);
-    --blue-border: rgba(30,64,175,0.45);
+    --blue: #4A4845;
+    --blue-deep: #2C2C2A;
+    --blue-dim: rgba(74,72,69,0.08);
+    --blue-border: rgba(74,72,69,0.45);
     --mono: 'Space Mono', monospace;
     --sans: 'Space Grotesk', sans-serif;
     --nav-bg: rgba(245,244,242,0.88);
@@ -56,10 +56,10 @@
     --muted: #C8C5C2;
     --accent: #FFFFFF;
     --accent2: #C8C5C2;
-    --blue: #4169E1;
-    --blue-deep: #2F4FC7;
-    --blue-dim: rgba(65,105,225,0.12);
-    --blue-border: rgba(65,105,225,0.55);
+    --blue: #C8C5C2;
+    --blue-deep: #E2E0DC;
+    --blue-dim: rgba(200,197,194,0.12);
+    --blue-border: rgba(200,197,194,0.55);
     --nav-bg: rgba(10,10,10,0.85);
   }
 
@@ -398,6 +398,7 @@
 
   .btn-primary { background: var(--blue); color: #FFFFFF; font-weight: 700; }
   .btn-primary:hover { background: var(--blue-deep); }
+  body.dark .btn-primary { color: #0A0A0A; }
   .btn-ghost { background: transparent; color: var(--muted); border: 0.5px solid var(--border-hi); }
   .btn-ghost:hover { color: var(--text); border-color: var(--accent); }
 
@@ -998,8 +999,6 @@
         <li><a href="https://dumont94.github.io/design-portfolio/" target="_blank">design</a></li>
         <li><a href="#contact">contact</a></li>
       </ul>
-      <a class="nav-tool-link" href="https://dumont94.github.io/soc-builder-tool/" target="_blank">soc posture tool <span class="nav-new-badge">new</span></a>
-      <a class="nav-tool-link" href="https://dumont94.github.io/network-builder-tool/" target="_blank">network builder tool</a>
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">☀ light</button>
     </div>
   </div>

@@ -216,24 +216,41 @@
   .hero-veil {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg,
-      rgba(245,244,242,0.88) 0%,
-      rgba(245,244,242,0.72) 40%,
-      rgba(245,244,242,0.55) 70%,
-      #F5F4F2 98%);
+    background:
+      linear-gradient(180deg, rgba(245,244,242,0) 78%, #F5F4F2 99%),
+      linear-gradient(90deg,
+        rgba(245,244,242,0.94) 0%,
+        rgba(245,244,242,0.80) 42%,
+        rgba(245,244,242,0.38) 72%,
+        rgba(245,244,242,0.10) 100%);
     transition: opacity 0.9s ease;
   }
 
   .hero-veil-night {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg,
-      rgba(10,10,10,0.78) 0%,
-      rgba(10,10,10,0.60) 40%,
-      rgba(10,10,10,0.48) 70%,
-      #0A0A0A 98%);
+    background:
+      linear-gradient(180deg, rgba(10,10,10,0) 78%, #0A0A0A 99%),
+      linear-gradient(90deg,
+        rgba(10,10,10,0.90) 0%,
+        rgba(10,10,10,0.72) 42%,
+        rgba(10,10,10,0.32) 72%,
+        rgba(10,10,10,0.08) 100%);
     opacity: 0;
     transition: opacity 0.9s ease;
+  }
+
+  @media (max-width: 760px) {
+    .hero-veil {
+      background:
+        linear-gradient(180deg, rgba(245,244,242,0) 78%, #F5F4F2 99%),
+        linear-gradient(180deg, rgba(245,244,242,0.90) 0%, rgba(245,244,242,0.62) 100%);
+    }
+    .hero-veil-night {
+      background:
+        linear-gradient(180deg, rgba(10,10,10,0) 78%, #0A0A0A 99%),
+        linear-gradient(180deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.55) 100%);
+    }
   }
 
   body.dark .hero-veil { opacity: 0; }
@@ -256,19 +273,27 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(6,8,12,0.52);
+    background: rgba(6,8,12,0.62);
   }
 
   .tech-band p {
     position: relative;
-    font-family: var(--mono);
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    color: #ECEAE7;
+    font-family: var(--sans);
+    font-size: 1.25rem;
+    color: #FFFFFF;
     text-align: center;
     padding: 0 2rem;
-    max-width: 720px;
-    line-height: 1.8;
+    max-width: 640px;
+    line-height: 1.7;
+  }
+
+  .tech-band-attr {
+    display: block;
+    margin-top: 0.75rem;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: #C8C5C2;
   }
 
   .hero-eyebrow {
@@ -1268,7 +1293,7 @@
 </section>
 
 <div class="tech-band" role="img" aria-label="Server racks in a dimly lit data center">
-  <p>// Racked, cabled, patched, and locked down — the hands-on infrastructure behind every line of this résumé.</p>
+  <p>"Design is not just what it looks like and feels like. Design is how it works."<span class="tech-band-attr">— Steve Jobs</span></p>
 </div>
 
 <section id="projects">

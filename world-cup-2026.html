@@ -239,6 +239,13 @@
   footer a { color: #fff; }
   footer .sig { margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-family: var(--f-mono); font-size: 11.5px; color: rgba(255,255,255,.6); }
 
+  /* records */
+  .recs { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; }
+  .rec { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 18px 20px; box-shadow: var(--shadow-sm); }
+  .rec .kick { font-family: var(--f-mono); font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); display: block; margin-bottom: 6px; }
+  .rec h5 { font-family: var(--f-head, inherit); font-size: 16px; font-weight: 800; color: var(--ink); margin: 0 0 6px; }
+  .rec p { font-size: 13px; color: var(--muted); line-height: 1.55; margin: 0; }
+
   /* reveal */
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.in { opacity: 1; transform: none; }
@@ -255,7 +262,8 @@
       <a href="#leaders">All-time</a>
       <a href="#boot">Golden Boot</a>
       <a href="#bracket">Bracket</a>
-      <a href="#title">Title race</a>
+      <a href="#title">The final</a>
+      <a href="#records">Records</a>
       <a href="#groups">Groups</a>
     </div>
   </div>
@@ -266,10 +274,10 @@
     <div>
       <span class="eyebrow">All-time · Men's World Cup</span>
       <h1>The all-time list has a <span class="accent">new name.</span></h1>
-      <p class="sub">For the first time in over a decade, the record for most World Cup goals belongs to someone other than Miroslav Klose — and two of the men chasing him are still on the pitch in 2026.</p>
+      <p class="sub">The record for most World Cup goals finally belongs to someone other than Miroslav Klose — and the two men who rewrote it, Messi (21) and Mbappé (20), are still playing this weekend.</p>
       <div class="stamp">
         <span class="live"><span class="dot"></span>Live snapshot</span>
-        <span>Captured <b>Jun 28, 2026</b> · end of group stage</span>
+        <span>Captured <b>Jul 15, 2026</b> · after the semi-finals</span>
       </div>
     </div>
     <div class="feat" aria-label="Record holder">
@@ -277,10 +285,10 @@
         <span class="badge rec">★ All-time record</span>
         <span class="badge lv"><span class="dot"></span>Live</span>
       </div>
-      <div class="num" data-count="19">19<small>goals</small></div>
+      <div class="num" data-count="21">21<small>goals</small></div>
       <div class="who">Lionel Messi</div>
-      <div class="meta">Argentina · 6 WC tournaments · 29 matches</div>
-      <div class="ctx">Passed Klose (16) during the group stage — a hat-trick vs. Algeria, a brace vs. Austria, one more vs. Jordan. <b>Still active:</b> Argentina face Cape Verde in the Round of 32 on Jul 3, so this number can still climb.</div>
+      <div class="meta">Argentina · 6 WC tournaments · 33 matches</div>
+      <div class="ctx">Eight goals in 2026 — five clear of Klose's old mark, one ahead of Mbappé. His two assists sank England in the semi. <b>Still active:</b> Argentina meet Spain in the final at MetLife on Jul 19, so this number can still climb.</div>
     </div>
   </div>
 </header>
@@ -290,9 +298,9 @@
   <div class="wrap">
     <span class="eyebrow">The ranking</span>
     <h2 class="sec">All-time goalscoring leaders <span class="live"><span class="dot"></span>Live</span></h2>
-    <p class="sec-lede">Every player with 11+ career World Cup goals, counting the 2026 tournament through the group stage. Three of them are active and climbing right now — flagged below.</p>
+    <p class="sec-lede">Every player with 11+ career World Cup goals, counting the 2026 tournament through the semi-finals. Messi plays the final Sunday; Mbappé and Kane get one more match apiece in Saturday's bronze final.</p>
     <div class="board reveal" id="lb"></div>
-    <p class="gb-foot">Active totals (Messi, Mbappé, Kane) move with every match they play. Retired players' totals are fixed. Several players sit just outside this list on 10 goals — Lineker, Batistuta, T. Müller, Cubillas.</p>
+    <p class="gb-foot">Messi (final) and Mbappé &amp; Kane (third-place match) can still add to their totals. Retired players' totals are fixed. Kane's 14 are now the most by any England player at World Cups — clear of Lineker's 10.</p>
   </div>
 </section>
 
@@ -301,9 +309,9 @@
   <div class="wrap">
     <span class="eyebrow">2026 · Golden Boot race</span>
     <h2 class="sec">Who's winning the Boot <span class="live"><span class="dot"></span>Live</span></h2>
-    <p class="sec-lede">Goals scored in this tournament only. Messi leads outright; four players are knotted behind him, separated by the official tiebreaker — assists first, then fewest minutes played.</p>
+    <p class="sec-lede">Goals scored in this tournament only. Messi and Mbappé sit level on eight — Messi holds the Boot on the assist tiebreaker after setting up both semi-final goals against England. Mbappé's total is effectively frozen; Messi has the final to settle it.</p>
     <div class="board reveal" id="gb"></div>
-    <p class="gb-foot">Tiebreak order: most goals → most assists → fewest minutes. Behind the top group, a crowd sits on 2 — including Cristiano Ronaldo (brace vs. Uzbekistan), Kai Havertz, Cody Gakpo and USA's Folarin Balogun.</p>
+    <p class="gb-foot">Tiebreak order: most goals → most assists → fewest minutes. Haaland's seven all came before Norway's quarter-final exit — he finished his debut World Cup on the bench, one shy of the leaders. Kane and Bellingham can still add in the bronze final.</p>
   </div>
 </section>
 
@@ -311,41 +319,52 @@
 <section id="bracket">
   <div class="wrap">
     <span class="eyebrow">2026 · Knockout stage</span>
-    <h2 class="sec">Round of 32 <span class="live"><span class="dot"></span>In progress</span></h2>
-    <p class="sec-lede">The first 48-team World Cup adds a Round of 32: the 12 group winners and 12 runners-up join the 8 best third-placed teams. One match is done — Canada knocked out South Africa. The rest run through Jul 3.</p>
+    <h2 class="sec">Road to the final <span class="live"><span class="dot"></span>Through the semi-finals</span></h2>
+    <p class="sec-lede">The Round of 32 is in the books — Paraguay stunned Germany on penalties, Morocco ousted the Netherlands the same way, and Argentina needed extra time to shake Cape Verde 3–2. Since then the bracket has burned down to two: Spain and Argentina meet at MetLife on Sunday, with France and England playing for bronze the day before.</p>
     <div class="quarters reveal" id="r32"></div>
-
-    <div class="path-title">Path to the final — everything past the Round of 32 is still to be decided</div>
-    <div class="path reveal">
-      <div class="pcol"><div class="lab">Round of 16</div><div class="cnt">16<small>teams</small></div><div class="slot">8 matches</div><div class="slot">Jul 4–7</div></div>
-      <div class="pcol"><div class="lab">Quarter-finals</div><div class="cnt">8<small>teams</small></div><div class="slot">4 matches</div><div class="slot">Jul 9–11</div></div>
-      <div class="pcol"><div class="lab">Semi-finals</div><div class="cnt">4<small>teams</small></div><div class="slot">2 matches</div><div class="slot">Jul 14–15</div></div>
-      <div class="pcol fin"><div class="lab">Final</div><div class="cnt">2<small>teams</small></div><div class="slot">Jul 19 · MetLife, NJ</div><div class="slot">Champion TBD</div></div>
-    </div>
   </div>
 </section>
 
 <!-- TITLE PREDICTION -->
 <section id="title">
   <div class="wrap">
-    <span class="eyebrow">2026 · Most likely to win</span>
-    <h2 class="sec">Title race <span class="live"><span class="dot"></span>Moves every match</span></h2>
-    <p class="sec-lede">Two readings side by side: the betting market (sportsbook odds, converted to an implied chance) and the Opta supercomputer's model. They agree on the top four. France overtook pre-tournament favourite Spain after a perfect group stage; defending champ Argentina sits second on a kind bracket draw.</p>
+    <span class="eyebrow">2026 · The final</span>
+    <h2 class="sec">Two left standing <span class="live"><span class="dot"></span>Final · Sunday Jul 19</span></h2>
+    <p class="sec-lede">Spain against Argentina at MetLife on Sunday. Spain — group winners who then put out Portugal, Belgium and France without trailing — open as favourites. Argentina, the defending champions, went through extra time twice and needed a stoppage-time comeback to break England. The stakes: Spain's first title since 2010, or the first back-to-back champion since Brazil in 1962.</p>
     <div class="tablewrap reveal">
       <table class="pred">
         <thead>
           <tr>
             <th style="width:46px">#</th>
             <th>Team</th>
-            <th class="num">Market odds</th>
-            <th class="num">Market %</th>
-            <th class="num hide-sm">Model %</th>
+            <th class="num">Moneyline</th>
+            <th class="num">Win chance</th>
+            <th class="num hide-sm">Path here</th>
           </tr>
         </thead>
         <tbody id="pred"></tbody>
       </table>
     </div>
-    <p class="pred-foot"><b>Read it carefully.</b> "Market %" is implied from sportsbook odds and includes the book's margin, so the column sums to more than 100% — treat it as relative, not literal. "Model %" is the Opta/SI supercomputer's post-group-stage simulation (true probabilities, published for select sides). Both are estimates and both shift after every result. Market odds: FOX Sports oddsboard, Jun 28. Model: SI/Opta, Jun 28.</p>
+    <p class="pred-foot"><b>Read it carefully.</b> "Win chance" is the Kalshi prediction market's price to lift the trophy as of Jul 15 — the two figures sum slightly past 100% because markets carry a margin. The moneyline is DraftKings' opening line for Sunday (Spain -156; Argentina's counter-price not captured in this snapshot). Both move with every team-news cycle before kickoff.</p>
+  </div>
+</section>
+
+<!-- RECORDS -->
+<section id="records">
+  <div class="wrap">
+    <span class="eyebrow">2026 · The record book</span>
+    <h2 class="sec">Records watch <span class="live"><span class="dot"></span>Updated Jul 15</span></h2>
+    <p class="sec-lede">What this tournament has already rewritten — and what's still on the line this weekend.</p>
+    <div class="recs reveal">
+      <div class="rec"><span class="kick">All-time goals</span><h5>Messi — 21</h5><p>Passed Klose's 16 during the group stage and hasn't stopped. Leads Mbappé by one with the final still to play.</p></div>
+      <div class="rec"><span class="kick">All-time appearances</span><h5>Messi — 33 matches</h5><p>Extends his own record across six tournaments. Cristiano Ronaldo is next among active players on 25.</p></div>
+      <div class="rec"><span class="kick">Golden Boot tiebreak</span><h5>Messi 8 · Mbappé 8</h5><p>Level on goals; Messi leads 4–3 on assists after setting up both semi-final goals against England.</p></div>
+      <div class="rec"><span class="kick">England record</span><h5>Kane — 14 WC goals</h5><p>The most by any England player at World Cups, well clear of Gary Lineker's 10. One more match Saturday.</p></div>
+      <div class="rec"><span class="kick">Debut tournament</span><h5>Haaland — 7</h5><p>Seven goals in Norway's first World Cup since 1998, including the brace that knocked out Brazil in the Round of 16.</p></div>
+      <div class="rec"><span class="kick">Maradona company</span><h5>Álvarez — 4 in knockouts</h5><p>Four of his five career World Cup goals have come in knockout rounds — tied with Diego Maradona for the second-most by an Argentine.</p></div>
+      <div class="rec"><span class="kick">The over-40 club</span><h5>Ronaldo · Modrić · Neuer · Ochoa</h5><p>Four players featured at a World Cup past their 40th birthday. Modrić also logged his 200th Croatia cap along the way.</p></div>
+      <div class="rec"><span class="kick">Sunday settles it</span><h5>1962 or 2010</h5><p>Argentina chase the first back-to-back title since Brazil in 1962. Spain chase their second star and a first crown since 2010.</p></div>
+    </div>
   </div>
 </section>
 
@@ -369,12 +388,12 @@
     <div class="fgrid">
       <div>
         <h6>About this page</h6>
-        <p>A single, self-contained HTML file tracking the 2026 FIFA World Cup: the all-time scoring record, the Golden Boot race, the Round of 32, the title odds, and the final group tables.</p>
-        <div class="disc"><b>It's a snapshot, not a live feed.</b> A standalone HTML file can't poll a data feed (no backend, and browsers block cross-origin calls). Every figure marked <span style="color:#ff8a93">Live</span> was current as of <b>Jun 28, 2026</b> and will drift as matches are played. Group tables are final. A true live version would need a small backend proxy.</p>
+        <p>A single, self-contained HTML file tracking the 2026 FIFA World Cup: the all-time scoring record, the Golden Boot race, the knockout bracket, the final odds, the record book, and the final group tables.</p>
+        <div class="disc"><b>It's a snapshot, not a live feed.</b> A standalone HTML file can't poll a data feed (no backend, and browsers block cross-origin calls). Every figure marked <span style="color:#ff8a93">Live</span> was current as of <b>Jul 15, 2026</b> — after the semi-finals — and the final and bronze final will change several of them. Group tables and completed rounds are final. A true live version would need a small backend proxy.</div>
       </div>
       <div>
         <h6>Sources</h6>
-        <p>FIFA · ESPN · Wikipedia (all-time list)<br>Official Round of 32 bracket (Sky / CBS / Yahoo)<br>FOX Sports oddsboard<br>SI / Opta supercomputer model</p>
+        <p>FIFA match centre · ESPN · Yahoo Sports<br>Goal.com Golden Boot tracker<br>DraftKings opening line · Kalshi<br>Wikipedia (all-time list)</p>
       </div>
       <div>
         <h6>Verify before you lean on it</h6>
@@ -383,7 +402,7 @@
     </div>
     <div class="sig">
       <span>Built by Nigel Dumont — portfolio demo</span>
-      <span>Snapshot · 2026-06-28</span>
+      <span>Snapshot · 2026-07-15</span>
     </div>
   </div>
 </footer>
@@ -394,76 +413,65 @@
 
   /* ---------------- DATA (snapshot: 2026-06-28, end of group stage) ---------------- */
 
-  // All-time WC goals, counting 2026 group stage. status: active players still in the tournament.
+  // All-time WC goals, counting 2026 through the semi-finals. status: active players still in the tournament.
   var allTime = [
-    {r:1, nm:"Lionel Messi",    ct:"Argentina", g:19, active:true,  add:"+6 in 2026"},
-    {r:2, nm:"Kylian Mbappé",   ct:"France",    g:16, active:true,  add:"+4 in 2026"},
-    {r:2, nm:"Miroslav Klose",  ct:"Germany",   g:16, active:false, add:"2002–2014"},
+    {r:1, nm:"Lionel Messi",    ct:"Argentina", g:21, active:true,  add:"+8 in 2026 · final Jul 19"},
+    {r:2, nm:"Kylian Mbappé",   ct:"France",    g:20, active:true,  add:"+8 in 2026 · bronze Jul 18"},
+    {r:3, nm:"Miroslav Klose",  ct:"Germany",   g:16, active:false, add:"2002–2014"},
     {r:4, nm:"Ronaldo",         ct:"Brazil",    g:15, active:false, add:"1998–2006"},
     {r:5, nm:"Gerd Müller",     ct:"W. Germany",g:14, active:false, add:"1970–1974"},
-    {r:6, nm:"Just Fontaine",   ct:"France",    g:13, active:false, add:"all in 1958"},
-    {r:7, nm:"Pelé",            ct:"Brazil",    g:12, active:false, add:"1958–1970"},
-    {r:8, nm:"Sándor Kocsis",   ct:"Hungary",   g:11, active:false, add:"1954"},
-    {r:8, nm:"Jürgen Klinsmann",ct:"Germany",   g:11, active:false, add:"1990–1998"},
-    {r:8, nm:"Harry Kane",      ct:"England",   g:11, active:true,  add:"+3 in 2026"}
+    {r:5, nm:"Harry Kane",      ct:"England",   g:14, active:true,  add:"+6 in 2026 · bronze Jul 18"},
+    {r:7, nm:"Just Fontaine",   ct:"France",    g:13, active:false, add:"all in 1958"},
+    {r:8, nm:"Pelé",            ct:"Brazil",    g:12, active:false, add:"1958–1970"},
+    {r:9, nm:"Sándor Kocsis",   ct:"Hungary",   g:11, active:false, add:"1954"},
+    {r:9, nm:"Jürgen Klinsmann",ct:"Germany",   g:11, active:false, add:"1990–1998"}
   ];
 
   // Golden Boot — 2026 tournament goals only. Ordered by goals, then assists, then fewer minutes.
+  // a:null = assist count unconfirmed in this snapshot.
   var golden = [
-    {r:1, nm:"Lionel Messi",     ct:"Argentina", g:6, a:0, active:true},
-    {r:2, nm:"Kylian Mbappé",    ct:"France",    g:4, a:2, active:true},
-    {r:2, nm:"Ousmane Dembélé",  ct:"France",    g:4, a:1, active:true},
-    {r:2, nm:"Vinícius Júnior",  ct:"Brazil",    g:4, a:1, active:true},
-    {r:2, nm:"Erling Haaland",   ct:"Norway",    g:4, a:0, active:true},
-    {r:6, nm:"Deniz Undav",      ct:"Germany",   g:3, a:2, active:true},
-    {r:6, nm:"Harry Kane",       ct:"England",   g:3, a:0, active:true},
-    {r:6, nm:"Jonathan David",   ct:"Canada",    g:3, a:0, active:true},
-    {r:6, nm:"Matheus Cunha",    ct:"Brazil",    g:3, a:0, active:true},
-    {r:6, nm:"Brian Brobbey",    ct:"Netherlands",g:3,a:0, active:true}
+    {r:1, nm:"Lionel Messi",     ct:"Argentina", g:8, a:4,    active:true},
+    {r:2, nm:"Kylian Mbappé",    ct:"France",    g:8, a:3,    active:true},
+    {r:3, nm:"Erling Haaland",   ct:"Norway",    g:7, a:null, active:false},
+    {r:4, nm:"Harry Kane",       ct:"England",   g:6, a:1,    active:true},
+    {r:4, nm:"Jude Bellingham",  ct:"England",   g:6, a:1,    active:true},
+    {r:6, nm:"Mikel Oyarzabal",  ct:"Spain",     g:5, a:null, active:true},
+    {r:6, nm:"Ousmane Dembélé",  ct:"France",    g:5, a:null, active:true}
   ];
 
-  // Round of 32 — organised into the 4 quarters of the bracket.
+  // Knockout stage — one column per round, Round of 16 onward.
   var r32 = [
-    { q:"Quarter 1", feeds:"Winners → R16 (Houston / Philadelphia)", m:[
-      {a:["CAN","Canada"], b:["RSA","South Africa"], sa:1, sb:0, done:true, info:"Jun 28 · SoFi, LA", res:"Canada advance"},
-      {a:["NED","Netherlands"], b:["MAR","Morocco"], info:"Jun 29 · Monterrey"},
-      {a:["GER","Germany"], b:["PAR","Paraguay"], info:"Jun 29 · Foxborough"},
-      {a:["FRA","France"], b:["SWE","Sweden"], info:"Jun 30 · New Jersey"}
+    { q:"Round of 16", feeds:"Jul 4–7 · winners into the quarters", m:[
+      {a:["CAN","Canada"], b:["MAR","Morocco"], sa:0, sb:3, done:true, info:"Jul 4", res:"Morocco advance"},
+      {a:["PAR","Paraguay"], b:["FRA","France"], sa:0, sb:1, done:true, info:"Jul 4", res:"France advance"},
+      {a:["BRA","Brazil"], b:["NOR","Norway"], sa:1, sb:2, done:true, info:"Jul 5", res:"Haaland brace sinks Brazil"},
+      {a:["MEX","Mexico"], b:["ENG","England"], sa:2, sb:3, done:true, info:"Jul 5", res:"England advance"},
+      {a:["POR","Portugal"], b:["ESP","Spain"], sa:0, sb:1, done:true, info:"Jul 6", res:"Spain advance"},
+      {a:["USA","USA"], b:["BEL","Belgium"], sa:1, sb:4, done:true, info:"Jul 6", res:"Hosts' run ends"},
+      {a:["EGY","Egypt"], b:["ARG","Argentina"], sa:2, sb:3, done:true, info:"Jul 7", res:"Argentina advance"},
+      {a:["COL","Colombia"], b:["SUI","Switzerland"], sa:0, sb:0, done:true, info:"Jul 7", res:"Switzerland win 4–3 on pens"}
     ]},
-    { q:"Quarter 2", feeds:"Winners → R16 (Arlington / Seattle)", m:[
-      {a:["ESP","Spain"], b:["AUT","Austria"], info:"Jul 2 · Los Angeles"},
-      {a:["POR","Portugal"], b:["CRO","Croatia"], info:"Jul 2 · Toronto"},
-      {a:["BEL","Belgium"], b:["SEN","Senegal"], info:"Jul 1 · Seattle"},
-      {a:["USA","USA"], b:["BIH","Bosnia"], info:"Jul 1 · Santa Clara"}
+    { q:"Quarter-finals", feeds:"Jul 9–11 · four survivors", m:[
+      {a:["FRA","France"], b:["MAR","Morocco"], sa:2, sb:0, done:true, info:"Jul 9", res:"France advance"},
+      {a:["ESP","Spain"], b:["BEL","Belgium"], sa:2, sb:1, done:true, info:"Jul 10", res:"Spain advance"},
+      {a:["ENG","England"], b:["NOR","Norway"], sa:2, sb:1, done:true, info:"Jul 11 · a.e.t.", res:"Bellingham brace"},
+      {a:["ARG","Argentina"], b:["SUI","Switzerland"], sa:3, sb:1, done:true, info:"Jul 11 · a.e.t.", res:"Argentina advance"}
     ]},
-    { q:"Quarter 3", feeds:"Winners → R16 (New Jersey / Mexico City)", m:[
-      {a:["BRA","Brazil"], b:["JPN","Japan"], info:"Jun 29 · Houston"},
-      {a:["CIV","Ivory Coast"], b:["NOR","Norway"], info:"Jun 30 · Arlington"},
-      {a:["MEX","Mexico"], b:["ECU","Ecuador"], info:"Jun 30 · Mexico City"},
-      {a:["ENG","England"], b:["COD","Congo DR"], info:"Jul 1 · Atlanta"}
+    { q:"Semi-finals", feeds:"Jul 14–15 · the final is set", m:[
+      {a:["ESP","Spain"], b:["FRA","France"], sa:2, sb:0, done:true, info:"Jul 14", res:"Oyarzabal pen + Porro"},
+      {a:["ARG","Argentina"], b:["ENG","England"], sa:2, sb:1, done:true, info:"Jul 15", res:"Two Messi assists, 85' & 90+2'"}
     ]},
-    { q:"Quarter 4", feeds:"Winners → R16 (Atlanta / Kansas City)", m:[
-      {a:["AUS","Australia"], b:["EGY","Egypt"], info:"Jul 3 · Arlington"},
-      {a:["ARG","Argentina"], b:["CPV","Cape Verde"], info:"Jul 3 · Miami"},
-      {a:["SUI","Switzerland"], b:["DZA","Algeria"], info:"Jul 2 · Vancouver"},
-      {a:["COL","Colombia"], b:["GHA","Ghana"], info:"Jul 3 · Kansas City"}
+    { q:"The last weekend", feeds:"Bronze Saturday · final Sunday", m:[
+      {a:["FRA","France"], b:["ENG","England"], info:"Third place · Jul 18"},
+      {a:["ESP","Spain"], b:["ARG","Argentina"], info:"Final · Jul 19 · MetLife, NJ"}
     ]}
   ];
 
-  // Title odds. odds = American; mkt = implied % from those odds; model = Opta/SI % (null where unpublished).
+  // Title odds — two teams left. odds = American moneyline to lift the trophy (— where unconfirmed);
+  // mkt = Kalshi prediction-market % to win it all; path = knockout results so far.
   var pred = [
-    {r:1,  nm:"France",      cd:"FRA", odds:"+340", mkt:22.7, model:18.7},
-    {r:2,  nm:"Argentina",   cd:"ARG", odds:"+410", mkt:19.6, model:16.3},
-    {r:3,  nm:"Spain",       cd:"ESP", odds:"+650", mkt:13.3, model:13.5},
-    {r:4,  nm:"England",     cd:"ENG", odds:"+650", mkt:13.3, model:9.7},
-    {r:5,  nm:"Brazil",      cd:"BRA", odds:"+1300",mkt:7.1,  model:6.5},
-    {r:6,  nm:"Portugal",    cd:"POR", odds:"+1500",mkt:6.3,  model:null},
-    {r:7,  nm:"Germany",     cd:"GER", odds:"+1500",mkt:6.3,  model:null},
-    {r:8,  nm:"Netherlands", cd:"NED", odds:"+1800",mkt:5.3,  model:5.1},
-    {r:9,  nm:"Colombia",    cd:"COL", odds:"+3300",mkt:2.9,  model:null},
-    {r:10, nm:"Norway",      cd:"NOR", odds:"+3500",mkt:2.8,  model:null},
-    {r:11, nm:"USA",         cd:"USA", odds:"+3500",mkt:2.8,  model:2.5},
-    {r:12, nm:"Morocco",     cd:"MAR", odds:"+4000",mkt:2.4,  model:null}
+    {r:1, nm:"Spain",     cd:"ESP", odds:"-156", mkt:58.3, path:"POR 1–0 · BEL 2–1 · FRA 2–0"},
+    {r:2, nm:"Argentina", cd:"ARG", odds:"—",    mkt:42.5, path:"EGY 3–2 · SUI 3–1 aet · ENG 2–1"}
   ];
 
   // Final group tables. s = 'win' (1st/2nd auto-Q shown blue), 'q3' (best-third Q), 'out'.
@@ -512,7 +520,7 @@
         + '<div class="gb-rank">'+p.r+'</div>'
         + '<div class="gb-name"><span class="nm">'+esc(p.nm)+'</span> <span class="ct">'+esc(p.ct)+'</span></div>'
         + '<div class="gb-bar"><i style="width:'+pct+'%"></i></div>'
-        + '<div class="gb-stat">'+p.g+'<small>'+p.a+' ast</small></div>'
+        + '<div class="gb-stat">'+p.g+'<small>'+(p.a===null?'—':p.a+' ast')+'</small></div>'
         + '</div>';
     });
     $("gb").innerHTML = html;
@@ -549,14 +557,13 @@
   (function(){
     var html = "";
     pred.forEach(function(t){
-      var barW = Math.min(100, Math.round(t.mkt/22.7*100));
-      var model = (t.model===null) ? '<span class="pr-na">—</span>' : t.model.toFixed(1)+'%';
+      var barW = Math.min(100, Math.round(t.mkt/58.3*100));
       html += '<tr'+(t.r===1?' class="fav"':'')+'>'
         + '<td class="pr-rank">'+t.r+'</td>'
         + '<td><span class="pr-team"><span class="code">'+esc(t.cd)+'</span>'+esc(t.nm)+'</span></td>'
         + '<td class="num">'+esc(t.odds)+'</td>'
         + '<td class="num"><span class="pr-prob">'+t.mkt.toFixed(1)+'%</span><div class="pr-bar"><i style="width:'+barW+'%"></i></div></td>'
-        + '<td class="num hide-sm pr-model">'+model+'</td>'
+        + '<td class="num hide-sm pr-model">'+esc(t.path)+'</td>'
         + '</tr>';
     });
     $("pred").innerHTML = html;

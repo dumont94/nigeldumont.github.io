@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subnet Calculator — Nigel Dumont</title>
+<meta name="description" content="IPv4 subnet calculator and VLSM planner. CIDR conversion, network/broadcast addresses, host ranges, and subnet design.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F5F4F2;
+    --surface: #ECEAE7;
+    --surface2: #E2E0DC;
+    --border: rgba(0,0,0,0.08);
+    --border-hi: rgba(0,0,0,0.18);
+    --text: #1A1A1A;
+    --muted: #6B6864;
+    --accent: #4A4845;
+    --accent-dim: rgba(74,72,69,0.08);
+    --good: #2E6B4F;
+    --bad: #8C3A38;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+
+  body.dark {
+    --bg: #0A0A0A;
+    --surface: #111111;
+    --surface2: #1A1A1A;
+    --border: rgba(255,255,255,0.08);
+    --border-hi: rgba(255,255,255,0.18);
+    --text: #FFFFFF;
+    --muted: #C8C5C2;
+    --accent: #FFFFFF;
+    --accent-dim: rgba(200,197,194,0.12);
+    --good: #7FC9A4;
+    --bad: #D98D8B;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.5;
+    min-height: 100vh;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+
+  .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 80px; }
+
+  header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+  .back {
+    font-family: var(--mono); font-size: 12px; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.05em;
+  }
+  .back:hover { color: var(--text); }
+  .theme-toggle {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+    background: none; border: 1px solid var(--border-hi); color: var(--muted);
+    padding: 6px 12px; cursor: pointer; border-radius: 4px;
+  }
+  .theme-toggle:hover { color: var(--text); border-color: var(--accent); }
+
+  h1 { font-size: 28px; font-weight: 700; margin: 24px 0 4px; letter-spacing: -0.02em; }
+  .sub { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 32px; letter-spacing: 0.04em; }
+
+  .tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+  .tab {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em;
+    padding: 8px 16px; border: 1px solid var(--border-hi); border-radius: 4px;
+    background: none; color: var(--muted); cursor: pointer;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 24px; margin-bottom: 20px;
+  }
+
+  label { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; }
+  input[type="text"], input[type="number"], select {
+    width: 100%; font-family: var(--mono); font-size: 15px;
+    background: var(--bg); color: var(--text);
+    border: 1px solid var(--border-hi); border-radius: 4px; padding: 10px 12px;
+  }
+  input:focus, select:focus { outline: none; border-color: var(--accent); }
+  input.invalid { border-color: var(--bad); }
+
+  .row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .row > div { flex: 1; min-width: 180px; }
+
+  .btn {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em;
+    background: var(--accent); color: var(--bg); border: 1px solid var(--accent);
+    padding: 10px 20px; border-radius: 4px; cursor: pointer; margin-top: 16px;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn.ghost { background: none; color: var(--muted); border-color: var(--border-hi); }
+  .btn.ghost:hover { color: var(--text); opacity: 1; }
+
+  .err { font-family: var(--mono); font-size: 12px; color: var(--bad); margin-top: 10px; display: none; }
+
+  .results { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 4px; }
+  .result-item { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+  .result-item .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
+  .result-item .v { font-family: var(--mono); font-size: 15px; font-weight: 700; word-break: break-all; }
+  .result-item .v.small { font-size: 12px; font-weight: 400; }
+
+  .binary { font-family: var(--mono); font-size: 12px; margin-top: 20px; overflow-x: auto; }
+  .binary table { border-collapse: collapse; width: 100%; }
+  .binary td { padding: 4px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .binary td:first-child { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .net-bits { color: var(--good); font-weight: 700; }
+  .host-bits { color: var(--muted); }
+
+  table.grid { border-collapse: collapse; width: 100%; font-family: var(--mono); font-size: 12px; }
+  table.grid th { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border-hi); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  table.grid td { padding: 8px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .scroll-x { overflow-x: auto; }
+
+  .vlsm-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; flex-wrap: wrap; }
+  .vlsm-row input[name="sname"] { flex: 2; min-width: 140px; width: auto; }
+  .vlsm-row input[name="shosts"] { flex: 1; min-width: 100px; width: auto; }
+  .vlsm-row .del {
+    background: none; border: 1px solid var(--border-hi); color: var(--muted);
+    font-family: var(--mono); font-size: 13px; border-radius: 4px;
+    width: 34px; height: 38px; cursor: pointer; flex-shrink: 0;
+  }
+  .vlsm-row .del:hover { color: var(--bad); border-color: var(--bad); }
+
+  .note { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 14px; letter-spacing: 0.03em; }
+  .stat-ok { color: var(--good); }
+  .stat-bad { color: var(--bad); }
+
+  footer { margin-top: 60px; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="index.html">← nigeldumont.github.io</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">DARK</button>
+  </header>
+
+  <h1>Subnet Calculator</h1>
+  <p class="sub">// IPv4 CIDR math, host ranges &amp; VLSM planning — all client-side</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-panel="calc" role="tab">CALCULATOR</button>
+    <button class="tab" data-panel="vlsm" role="tab">VLSM PLANNER</button>
+    <button class="tab" data-panel="ref" role="tab">CIDR REFERENCE</button>
+  </div>
+
+  <!-- ============ CALCULATOR ============ -->
+  <div class="panel active" id="panel-calc">
+    <div class="card">
+      <div class="row">
+        <div>
+          <label for="ipInput">IP Address</label>
+          <input type="text" id="ipInput" value="192.168.1.130" spellcheck="false" autocomplete="off">
+        </div>
+        <div>
+          <label for="cidrInput">Prefix / Mask</label>
+          <select id="cidrInput"></select>
+        </div>
+      </div>
+      <p class="err" id="calcErr"></p>
+    </div>
+
+    <div class="card" id="calcResults" style="display:none">
+      <div class="results" id="resultsGrid"></div>
+      <div class="binary" id="binaryView"></div>
+    </div>
+  </div>
+
+  <!-- ============ VLSM ============ -->
+  <div class="panel" id="panel-vlsm">
+    <div class="card">
+      <div class="row">
+        <div>
+          <label for="vlsmBase">Base Network (CIDR)</label>
+          <input type="text" id="vlsmBase" value="10.0.0.0/24" spellcheck="false" autocomplete="off">
+        </div>
+      </div>
+      <div style="margin-top:20px">
+        <label>Subnets (name &amp; required hosts)</label>
+        <div id="vlsmRows"></div>
+        <button class="btn ghost" id="addRow" type="button">+ ADD SUBNET</button>
+        <button class="btn" id="vlsmGo" type="button">PLAN SUBNETS</button>
+      </div>
+      <p class="err" id="vlsmErr"></p>
+    </div>
+
+    <div class="card" id="vlsmResults" style="display:none">
+      <div class="scroll-x">
+        <table class="grid" id="vlsmTable"></table>
+      </div>
+      <p class="note" id="vlsmNote"></p>
+    </div>
+  </div>
+
+  <!-- ============ REFERENCE ============ -->
+  <div class="panel" id="panel-ref">
+    <div class="card">
+      <div class="scroll-x">
+        <table class="grid" id="refTable"></table>
+      </div>
+      <p class="note">Usable hosts = 2^(32−prefix) − 2 (network + broadcast reserved). /31 is point-to-point (RFC 3021), /32 is a single host route.</p>
+    </div>
+  </div>
+
+  <footer>
+    Built by <a href="index.html">Nigel Dumont</a> · runs entirely in your browser · no data leaves the page
+  </footer>
+</div>
+
+<script>
+'use strict';
+
+/* ---------- core IPv4 math (all >>> 0 to stay unsigned) ---------- */
+function parseIp(str) {
+  const m = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/.exec(str.trim());
+  if (!m) return null;
+  let ip = 0;
+  for (let i = 1; i <= 4; i++) {
+    const o = Number(m[i]);
+    if (o > 255) return null;
+    ip = ((ip << 8) | o) >>> 0;
+  }
+  return ip;
+}
+function ipToStr(ip) {
+  return [(ip >>> 24) & 255, (ip >>> 16) & 255, (ip >>> 8) & 255, ip & 255].join('.');
+}
+function maskFromPrefix(p) { return p === 0 ? 0 : (0xFFFFFFFF << (32 - p)) >>> 0; }
+function ipToBin(ip) {
+  return (ip >>> 0).toString(2).padStart(32, '0');
+}
+function binGrouped(bin, prefix) {
+  let out = '';
+  for (let i = 0; i < 32; i++) {
+    const cls = i < prefix ? 'net-bits' : 'host-bits';
+    out += '<span class="' + cls + '">' + bin[i] + '</span>';
+    if (i % 8 === 7 && i < 31) out += '<span class="host-bits">.</span>';
+  }
+  return out;
+}
+function ipClass(ip) {
+  const o = ip >>> 24;
+  if (o < 128) return 'A';
+  if (o < 192) return 'B';
+  if (o < 224) return 'C';
+  if (o < 240) return 'D (multicast)';
+  return 'E (reserved)';
+}
+function ipScope(ip) {
+  const a = ip >>> 24, b = (ip >>> 16) & 255;
+  if (a === 10) return 'Private (RFC 1918)';
+  if (a === 172 && b >= 16 && b <= 31) return 'Private (RFC 1918)';
+  if (a === 192 && b === 168) return 'Private (RFC 1918)';
+  if (a === 127) return 'Loopback';
+  if (a === 169 && b === 254) return 'Link-local (APIPA)';
+  if (a === 100 && b >= 64 && b <= 127) return 'CGNAT (RFC 6598)';
+  if (a >= 224 && a <= 239) return 'Multicast';
+  return 'Public';
+}
+
+function subnetInfo(ip, prefix) {
+  const mask = maskFromPrefix(prefix);
+  const network = (ip & mask) >>> 0;
+  const broadcast = (network | (~mask >>> 0)) >>> 0;
+  const total = Math.pow(2, 32 - prefix);
+  let firstHost, lastHost, usable;
+  if (prefix >= 31) {
+    firstHost = network; lastHost = broadcast;
+    usable = prefix === 31 ? 2 : 1;
+  } else {
+    firstHost = (network + 1) >>> 0;
+    lastHost = (broadcast - 1) >>> 0;
+    usable = total - 2;
+  }
+  return { mask, network, broadcast, firstHost, lastHost, total, usable, prefix };
+}
+
+/* ---------- theme ---------- */
+const toggle = document.getElementById('themeToggle');
+function setTheme(dark) {
+  document.body.classList.toggle('dark', dark);
+  toggle.textContent = dark ? 'LIGHT' : 'DARK';
+  try { localStorage.setItem('nd-theme', dark ? 'dark' : 'light'); } catch (e) {}
+}
+let stored = null;
+try { stored = localStorage.getItem('nd-theme'); } catch (e) {}
+setTheme(stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+toggle.addEventListener('click', () => setTheme(!document.body.classList.contains('dark')));
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+  });
+});
+
+/* ---------- calculator ---------- */
+const ipInput = document.getElementById('ipInput');
+const cidrInput = document.getElementById('cidrInput');
+const calcErr = document.getElementById('calcErr');
+const calcResults = document.getElementById('calcResults');
+
+for (let p = 32; p >= 1; p--) {
+  const opt = document.createElement('option');
+  opt.value = p;
+  opt.textContent = '/' + p + '  —  ' + ipToStr(maskFromPrefix(p));
+  cidrInput.appendChild(opt);
+}
+cidrInput.value = 26;
+
+function renderCalc() {
+  const raw = ipInput.value.trim();
+  // allow pasting "1.2.3.4/24" straight into the IP box
+  const slash = raw.indexOf('/');
+  let ipStr = raw, prefix = Number(cidrInput.value);
+  if (slash !== -1) {
+    const p = Number(raw.slice(slash + 1));
+    if (Number.isInteger(p) && p >= 1 && p <= 32) { prefix = p; cidrInput.value = p; }
+    ipStr = raw.slice(0, slash);
+    ipInput.value = ipStr;
+  }
+  const ip = parseIp(ipStr);
+  if (ip === null) {
+    ipInput.classList.add('invalid');
+    calcErr.textContent = 'Invalid IPv4 address — expected four octets 0–255, e.g. 192.168.1.130';
+    calcErr.style.display = 'block';
+    calcResults.style.display = 'none';
+    return;
+  }
+  ipInput.classList.remove('invalid');
+  calcErr.style.display = 'none';
+
+  const s = subnetInfo(ip, prefix);
+  const items = [
+    ['Network', ipToStr(s.network) + '/' + prefix],
+    ['Broadcast', prefix >= 31 ? '—' : ipToStr(s.broadcast)],
+    ['Subnet Mask', ipToStr(s.mask)],
+    ['Wildcard Mask', ipToStr(~s.mask >>> 0)],
+    ['First Host', ipToStr(s.firstHost)],
+    ['Last Host', ipToStr(s.lastHost)],
+    ['Usable Hosts', s.usable.toLocaleString()],
+    ['Total Addresses', s.total.toLocaleString()],
+    ['Class', ipClass(ip)],
+    ['Scope', ipScope(ip)]
+  ];
+  document.getElementById('resultsGrid').innerHTML = items.map(([k, v]) =>
+    '<div class="result-item"><div class="k">' + k + '</div><div class="v' +
+    (String(v).length > 18 ? ' small' : '') + '">' + v + '</div></div>'
+  ).join('');
+
+  const rows = [
+    ['IP address', ip],
+    ['Subnet mask', s.mask],
+    ['Network', s.network],
+    ['Broadcast', s.broadcast]
+  ];
+  document.getElementById('binaryView').innerHTML =
+    '<table>' + rows.map(([label, val]) =>
+      '<tr><td>' + label + '</td><td>' + binGrouped(ipToBin(val), prefix) + '</td></tr>'
+    ).join('') + '</table>';
+  calcResults.style.display = 'block';
+}
+ipInput.addEventListener('input', renderCalc);
+cidrInput.addEventListener('change', renderCalc);
+renderCalc();
+
+/* ---------- VLSM planner ---------- */
+const vlsmRows = document.getElementById('vlsmRows');
+const vlsmErr = document.getElementById('vlsmErr');
+
+function addVlsmRow(name, hosts) {
+  const row = document.createElement('div');
+  row.className = 'vlsm-row';
+  row.innerHTML =
+    '<input type="text" name="sname" placeholder="Subnet name" value="' + (name || '') + '" spellcheck="false">' +
+    '<input type="number" name="shosts" placeholder="Hosts" min="1" value="' + (hosts || '') + '">' +
+    '<button type="button" class="del" aria-label="Remove subnet">×</button>';
+  row.querySelector('.del').addEventListener('click', () => row.remove());
+  vlsmRows.appendChild(row);
+}
+addVlsmRow('Servers', 60);
+addVlsmRow('Workstations', 28);
+addVlsmRow('Voice', 12);
+addVlsmRow('Point-to-point', 2);
+document.getElementById('addRow').addEventListener('click', () => addVlsmRow());
+
+function prefixForHosts(h) {
+  // need h usable hosts => smallest block with 2^n - 2 >= h (min /30 for normal LANs)
+  for (let p = 30; p >= 1; p--) {
+    if (Math.pow(2, 32 - p) - 2 >= h) return p;
+  }
+  return null;
+}
+
+document.getElementById('vlsmGo').addEventListener('click', () => {
+  vlsmErr.style.display = 'none';
+  const baseRaw = document.getElementById('vlsmBase').value.trim();
+  const m = /^(.+)\/(\d{1,2})$/.exec(baseRaw);
+  const fail = msg => { vlsmErr.textContent = msg; vlsmErr.style.display = 'block'; document.getElementById('vlsmResults').style.display = 'none'; };
+  if (!m) return fail('Base network must be in CIDR form, e.g. 10.0.0.0/24');
+  const baseIp = parseIp(m[1]);
+  const basePrefix = Number(m[2]);
+  if (baseIp === null || basePrefix < 1 || basePrefix > 30) return fail('Invalid base network — check the address and prefix (/1–/30)');
+  const baseNet = (baseIp & maskFromPrefix(basePrefix)) >>> 0;
+  if (baseNet !== baseIp) return fail('That address isn’t a network address for /' + basePrefix + ' — did you mean ' + ipToStr(baseNet) + '/' + basePrefix + '?');
+
+  const reqs = [];
+  vlsmRows.querySelectorAll('.vlsm-row').forEach((row, i) => {
+    const name = row.querySelector('[name=sname]').value.trim() || 'Subnet ' + (i + 1);
+    const hosts = Number(row.querySelector('[name=shosts]').value);
+    if (hosts >= 1) reqs.push({ name, hosts });
+  });
+  if (!reqs.length) return fail('Add at least one subnet with a host count');
+
+  // largest-first allocation
+  reqs.sort((a, b) => b.hosts - a.hosts);
+  const baseEnd = (baseNet + Math.pow(2, 32 - basePrefix)) ; // may exceed 2^32-1 as a plain number; fine for comparison
+  let cursor = baseNet;
+  const alloc = [];
+  for (const r of reqs) {
+    const p = prefixForHosts(r.hosts);
+    if (p === null || p < basePrefix) return fail('"' + r.name + '" needs ' + r.hosts.toLocaleString() + ' hosts — larger than the base network allows');
+    const size = Math.pow(2, 32 - p);
+    if (cursor + size > baseEnd) return fail('Ran out of space in ' + ipToStr(baseNet) + '/' + basePrefix + ' at "' + r.name + '" — use a larger base block');
+    const s = subnetInfo(cursor, p);
+    alloc.push({ name: r.name, need: r.hosts, s });
+    cursor += size;
+  }
+
+  const table = document.getElementById('vlsmTable');
+  table.innerHTML =
+    '<tr><th>Subnet</th><th>Hosts Needed</th><th>Assigned</th><th>Mask</th><th>Host Range</th><th>Broadcast</th><th>Usable</th></tr>' +
+    alloc.map(a =>
+      '<tr><td>' + a.name.replace(/</g, '&lt;') + '</td>' +
+      '<td>' + a.need.toLocaleString() + '</td>' +
+      '<td><b>' + ipToStr(a.s.network) + '/' + a.s.prefix + '</b></td>' +
+      '<td>' + ipToStr(a.s.mask) + '</td>' +
+      '<td>' + ipToStr(a.s.firstHost) + ' – ' + ipToStr(a.s.lastHost) + '</td>' +
+      '<td>' + ipToStr(a.s.broadcast) + '</td>' +
+      '<td>' + a.s.usable.toLocaleString() + '</td></tr>'
+    ).join('');
+
+  const used = cursor - baseNet;
+  const totalSpace = Math.pow(2, 32 - basePrefix);
+  const pct = Math.round(used / totalSpace * 100);
+  document.getElementById('vlsmNote').innerHTML =
+    'Allocated <span class="stat-ok">' + used.toLocaleString() + '</span> of ' +
+    totalSpace.toLocaleString() + ' addresses (' + pct + '%) — ' +
+    (totalSpace - used).toLocaleString() + ' free from ' +
+    (cursor < baseEnd ? ipToStr(cursor >>> 0) : '—') + ' upward. Subnets are packed largest-first to avoid fragmentation.';
+  document.getElementById('vlsmResults').style.display = 'block';
+});
+
+/* ---------- reference table ---------- */
+(function buildRef() {
+  let html = '<tr><th>Prefix</th><th>Subnet Mask</th><th>Wildcard</th><th>Total</th><th>Usable Hosts</th><th>Typical Use</th></tr>';
+  const uses = {
+    8: 'Class A / RFC 1918 10.0.0.0', 12: 'RFC 1918 172.16.0.0', 16: 'RFC 1918 192.168.0.0',
+    22: 'Large campus VLAN', 23: 'Large office LAN', 24: 'Standard LAN', 25: 'Split LAN',
+    26: 'Small dept LAN', 27: 'Small office', 28: 'DMZ / small segment', 29: 'Network gear block',
+    30: 'Point-to-point link', 31: 'P2P (RFC 3021)', 32: 'Host route / loopback'
+  };
+  for (let p = 8; p <= 32; p++) {
+    const mask = maskFromPrefix(p);
+    const total = Math.pow(2, 32 - p);
+    const usable = p === 31 ? 2 : p === 32 ? 1 : total - 2;
+    html += '<tr><td><b>/' + p + '</b></td><td>' + ipToStr(mask) + '</td><td>' + ipToStr(~mask >>> 0) +
+      '</td><td>' + total.toLocaleString() + '</td><td>' + usable.toLocaleString() +
+      '</td><td>' + (uses[p] || '') + '</td></tr>';
+  }
+  document.getElementById('refTable').innerHTML = html;
+})();
+</script>
+</body>
+</html>

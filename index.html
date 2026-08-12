@@ -37,10 +37,10 @@
     --muted: #6B6864;
     --accent: #4A4845;
     --accent2: #767370;
-    --blue: #4A4845;
-    --blue-deep: #2C2C2A;
-    --blue-dim: rgba(74,72,69,0.08);
-    --blue-border: rgba(74,72,69,0.45);
+    --blue: #3B5BB5;
+    --blue-deep: #2A4290;
+    --blue-dim: rgba(59,91,181,0.08);
+    --blue-border: rgba(59,91,181,0.45);
     --mono: 'Space Mono', monospace;
     --sans: 'Space Grotesk', sans-serif;
     --nav-bg: rgba(245,244,242,0.88);
@@ -56,14 +56,20 @@
     --muted: #C8C5C2;
     --accent: #FFFFFF;
     --accent2: #C8C5C2;
-    --blue: #C8C5C2;
-    --blue-deep: #E2E0DC;
-    --blue-dim: rgba(200,197,194,0.12);
-    --blue-border: rgba(200,197,194,0.55);
+    --blue: #8FA8F2;
+    --blue-deep: #B4C4F7;
+    --blue-dim: rgba(143,168,242,0.12);
+    --blue-border: rgba(143,168,242,0.55);
     --nav-bg: rgba(10,10,10,0.85);
   }
 
   html { scroll-behavior: smooth; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
 
   body {
     background: var(--bg);
@@ -149,6 +155,7 @@
     padding: 1px 4px;
     font-weight: 700;
   }
+  body.dark .nav-new-badge { color: #0A0A0A; }
 
   .nav-right {
     display: flex;
@@ -173,7 +180,7 @@
 
   .theme-toggle:hover { color: var(--text); border-color: var(--accent); }
 
-  section { padding: 3.5rem 2.5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  section { padding: 4.5rem 2.5rem 3rem; max-width: 1100px; margin: 0 auto; }
 
   .hero {
     min-height: 100vh;
@@ -216,12 +223,14 @@
   .hero-shade {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.5);
+    background:
+      linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 35%),
+      linear-gradient(100deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.28) 100%);
   }
 
-  .hero .hero-eyebrow { color: #C8C5C2; }
+  .hero .hero-eyebrow { color: #AEC2F5; }
   #hero h1 { color: #FFFFFF; }
-  #hero h1 em { color: #C8C5C2; }
+  #hero h1 em { color: #AEC2F5; }
   .hero .hero-sub { color: #D3D1C7; }
   .hero .badge { color: #D3D1C7; border-color: rgba(255,255,255,0.35); }
   .hero .badge.hi { color: #FFFFFF; border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); }
@@ -411,10 +420,17 @@
     font-size: clamp(1.1rem, 2vw, 1.4rem);
     font-weight: 600;
     letter-spacing: -0.01em;
-    color: var(--accent);
-    margin-bottom: 1.25rem;
+    color: var(--text);
+    margin-bottom: 1.75rem;
     padding-bottom: 0.75rem;
     border-bottom: 0.5px solid var(--border);
+  }
+
+  .section-label .slash {
+    color: var(--blue);
+    font-family: var(--mono);
+    font-size: 0.85em;
+    margin-right: 0.3rem;
   }
 
   .skills-grid {
@@ -476,12 +492,19 @@
     flex-shrink: 0;
   }
 
-  .tag-iam   { color: #7dcfb6; border-color: rgba(125,207,182,0.35); background: rgba(125,207,182,0.07); }
-  .tag-mon   { color: #89b4fa; border-color: rgba(137,180,250,0.35); background: rgba(137,180,250,0.07); }
-  .tag-net   { color: #a6e3a1; border-color: rgba(166,227,161,0.35); background: rgba(166,227,161,0.07); }
-  .tag-voip  { color: #fab387; border-color: rgba(250,179,135,0.35); background: rgba(250,179,135,0.07); }
-  .tag-sec   { color: #f38ba8; border-color: rgba(243,139,168,0.35); background: rgba(243,139,168,0.07); }
-  .tag-itsm  { color: #cba6f7; border-color: rgba(203,166,247,0.35); background: rgba(203,166,247,0.07); }
+  .tag-iam   { color: #17705a; border-color: rgba(23,112,90,0.35); background: rgba(23,112,90,0.06); }
+  .tag-mon   { color: #2b57ad; border-color: rgba(43,87,173,0.35); background: rgba(43,87,173,0.06); }
+  .tag-net   { color: #33701f; border-color: rgba(51,112,31,0.35); background: rgba(51,112,31,0.06); }
+  .tag-voip  { color: #a2541a; border-color: rgba(162,84,26,0.35); background: rgba(162,84,26,0.06); }
+  .tag-sec   { color: #b52e57; border-color: rgba(181,46,87,0.35); background: rgba(181,46,87,0.06); }
+  .tag-itsm  { color: #6f42b3; border-color: rgba(111,66,179,0.35); background: rgba(111,66,179,0.06); }
+
+  body.dark .tag-iam   { color: #7dcfb6; border-color: rgba(125,207,182,0.35); background: rgba(125,207,182,0.07); }
+  body.dark .tag-mon   { color: #89b4fa; border-color: rgba(137,180,250,0.35); background: rgba(137,180,250,0.07); }
+  body.dark .tag-net   { color: #a6e3a1; border-color: rgba(166,227,161,0.35); background: rgba(166,227,161,0.07); }
+  body.dark .tag-voip  { color: #fab387; border-color: rgba(250,179,135,0.35); background: rgba(250,179,135,0.07); }
+  body.dark .tag-sec   { color: #f38ba8; border-color: rgba(243,139,168,0.35); background: rgba(243,139,168,0.07); }
+  body.dark .tag-itsm  { color: #cba6f7; border-color: rgba(203,166,247,0.35); background: rgba(203,166,247,0.07); }
 
   .sample-header h3 {
     font-size: 1.05rem;
@@ -761,6 +784,9 @@
     border-color: var(--blue-deep);
   }
 
+  body.dark .project-link-primary,
+  body.dark .project-link-primary:hover { color: #0A0A0A; }
+
   .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
 
   .contact-left h2 {
@@ -771,7 +797,7 @@
     margin-bottom: 1.25rem;
   }
 
-  .contact-left h2 em { font-style: normal; color: var(--accent); }
+  .contact-left h2 em { font-style: normal; color: var(--blue); }
   .contact-left p { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 2rem; }
   .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
 
@@ -866,6 +892,9 @@
     animation: pulse-orange 2s ease-in-out infinite;
   }
 
+  .log-pulse-shipped { background: #2b57ad; }
+  body.dark .log-pulse-shipped { background: #89b4fa; }
+
   @keyframes pulse-green {
     0%   { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
     70%  { box-shadow: 0 0 0 6px rgba(74,222,128,0); }
@@ -908,10 +937,15 @@
     flex-shrink: 0;
   }
 
-  .log-tag-building { color: #4ade80; border-color: rgba(74,222,128,0.4); background: rgba(74,222,128,0.07); }
-  .log-tag-planning { color: #fab387; border-color: rgba(250,179,135,0.4); background: rgba(250,179,135,0.07); }
-  .log-tag-shipped  { color: #89b4fa; border-color: rgba(137,180,250,0.4); background: rgba(137,180,250,0.07); }
-  .log-tag-learning { color: #cba6f7; border-color: rgba(203,166,247,0.4); background: rgba(203,166,247,0.07); }
+  .log-tag-building { color: #1e8a4c; border-color: rgba(30,138,76,0.4); background: rgba(30,138,76,0.06); }
+  .log-tag-planning { color: #a2541a; border-color: rgba(162,84,26,0.4); background: rgba(162,84,26,0.06); }
+  .log-tag-shipped  { color: #2b57ad; border-color: rgba(43,87,173,0.4); background: rgba(43,87,173,0.06); }
+  .log-tag-learning { color: #6f42b3; border-color: rgba(111,66,179,0.4); background: rgba(111,66,179,0.06); }
+
+  body.dark .log-tag-building { color: #4ade80; border-color: rgba(74,222,128,0.4); background: rgba(74,222,128,0.07); }
+  body.dark .log-tag-planning { color: #fab387; border-color: rgba(250,179,135,0.4); background: rgba(250,179,135,0.07); }
+  body.dark .log-tag-shipped  { color: #89b4fa; border-color: rgba(137,180,250,0.4); background: rgba(137,180,250,0.07); }
+  body.dark .log-tag-learning { color: #cba6f7; border-color: rgba(203,166,247,0.4); background: rgba(203,166,247,0.07); }
 
   .log-row-status {
     font-family: var(--mono);
@@ -1036,11 +1070,11 @@
 </section>
 
 <section id="log">
-  <p class="section-label">// What I'm currently working on</p>
+  <p class="section-label"><span class="slash">//</span> What I'm currently working on</p>
   <div class="log-feed">
 
     <div class="log-row">
-      <div class="log-pulse-wrap"><span class="log-pulse log-pulse-building"></span></div>
+      <div class="log-pulse-wrap"><span class="log-pulse log-pulse-shipped"></span></div>
       <div class="log-row-content">
         <div class="log-row-top">
           <span class="log-row-name">SOC Posture Tool — Five-Pillar Maturity Assessment</span>
@@ -1137,7 +1171,7 @@
 </section>
 
 <section id="skills">
-  <p class="section-label">// Core competencies</p>
+  <p class="section-label"><span class="slash">//</span> Core competencies</p>
   <div class="skills-grid">
     <div class="skill-cell">
       <p class="skill-cell-title">IAM</p>
@@ -1234,7 +1268,7 @@
 
 
 <section id="work">
-  <p class="section-label">// Experience</p>
+  <p class="section-label"><span class="slash">//</span> Experience</p>
   <div class="work-list">
     <div class="work-item">
       <div class="work-meta">
@@ -1327,7 +1361,7 @@
 </div>
 
 <section id="projects">
-  <p class="section-label">// Side projects</p>
+  <p class="section-label"><span class="slash">//</span> Side projects</p>
   <div class="projects-grid">
     <div class="project-card">
       <p class="project-type">SOC maturity assessment</p>
@@ -1459,7 +1493,7 @@
 
 
 <section id="contact">
-  <p class="section-label">// Contact</p>
+  <p class="section-label"><span class="slash">//</span> Contact</p>
   <div class="contact-block">
     <div class="contact-left">
       <h2>Let's build something <em>together.</em></h2>
@@ -1476,7 +1510,7 @@
       </div>
     </div>
     <div class="contact-right">
-      <p style="font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; border-bottom: 0.5px solid var(--border); padding-bottom: 0.75rem;">// Credentials</p>
+      <p style="font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; border-bottom: 0.5px solid var(--border); padding-bottom: 0.75rem;"><span style="color: var(--blue);">//</span> Credentials</p>
       <div class="cert-list">
         <div class="cert-item">
           <div class="cert-icon">
